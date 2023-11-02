@@ -1,0 +1,608 @@
+/*Definicion Variables*/
+:root{
+    --color-principal: #FFFFFF;
+    --color-secondary: #e96443;
+    --color-background: #F4F4FC;
+    --color-transparent: transparent;
+    --color-icons: #B5B7BA;
+    --color-subtitle: #888;
+    --color-title: #222222;
+    --color-text: #555;
+    --color-border-testimonials: #e5e6e7;
+    --color-company: #a5a6a7;
+}
+
+/*Estilos generales*/
+
+html{
+    font-size: 10px;
+}
+  body {
+    width: 100%;
+    height: 100%; /* Ajusta la altura para que cubra toda la pantalla */
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-left: 0;
+  }
+
+
+
+h1, h2, h3, h4, h5, h6{
+    color: var(--color-text)
+}
+
+body {
+    background-image: url('../img/fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -1px -140px;
+}
+
+
+@media print {
+    .no-print, .no-print *{
+        display: none !important;
+    }
+}
+
+.margen{
+    padding: 2rem;
+}
+
+/*Imagen de fondo*/
+
+.nav-edit{
+    height: 10rem;
+    background-color: #F3EEE8;
+}
+
+.card-form{
+    box-shadow: 10px 10px 20px -15px;
+}
+
+.ar{
+    position: absolute;
+    left: 5rem
+}
+
+.navbar2{
+    display: none;
+}
+
+.nav-position-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+.nav-genera{
+    margin-bottom: -5rem;
+}
+
+.container-cards{
+    margin-top: 17rem;
+    max-width: 100%;
+}
+
+
+
+
+
+.card1{
+    position: relative;
+    height: 70vh;
+    width: 30vw;
+    /* background: linear-gradient(to top left,#9DB8FF,#9DB8FF,#535b99,#4f0f56,#1c245e, #21252A, #21252A); */
+    background: linear-gradient(to bottom right,#F3EEE8,#F3EEE8,#21252a21, #363d4440,#904e953b, #e9644327);
+
+    background-size: 200% 200%;
+
+    animation: movimiento 5s linear infinite alternate;
+
+    border-radius: 2rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card-login{
+    height: 50rem;
+    width: 60rem;
+}
+
+#login{
+    position: relative;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 8rem;
+}
+
+.login-text{
+    position: relative;
+    top: 7rem;
+}
+
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+.botones button{
+    width: 45%;
+}
+
+@keyframes movimiento {
+    from {
+        background-position: 0.0;
+    }to{
+        background-position: 100% 100%;
+    }
+}
+
+.btn-calcular{
+    background-color: transparent;
+    color: var(--color-title);
+    font-weight: bold;
+    border: 3px solid var(--color-text);
+    border-radius: 15px;
+    margin-bottom: 3px;
+
+}
+.btn-calcular:hover{
+    background-color: rgba(240, 87, 82, 0.51);
+    color: var(--color-principal);
+    font-weight: bold;
+    border: 2px solid var(--color-background);
+    border-radius: 15px;
+}
+
+.dark .btn-enviar,
+.dark .btn-calcular{
+    border: 3px solid var(--color-principal);
+    color: var(--color-principal);
+}
+
+
+.card2,
+.card3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 70vh;
+    width: 50vw;
+    background: linear-gradient(to bottom right,#F3EEE8,#F3EEE8,#21252a21, #363d4440,#904e953b, #e9644327);
+    border-radius: 2rem;
+    background-size: 200% 200%;
+
+    animation: movimiento 5s infinite alternate;
+}
+
+@keyframes movimiento {
+    from{
+        background-position: 0.0;
+    }to{
+        background-position: 100%;
+    }
+}
+
+
+.card2 .face{
+    position: absolute;
+    display: flex;
+    width: 98%;
+    height: 90%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+.card2 .front{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.card2 .front h3,
+.card3 h3{
+    position: relative;
+    font-size: 5rem;
+    width: 30%;
+    height: 40%;
+    top: -1.5rem;
+}
+
+.card2 .back {
+    opacity: 0;
+    right: 0.8rem;
+}
+
+
+.card2:hover .front{
+    opacity: 0;
+}
+
+.card2:hover .back{
+    opacity: 1;
+}
+
+input,
+textarea,
+select{
+    height: 5rem;
+    font-size: 12px;
+}
+
+textarea{
+    resize: none;
+}
+
+input::placeholder,
+textarea::placeholder,
+select,
+label,
+option{
+    font-size: 15px;
+    color: var(--color-text);
+}
+
+.btn-descargar{
+    width: 10rem;
+    font-size: 13px;
+    height: 4rem;
+}
+
+#pastores-campus,
+#fecha,
+#hora
+#modalidad,
+#campus,
+#calcular{
+    font-size: 12px;
+}
+
+form{
+    padding-left: 2.5rem;
+}
+
+button{
+    height: 5rem;
+    font-weight: bold;
+}
+
+.oculto{
+    visibility: hidden;
+}
+
+.title__form{
+    margin: 5rem 0;
+    text-align: center;
+}
+
+
+.image-smile{
+    position: relative;
+    width: 35rem;
+    top: 20%;
+}
+
+.dark-light-mode_button {
+    position: fixed;
+    display: flex;
+    width: 5rem;
+    align-items: center;
+    padding: 3rem 2.5rem;
+    top: 14rem;
+    border-radius: 0 3rem 3rem 0;
+    background: linear-gradient(to bottom right,#21252a30, #363d4438,#904e953b, #e9644327);
+    transition: padding 300ms ease-in-out;
+}
+
+.dark-light-mode_button:hover {
+    cursor: pointer;
+    padding: 3rem 4rem;
+}
+
+.button__shadow{
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.fa-moon,
+.fa-sun {
+    position: absolute;
+    left: -1.5rem;
+    font-size: 3rem;
+    color: var(--color-background);
+    transition: color 300ms ease-in-out; /* Aplicar transición a la propiedad color */
+}
+
+.fa-moon{
+    color: var(--color-text);
+}
+
+.fa-moon:hover {
+    color: var(--color-title);
+}
+
+.fa-sun:hover {
+    color: gold;
+}
+
+.nav-edit{
+    margin-top: 3.5rem;
+}
+
+.dark{
+
+    background-color: var(--color-title);
+    /* background: linear-gradient(to top right,#21252a, #000000,#08040843, #08030275); 
+
+    background-size: 200% 200%;
+
+    animation: movimiento 5s alternate infinite; */
+}
+
+/* @keyframes movimiento {
+    from{
+        background-position: 0.0;
+    }to{
+        background-position: 100%;
+    }
+} */
+
+.dark .dark-light-mode_button {
+    background: linear-gradient(to bottom right,#21252a, #363d44,#904e9543, #e9644375); 
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6{
+    color:var(--color-background);
+}
+
+.dark  .ministries{
+    color: var(--color-title);
+}
+
+
+.dark .card1,
+.dark .card2,
+.dark .card3{
+    background: linear-gradient(to bottom right,#21252a, #363d44,#904e9543, #e9644375); 
+
+    background-size: 200% 200%;
+
+
+    animation: movimiento 5s infinite alternate;
+}
+
+@keyframes movimiento {
+    from{
+        background-position: 0.0;
+    }to{
+        background-position: 100%;
+    }
+}
+
+.dark .nav-edit,
+.dark .navbar2{
+    background-color: var(--color-title);
+}
+
+.dark strong{
+    color: var(--color-background);
+}
+
+.dark .botonD{
+    background-color: var(--color-background);
+}
+
+.input-invalid{
+    border: 2px solid red;
+    box-shadow: 1px 1px 5px -8px;
+}
+
+.dark .ar{
+    color:var(--color-background);
+}
+
+.dark label{
+    color: var(--color-background);
+}
+
+
+@media (max-width: 1190px){
+    .container-cards{
+        margin-left: 0rem;
+    }
+}
+
+
+@media (max-width: 1090px) {
+    .container-cards{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .card1,
+    .card2{
+        height: 80vh;
+        width: 90vh;
+    }
+
+    .card2 .back {
+        right: 0.7rem;
+    }
+    .margen{
+        padding: 1rem;
+    }
+    .dark-light-mode_button:hover {
+        padding: 3rem 2.5rem; /* Mantener el padding fijo en la media query */
+    }
+    form{
+        padding-left: 0 3%;
+    }
+    .card3 h3{
+        left: -2rem;
+        top: -5rem;
+    }
+    .card-login{
+        height: 50rem;
+        width: 60rem;
+    }
+    #login{
+        left: 0rem;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .myoffcanvas{
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 980px) {
+    .nav-edit{
+        display: none;
+    }
+    .navbar2{
+        margin-top: 3.5rem;
+        height: 10rem;
+        display: block;
+        background-color: #F3EEE8;
+    }
+    .container-cards{
+        margin-top: 16rem;
+    }
+    .dark-light-mode_button{
+        top: 5.5rem;
+    }
+    .ar{
+        position: relative;
+        left: 40%;
+    }
+    form{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+
+
+  /*Samsung Galaxy Ultra*/
+
+@media (max-width: 920px) and (max-height: 420px) {
+    .card1,
+    .card2{
+        height: 100vh;
+        width: 80vw;
+    }
+
+    form{
+        padding-left: 2rem;
+    }
+  }
+
+
+@media (max-width: 780px) {
+    .card3 h3{
+        left: -3rem;
+    }
+    .card3{
+        width: 70%;
+    }
+}
+
+@media (max-width: 700px) {
+    .card1,
+    .card2{
+        height: 80vh;
+        width: 90%;
+    }
+    .card-login{
+        height: 50rem;
+        width: 60rem;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+    .card1,
+    .card2{
+        height: 80vh;
+        width: 90%;
+    }
+
+    .card2{
+        right: 0.5rem;
+    }
+
+    .card2 .back {
+        right: 0.5rem;
+    }
+
+    .card2 .face h3{
+        position: relative;
+        text-align: center;
+        right: 2.5rem;
+    }
+    .ar{
+        left: 34%;
+    }
+    .card-login{
+        height: 50rem;
+        width: 60rem;
+    }
+}
+
+@media (max-width: 500px){
+    body::before{
+        top: 10rem;
+    }
+    .card2{
+        right: 0.5rem;
+    }
+
+    .card2 .back {
+        right: 0.3rem;
+    }
+
+    .card1{
+        left: 0.2%;
+    }
+    .card3 h3{
+        left: -5rem;
+    }
+    .card-login{
+        height: 50rem;
+        width: 60rem;
+    }
+
+}
+
+.img-relleno{
+    margin-top: 15px;
+}
+
+.card-register{
+    height: 55rem;
+}

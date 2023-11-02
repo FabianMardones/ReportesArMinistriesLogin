@@ -1,0 +1,31 @@
+:root{
+    --color-scrollbar: #d3d3d4;
+    --color--background-scrollbar: #eee; 
+}
+
+
+/*Scroll Chrome*/
+
+.card1::-webkit-scrollbar{
+    width: 20px;
+    background: transparent;
+}
+
+.card1::-webkit-scrollbar-thumb{
+    border: 10px solid transparent;
+    box-shadow: none;
+    border-radius: 40px;
+}
+
+.card1:hover::-webkit-scrollbar-thumb{
+    box-shadow: inset 0 0 0 10px var(--color-scrollbar);
+}
+
+.card1:hover::-webkit-scrollbar-thumb:hover{
+    border: 8px solid transparent;
+    box-shadow: inset 0 0 0 10px var(--color-secondary);
+}
+
+.card1::-webkit-scrollbar-track{
+    margin: 40px 0;
+}
