@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-
 const authController = require('../controllers/authController')
+
 
 
 router.get('/', authController.isAuth, (req, res) => {
@@ -17,10 +17,15 @@ router.get('/register', (req, res) => {
     res.render('register')
 })
 
+router.get('/dashboard',(req, res) => {
+    res.render('dashboard')
+})
 
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
+router.post('/validar', authController.validar)
+router.get('/obtenerDatos', authController.obtenerDatos)
 
 
 module.exports = router

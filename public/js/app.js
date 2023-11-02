@@ -44,6 +44,9 @@ const standProyectoEducativo = document.querySelector('#proyectoEducativoVolunta
 const botonCalcular = document.querySelector('#calcular')
 const totalAsistentes = document.querySelector('#totalAsistentes')
 
+const botonCalcularAJ = document.querySelector('#calcularAJ')
+const totalAJ = document.querySelector('#totalAJ')
+
 /**Muy importante llevar el registro de las personas que aceptaron a Jesús*/
 const aceptaPresencial = document.querySelector('#aceptaPresencial')
 const aceptaOnline = document.querySelector('#aceptaOnline')
@@ -96,7 +99,8 @@ const objetoForm = {
   recursosVoluntarios: '',
   amorPorLaCasaVoluntarios: '',
   proyectoEducativoVoluntarios: '',
-  totalAsistentes: Number(),
+  totalAsistentes: Number(0),
+  totalAJ: Number(0),
   aceptaPresencial: '',
   aceptaOnline: '',
   aceptaTweens: '',
@@ -150,8 +154,15 @@ function agruparEventListener(){
     botonCalcular.addEventListener('click', ((e) =>{
       e.preventDefault()
       calcularTotalAsistencia()
-      validacionTotalAsistentes()
+      validacionTotalAsistentes(e)
     }))
+
+    botonCalcularAJ.addEventListener('click', (e) => {
+      e.preventDefault();
+      calcularTotalAsistenciaAJ();
+      validacionTotalAJ(e); // Pasa el evento como argumento
+    });
+
 
     formulario.addEventListener('submit', registrarDatos)
 
@@ -240,7 +251,7 @@ function validacion(e){
 }
 
 /**Esta validación de totalAsistentes se valida de forma separada, ya que está directamente relacionada al evento click del boton con el id botonCalular, de esta forma, pasará la validación siempre y cuando se le haya dado click*/
-function validacionTotalAsistentes() {
+function validacionTotalAsistentes(e) {
   const totalAsistencia = (totalAsistentes.value);
   const inputElement = e.target
 
@@ -255,6 +266,23 @@ function validacionTotalAsistentes() {
     comprobarObjetoForm();
   }
 }
+
+function validacionTotalAJ(e) {
+  const totalAsistencia = Number(totalAJ.value); // Convierte el valor a número
+  const inputElement = e.target;
+
+  if (isNaN(totalAsistencia) || totalAsistencia < 0) {
+    mensajeAlerta('El campo Total Asistentes debe ser un número válido', totalAJ.parentElement);
+    objetoForm.totalAJ = ''; // Deja esto vacío o asigna null si es necesario
+    comprobarObjetoForm();
+    inputElement.classList.add('input-invalid');
+  } else {
+    eliminarMensajeAlerta(totalAJ.parentElement);
+    objetoForm.totalAJ = totalAsistencia; // Almacena el número
+    comprobarObjetoForm();
+  }
+}
+
 
 
 /**Función mensaje de alerta, sirve para mostrar la alerta debajo de cada input, para ayudar al usuario a completar todos los campos y estos sepan que son obligatorios */
@@ -303,6 +331,17 @@ function calcularTotalAsistencia() {
     Number(standProyectoEducativo.value);
 
   document.querySelector('#totalAsistentes').value = totalAsistencia;
+}
+
+
+function calcularTotalAsistenciaAJ() {
+
+  const totalAceptaAJesus =
+    Number(aceptaPresencial.value) +
+    Number(aceptaOnline.value) +
+    Number(aceptaTweens.value);
+
+  document.querySelector('#totalAJ').value = totalAceptaAJesus;
 }
 
 /**Función de registrar datos, está vinculada al formulario con un evento de tipo submit, el cual al momento de pasar la validación y enviar y generar el pdf, los datos, primeramente se generen en una tabla dinámica, esta se iprima en el html con un botón de descargar el cual está utilizando la librería de html2pdf, para descargar el pdf y en conjunto le asocia los datos capturados en el objetoForm para que se inserten dinámicamente según lo puesto en el formulario. Luego de esto está el setTimeout para añadir atributos al formulario, con el propósito importantísimo de enviar los datos a la base de datos, conectándo el formulario a la ruta de validar que se encuentra en index.js la cual utiliza express, node.js y mysql para enviar los datos a la base de datos y por último, luego de 1 segundo que sucede eso, se cambiar el texto que indica en la card2 que duce "aquí estará tu reporte" por "tu reporte está listo" de esta forma hacer intuitiva la visualización y descarga del documento. por último se muestra en bloque la card2, usando la función contenido true, y desbloqueando la card2 para pantallas más pequeñas así al momento de enviar, se muestra en primer lugar*/
@@ -466,7 +505,7 @@ function registrarDatos(e){
     <br>
 
     <h4 style="color: black;">Personas que aceptaron a Jesús</h4>
-    
+
     <table class="table table-bordered table-striped">
       <thead>
         <th>Presencial</th>
@@ -482,7 +521,18 @@ function registrarDatos(e){
       </tbody>
     </table>
     <br>
-    
+
+    <table class="table table-bordered table-striped">
+    <thead>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${objetoForm.totalAJ}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
 
       <div>
         <div>
@@ -587,6 +637,7 @@ function comprobarObjetoForm(){
   }
   btnSubmit.disabled = false
 }
+
 
 
 

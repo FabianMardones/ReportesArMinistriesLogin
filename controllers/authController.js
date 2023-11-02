@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcryptjs = require('bcryptjs')
 const connection = require('../database/db')
+const conexion = require('../database/db2')
 const {promisify} = require('util');
 const { error } = require('console');
 
@@ -141,7 +142,7 @@ exports.isAuth = async(req, res, next) => {
     }else{
         res.redirect('/login')
     }
-} 
+}
 
 
 exports.logout = (req, res)=>{
@@ -149,3 +150,79 @@ exports.logout = (req, res)=>{
     return res.redirect('/')
 }
 
+
+exports.validar = async(req, res) => {
+    const datos = req.body;
+
+    console.log(datos);
+
+    let pastoresCampus = datos.pastoresCampus;
+    let ministrosEncargados = datos.ministrosEncargados;
+    let lideresVoluntarios = datos.lideresVoluntarios;
+    let fecha = datos.fecha;
+    let hora = datos.hora;
+    let modalidad = datos.modalidad;
+    let campus = datos.campus;
+    let asistenciaAdulto = datos.adultos;
+    let asistenciaKids = datos.kids;
+    let asistenciaTweens = datos.tweens;
+    let asistenciaServicioVoluntarios = datos.servicioVoluntarios;
+    let asistenciaTecnicaVoluntarios = datos.tecnicaVoluntarios;
+    let asistenciaKidsVoluntarios = datos.kidsVoluntarios;
+    let asistenciaTweensVoluntarios = datos.tweensVoluntarios;
+    let asistenciaWorshipVoluntarios = datos.worshipVoluntarios;
+    let asistenciaCocinaVoluntarios = datos.cocinaVoluntarios;
+    let asistenciaRedesSocialesVoluntarios = datos.redesSocialesVoluntarios;
+    let asistenciaSeguridadVoluntarios = datos.seguridadVoluntarios;
+    let asistenciaSalaDeBebesVoluntarios = datos.salaBebesVoluntarios;
+    let asistenciaInfoStand = datos.infoVoluntarios;
+    let asistenciaOracionStand = datos.oracionVoluntarios;
+    let asistenciaRecursosStand = datos.recursosVoluntarios;
+    let asistenciaAmorPorLaCasaStand = datos.amorPorLaCasaVoluntarios;
+    let asistenciaProyectoEducativoStand = datos.proyectoEducativoVoluntarios;
+    let totalAsistentes = datos.totalAsistentes;
+    let aceptaAJesusPresencial = datos.aceptaPresencial;
+    let aceptaAJesusOnline = datos.aceptaOnline;
+    let aceptaAJesusTweens = datos.aceptaTweens;
+    let totalAj = datos.totalAJ;
+    let nombrePredicador = datos.nombrePredicador;
+    let nombreMensaje = datos.nombreMensaje;
+    let observaciones = datos.observaciones;
+
+
+    const insertQuery = "INSERT INTO reporte_encuentros (pastores_campus, ministros_encargados, lideres_voluntariado, fecha, hora, modalidad, campus, asistencia_adultos, asistencia_kids, asistencia_tweens, asistencia_voluntarios_servicio, asistencia_voluntarios_tecnica, asistencia_voluntarios_kids, asistencia_voluntarios_tweens, asistencia_voluntarios_worship, asistencia_voluntarios_cocina, asistencia_voluntarios_redes_sociales, asistencia_voluntarios_seguridad, asistencia_voluntarios_sala_bebes, stand_info, stand_oracion, stand_recursos, stand_amor_por_la_casa, stand_proyecto_educativo, total_asistencia,acepta_a_jesus_presencial, acepta_a_jesus_online, acepta_a_jesus_tweens, total_acepta_a_jesus, nombre_predicador, nombre_mensaje, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+    // Pasar los valores a la consulta parametrizada
+    const values = [pastoresCampus, ministrosEncargados, lideresVoluntarios, fecha, hora, modalidad, campus, asistenciaAdulto, asistenciaKids, asistenciaTweens, asistenciaServicioVoluntarios, asistenciaTecnicaVoluntarios, asistenciaKidsVoluntarios, asistenciaTweensVoluntarios, asistenciaWorshipVoluntarios, asistenciaCocinaVoluntarios, asistenciaRedesSocialesVoluntarios, asistenciaSeguridadVoluntarios, asistenciaSalaDeBebesVoluntarios, asistenciaInfoStand, asistenciaOracionStand, asistenciaRecursosStand, asistenciaAmorPorLaCasaStand, asistenciaProyectoEducativoStand, totalAsistentes, aceptaAJesusPresencial, aceptaAJesusOnline, aceptaAJesusTweens, totalAj, nombrePredicador, nombreMensaje, observaciones];
+
+    console.log(values);
+
+    conexion.query(insertQuery, values, function(error){
+        if(error){
+            throw error;
+        } else {
+            console.log('Datos almacenados correctamente');
+        }
+    });
+
+    setTimeout(() => {
+        res.redirect("/")
+    }, 5000);
+};
+
+exports.obtenerDatos = async(req, res) => {
+    const campuses = ['Puente Alto', 'Santiago', 'Montevideo', 'West Perrine', 'Doral'];
+    const query = 'SELECT campus, total_acepta_a_jesus FROM reporte_encuentros WHERE campus IN (?)';
+    conexion.query(query, [campuses], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            const campusResults = {}; // Objeto para almacenar los resultados por campus
+            results.forEach((result) => {
+                results[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
+            });
+            res.render('dashboard', { results: results });
+        }
+    });
+}
