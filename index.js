@@ -14,8 +14,9 @@ const dotenv = require('dotenv')
 dotenv.config({path:"./env/.env"})
 
 
-app.use('/resources', express.static(path.join('public')))
+app.use('/resources', express.static(('public')))
 app.use('/resources', express.static(__dirname + '/public'))
+
 
 
 app.use(cookieParser())
@@ -37,11 +38,8 @@ app.use(session({
 }))
 
 
-
-
 const connection = require('./database/db')
 const connection2 = require('./database/db2')
-
 
 
 app.listen(3000, function(){

@@ -1,0 +1,26 @@
+[
+  {
+    "campus": "Puente Alto",
+    "total_acepta_a_jesus": 15,
+    "total_asistencia": 135,
+    "fecha": "3/11/2023",
+    "hora": "19:00",
+    "Puente Alto": 15
+  },
+  {
+    "campus": "West Perrine",
+    "total_acepta_a_jesus": 15,
+    "total_asistencia": 85,
+    "fecha": "3/11/2023",
+    "hora": "19:00",
+    "West Perrine": 15
+  },
+  {
+    "campus": "Montevideo",
+    "total_acepta_a_jesus": 19,
+    "total_asistencia": 662,
+    "fecha": "3/11/2023",
+    "hora": "19:00",
+    "Montevideo": 19
+  }
+]

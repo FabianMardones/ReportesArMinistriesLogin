@@ -211,18 +211,28 @@ exports.validar = async(req, res) => {
     }, 5000);
 };
 
-exports.obtenerDatos = async(req, res) => {
-    const campuses = ['Puente Alto', 'Santiago', 'Montevideo', 'West Perrine', 'Doral'];
-    const query = 'SELECT campus, total_acepta_a_jesus, total_asistencia, fecha, hora FROM reporte_encuentros WHERE campus IN (?)';
-    conexion.query(query, [campuses], (error, results) => {
-        if (error) {
-            throw error;
-        } else {
-            results.forEach((result) => {
-                result.fecha = result.fecha.toLocaleDateString('es');
-                result[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
-            });
-            res.render('dashboard', { results: results });
-        }
-    });
-}
+const fs = require('fs');
+
+exports.obtenerDatos = async (req, res) => {
+  const campuses = ['Puente Alto', 'Santiago', 'Montevideo', 'West Perrine', 'Doral'];
+  const query = 'SELECT campus, total_acepta_a_jesus, total_asistencia, fecha, hora FROM reporte_encuentros WHERE campus IN (?)';
+  conexion.query(query, [campuses], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      results.forEach((result) => {
+        result.fecha = result.fecha.toLocaleDateString('es');
+        result[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
+      });
+
+      // Guardar los resultados en un archivo JSON
+      const dataToWrite = JSON.stringify(results, null, 2);
+      fs.writeFileSync('database/encuentros.json', dataToWrite);
+
+      res.render('dashboard', { results: results });
+      setTimeout(() => {
+        res.json(results);
+      }, 2000);
+    }
+  });
+};
