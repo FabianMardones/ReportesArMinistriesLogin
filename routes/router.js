@@ -17,9 +17,9 @@ router.get('/register', (req, res) => {
     res.render('register')
 })
 
-router.get('/dashboard',(req, res) => {
-    res.render('dashboard')
-})
+router.get('/dashboard', [authController.isAuth, authController.obtenerDatos], (req, res) => {
+    res.render('dashboard');
+});
 
 router.post('/register', authController.register)
 router.post('/login', authController.login)

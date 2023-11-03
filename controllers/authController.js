@@ -213,14 +213,14 @@ exports.validar = async(req, res) => {
 
 exports.obtenerDatos = async(req, res) => {
     const campuses = ['Puente Alto', 'Santiago', 'Montevideo', 'West Perrine', 'Doral'];
-    const query = 'SELECT campus, total_acepta_a_jesus FROM reporte_encuentros WHERE campus IN (?)';
+    const query = 'SELECT campus, total_acepta_a_jesus, total_asistencia, fecha, hora FROM reporte_encuentros WHERE campus IN (?)';
     conexion.query(query, [campuses], (error, results) => {
         if (error) {
             throw error;
         } else {
-            const campusResults = {}; // Objeto para almacenar los resultados por campus
             results.forEach((result) => {
-                results[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
+                result.fecha = result.fecha.toLocaleDateString('es');
+                result[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
             });
             res.render('dashboard', { results: results });
         }
