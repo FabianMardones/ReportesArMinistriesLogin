@@ -69,7 +69,6 @@ exports.register = async (req, res) => {
 }
 
 
-
 exports.login = async(req, res) => {
     try {
         const email = req.body.email
@@ -239,9 +238,9 @@ exports.obtenerDatos = async (req, res) => {
     } else {
       results.forEach((result) => {
         result.fecha = result.fecha.toLocaleDateString('es');
-        result[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
+        result[result.campus] = result.total_acepta_a_jesus;
       });
-      // Guardar los resultados en un archivo JSON
+
       const dataToWrite = JSON.stringify(results, null, 2);
       fs.writeFileSync('database/encuentros.json', dataToWrite);
 
