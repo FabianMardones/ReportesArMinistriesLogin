@@ -115,7 +115,7 @@ exports.login = async(req, res) => {
                         res.render('login', {
                             alert: true,
                             alertTitle: 'Hola! Que bueno verte!',
-                            alertMessage: 'Loggin exitoso',
+                            alertMessage: 'Login exitoso',
                             alertIcon: 'success',
                             background: "#555555",
                             color: "#fff",
