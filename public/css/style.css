@@ -284,6 +284,11 @@ button{
     font-weight: bold;
 }
 
+.btn-login,
+.btn-register{
+    box-shadow: 5px 5px 10px -8px;
+}
+
 .oculto{
     visibility: hidden;
 }
