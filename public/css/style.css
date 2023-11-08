@@ -277,6 +277,8 @@ form{
     padding-left: 2.5rem;
 }
 
+
+
 button{
     height: 5rem;
     font-weight: bold;
@@ -374,9 +376,13 @@ button{
 .dark h3,
 .dark h4,
 .dark h5,
-.dark h6{
+.dark h6,
+.dark a
+.dark p{
     color:var(--color-background);
 }
+
+
 
 .dark  .ministries{
     color: var(--color-title);
@@ -428,6 +434,18 @@ button{
     color: var(--color-background);
 }
 
+.user-name{
+   position: absolute;
+   left: 43%;
+}
+
+.table-bordered-all {
+    border: 1px solid #000; /* Cambia el color y grosor del borde según tus preferencias */
+  }
+  .table-bordered-all th, .table-bordered-all td {
+    border: 1px solid #000; /* Cambia el color y grosor del borde según tus preferencias */
+  }
+
 
 @media (max-width: 1190px){
     .container-cards{
@@ -457,7 +475,7 @@ button{
         padding: 3rem 2.5rem; /* Mantener el padding fijo en la media query */
     }
     form{
-        padding-left: 0 3%;
+        padding: 0 3%;
     }
     .card3 h3{
         left: -2rem;
@@ -571,6 +589,9 @@ button{
     .card-login{
         height: 50rem;
         width: 60rem;
+    }
+    .card1{
+        height: 80rem;
     }
 }
 

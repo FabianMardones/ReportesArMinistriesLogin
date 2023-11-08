@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const mysql = require('mysql')
 const path = require('path')
 const router = express.Router()
+const fs = require('fs')
 
 
 app.use(express.urlencoded({extended:true}))
@@ -40,6 +41,13 @@ app.use(session({
 
 const connection = require('./database/db')
 const connection2 = require('./database/db2')
+
+
+app.get('/datos-encuentros', (req, res) => {
+    const jsonFilePath = path.join(__dirname, 'database', 'encuentros.json');
+    const datos = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
+    res.json(datos);
+});
 
 
 app.listen(3000, function(){

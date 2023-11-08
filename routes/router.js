@@ -25,6 +25,10 @@ router.get('/obtenerDatos', [authController.isAuth, authController.obtenerDatos]
     res.render('dashboard')
 })
 
+router.get('/pagina-en-construccion', authController.isAuth, (req,res) => {
+    res.render('paginaenconstruccion')
+})
+
 
 router.post('/register', authController.register)
 router.post('/login', authController.login)

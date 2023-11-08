@@ -81,6 +81,8 @@ exports.login = async(req, res) => {
                     alertTitle: "Advertencia",
                     alertMessage: 'Usuario y/o password incorrectas',
                     alertIcon: 'info',
+                    background: "#555555",
+                    color: "#fff",
                     showConfirmButton: true,
                     timer: false,
                     ruta: 'login'
@@ -93,6 +95,8 @@ exports.login = async(req, res) => {
                             alertTitle: 'error',
                             alertMessage: 'Usuario y/o password incorrecta',
                             alertIcon: "error",
+                            background: "#555555",
+                            color: "#fff",
                             showConfirmButton: true,
                             timer: false,
                             ruta: 'login'
@@ -114,6 +118,8 @@ exports.login = async(req, res) => {
                             alertTitle: 'Hola! Que bueno verte!',
                             alertMessage: 'Loggin exitoso',
                             alertIcon: 'success',
+                            background: "#555555",
+                            color: "#fff",
                             showConfirmButton: false,
                             timer: 2000,
                             ruta: ""
@@ -147,6 +153,17 @@ exports.isAuth = async(req, res, next) => {
 
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')
+    res.render('login', {
+        alert: true,
+        alertTitle: 'Sesión Cerrada Exitosamente!',
+        alertMessage: 'Nos vemos 😊',
+        alertIcon: 'success',
+        background: "#555555",
+        color: "#fff",
+        showConfirmButton: false,
+        timer: 2000,
+        ruta: ""
+    })
     return res.redirect('/')
 }
 
@@ -206,9 +223,9 @@ exports.validar = async(req, res) => {
         }
     });
 
-    setTimeout(() => {
-        res.redirect("/")
-    }, 5000);
+    // setTimeout(() => {
+    //     res.redirect("/")
+    // }, 5000);
 };
 
 const fs = require('fs');
@@ -224,7 +241,6 @@ exports.obtenerDatos = async (req, res) => {
         result.fecha = result.fecha.toLocaleDateString('es');
         result[result.campus] = result.total_acepta_a_jesus; // Almacenar el resultado por campus
       });
-
       // Guardar los resultados en un archivo JSON
       const dataToWrite = JSON.stringify(results, null, 2);
       fs.writeFileSync('database/encuentros.json', dataToWrite);

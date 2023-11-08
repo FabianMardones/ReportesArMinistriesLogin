@@ -1,16 +1,3 @@
-/** Esta función de print canvas, está detallando el formato de impresión obtenida desde la libreria html2pdf */
-function print_canvas(){
-  const element = document.getElementById('contenido')
-  html2pdf().set({
-      margin:   2,
-      filename:   'ReporteEncuentro.pdf',
-      image:      { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPdf:       { unit: 'in', format: 'a4', orientation: 'portrait' }
-  }).from(element).save().toPdf().catch(error=>console.log(error));
-}
-
-
 /**Los selectores para cada input, para manipular los valores que se ingresen a cada uno*/
 /** Primero tenemos Los selectores para manipular el primer grupo de datos, como son los datos de día fechas y pastores y, para manipular los valores que se ingresen a cada uno*/
 const pastoresCampus = document.querySelector('#pastoresCampus')
@@ -199,6 +186,11 @@ function ocultarCard2(){
 }
 
 
+function formatearFecha(numero){
+  return numero < 10 ? `0${numero}` : numero.toString()
+}
+
+
 /**Función de validación, la cual valida todos los campos para que estos sean obligatorios*/
 function validacion(e){
   e.preventDefault()
@@ -208,6 +200,15 @@ function validacion(e){
   const nameInput = e.target.name
   const mensaje = `El campo ${nameInput} es obligatorio`
   const inputElement = e.target
+  const fechaActual = new Date();
+  const dia = formatearFecha(fechaActual.getDate())
+  const mes = formatearFecha(fechaActual.getMonth() + 1)
+  const anio = fechaActual.getFullYear();
+
+const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+console.log(fechaFormateada);
+
   
   if(valorInput === ''){
     mensajeAlerta(mensaje, referencia)
@@ -235,6 +236,14 @@ function validacion(e){
 
   if (nameInput === 'Mensaje' && Number(valorInput)) {
     mensajeAlerta(`El campo ${nameInput} debe ser texto`,referencia)
+    objetoForm[e.target.id] = ''
+    comprobarObjetoForm()
+    inputElement.classList.add('input-invalid')
+    return
+  }
+
+  if (nameInput === 'fecha' && valorInput != fechaFormateada) {
+    mensajeAlerta(`La fecha no puede ser de ayer ni de mañana`, referencia)
     objetoForm[e.target.id] = ''
     comprobarObjetoForm()
     inputElement.classList.add('input-invalid')
@@ -344,6 +353,20 @@ function calcularTotalAsistenciaAJ() {
   document.querySelector('#totalAJ').value = totalAceptaAJesus;
 }
 
+
+/** Esta función de print canvas, está detallando el formato de impresión obtenida desde la libreria html2pdf */
+function print_canvas(){
+  const element = document.getElementById('contenido')
+  html2pdf().set({
+      margin:   [5,10,0,10],
+      filename:   `ReporteEncuentro_fecha:${objetoForm.fecha}_hora:${objetoForm.hora}.pdf`,
+      image:      { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPdf:       { unit: 'in', format: 'letter', orientation: 'portrait' }
+  }).from(element).save().toPdf().catch(error=>console.log(error));
+}
+
+
 /**Función de registrar datos, está vinculada al formulario con un evento de tipo submit, el cual al momento de pasar la validación y enviar y generar el pdf, los datos, primeramente se generen en una tabla dinámica, esta se iprima en el html con un botón de descargar el cual está utilizando la librería de html2pdf, para descargar el pdf y en conjunto le asocia los datos capturados en el objetoForm para que se inserten dinámicamente según lo puesto en el formulario. Luego de esto está el setTimeout para añadir atributos al formulario, con el propósito importantísimo de enviar los datos a la base de datos, conectándo el formulario a la ruta de validar que se encuentra en index.js la cual utiliza express, node.js y mysql para enviar los datos a la base de datos y por último, luego de 1 segundo que sucede eso, se cambiar el texto que indica en la card2 que duce "aquí estará tu reporte" por "tu reporte está listo" de esta forma hacer intuitiva la visualización y descarga del documento. por último se muestra en bloque la card2, usando la función contenido true, y desbloqueando la card2 para pantallas más pequeñas así al momento de enviar, se muestra en primer lugar*/
 function registrarDatos(e){
   e.preventDefault()
@@ -363,62 +386,45 @@ function registrarDatos(e){
 
   <div class="w-100 d-flex row flex-row-reverse align-content-between" style="margin-top: 10px; text-align: right !important;">
     <h1 class="w-50" style="color: #524d4d ; font-family: monospace; text-align: end;">Reporte Encuentro</h1>
-    <h1 class="w-50" style="color: #524d4d ; font-family: monospace; text-align: start;">AR <strong class="ministries">Ministries</strong></h1>
+    <img class="w-25" src="resources/img/arministries.png" style="width: 5px; height: 22px; position: relative; right: 17rem">
   </div>
 
-  <div class="d-flex justify-content-between">
-  <div>
-    <h5 class="text-dark"><b>Pastor Principal</b></h5>
-    Patricio Burgos <br>
-    patricio.burgos@arministries.com <br>
-    +569 7777777 <br>
-    Chile, Puente Alto <br>
-  </div>
-  <!-- <div style="text-align: right !important;">
-    <h5 class="text-dark"><b>Pastor Principal</b></h5>
-    Patricio Burgos <br>
-    patricio.burgos@arministries.com<br>
-    +569 7777777 <br>
-    Chile, Puente Alto <br>
-  </div> -->
-  </div>
-
-  <div class="d-flex justify-content-between" style="margin-top: 20px;">
+  <div class="d-flex justify-content-around" style="margin-top: 20px;">
     <div>
       <span><b>Fecha y Hora</b></span>
       <br>
-      <span>${objetoForm.fecha}, ${objetoForm.hora}</span>
+      <span>${objetoForm.fecha} / ${objetoForm.hora}</span>
     </div>
     <div>
       <span><b>Modalidad</b></span>
       <br>
-      <span>${objetoForm.modalidad}</span>
+      <span class="text-capitalize">${objetoForm.modalidad}</span>
     </div>
     <div>
       <span><b>Campus</b></span>
       <br>
-      <span>${objetoForm.campus}</span>
+      <span class="text-capitalize">${objetoForm.campus}</span>
     </div>
     <div>
       <span><b>Lideres de voluntarios</b></span>
       <br>
-      <span>${objetoForm.lideresVoluntarios}</span>
+      <span class="text-capitalize">${objetoForm.lideresVoluntarios}</span>
     </div>
     <div>
       <span><b>Pastores de campus</b></span>
       <br>
-      <span class="pastores">${objetoForm.pastoresCampus}</span>
+      <span class="pastores text-capitalize">${objetoForm.pastoresCampus}</span>
     </div>
     <div>
       <span><b>Ministros Encargados</b></span>
       <br>
-      <span class="pastores">${objetoForm.ministrosEncargados}</span>
+      <span class="pastores text-capitalize">${objetoForm.ministrosEncargados}</span>
     </div>
   </div>
 
-<h4 style="color: black; margin-top: 0;">Asistencia</h4>
+<h4 style="color: black; margin-top: 20px;">Asistencia</h4>
     
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-bordered-all">
       <thead>
         <th>Adultos</th>
         <th>Kids</th>
@@ -437,7 +443,7 @@ function registrarDatos(e){
 
     <h4 style="color: black;">Voluntarios</h4>
     
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-bordered-all">
       <thead>
         <th>Servcio</th>
         <th>Técnica</th>
@@ -468,7 +474,7 @@ function registrarDatos(e){
 
     <h4 style="color: black;">Stand</h4>
     
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-bordered-all">
       <thead>
         <th>Info</th>
         <th>Oración</th>
@@ -489,11 +495,10 @@ function registrarDatos(e){
 
     <br>
 
-    <h4 style="color: black;">Total General</h4>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-bordered-all">
       <thead>
-        <th>Total</th>
+        <th>Total de asistentes</th>
       </thead>
       <tbody>
         <tr>
@@ -506,7 +511,7 @@ function registrarDatos(e){
 
     <h4 style="color: black;">Personas que aceptaron a Jesús</h4>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-bordered-all">
       <thead>
         <th>Presencial</th>
         <th>YouTube</th>
@@ -522,9 +527,9 @@ function registrarDatos(e){
     </table>
     <br>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-bordered-all">
     <thead>
-      <th>Total</th>
+      <th>Total de personas que aceptaron a Jesús</th>
     </thead>
     <tbody>
       <tr>
@@ -535,31 +540,34 @@ function registrarDatos(e){
   <br>
 
       <div>
-        <div>
+        <div >
           <span><b>Nombre Predicador</b></span>
           <br>
-          <span>${objetoForm.nombrePredicador}</span>
+          <span class="text-capitalize">${objetoForm.nombrePredicador}</span>
         </div>
-        <div>
+        <div class="mb-3">
           <span><b>Nombre Mensaje</b></span>
           <br>
-          <span>${objetoForm.nombreMensaje}</span>
+          <span class="text-capitalize">${objetoForm.nombreMensaje}</span>
         </div>
       </div>
 
       <h4 style="color: black;">Observaciones</h4>
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped table-bordered-all">
         <thead>
           <th>Observaciones</th>
         </thead>
-        <tbody>
+        <tbody class="mb-3">
           <tr>
             <td>${objetoForm.observaciones}</td>
           </tr>
         </tbody>
-          <thead>
-            <th>ID Reporte</th>
-          </thead>
+      </table>
+
+      <table class="table table-bordered table-striped table-bordered-all">
+        <thead>
+          <th>ID Reporte</th>
+        </thead>
         <tbody>
           <tr>
             <td>${objetoForm.id}</td>
@@ -567,7 +575,7 @@ function registrarDatos(e){
         </tbody>
       </table>
       <h4 style="color: black;"></h4>
-      <table class="table table-bordered table-striped">
+      <table">
         <thead>
           <th></th>
         </thead>

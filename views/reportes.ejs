@@ -25,18 +25,18 @@
       </nav>
       <nav class="navbar navbar-expand-lg nav-edit fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand fs-2" href="#">ar <strong>ministries</strong></a>
+          <h3 class="navbar-brand fs-2" href="#">ar <strong>ministries</strong></h3>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2">
               <li class="nav-item">
-                <a class="nav-item active fs-3 badge bg-dark mt-1" style="text-decoration: none;" aria-current="page" href="/dashboard">Dashboard</a>
+                <a class="nav-item active fs-3 badge bg-dark mt-1" style="text-decoration: none;" aria-current="page" href="/pagina-en-construccion">Dashboard</a>
               </li>
               <br>
-              <li class="nav-item">
-                <h2 style="position: relative; left: 40rem;">Bienvenido: 
+              <li class="nav-item user-name">
+                <h2 >Bienvenido: 
                   <% if (user) { %>
                     <span class="badge bg-dark mt-2"><%= user.user %></span>
                   <% } %>
@@ -65,7 +65,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active Home fs-2" aria-current="page" href="/obtenerDatos">Dashboard</a>
+                  <a class="nav-link active Home fs-2" aria-current="page" href="/pagina-en-construccion">Dashboard</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link fs-2" href="logout">Logout <i class="fa-solid fa-right-to-bracket"></i></a>
