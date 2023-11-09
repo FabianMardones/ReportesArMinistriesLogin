@@ -1,12 +1,11 @@
 const jwt = require('jsonwebtoken')
 const bcryptjs = require('bcryptjs')
-const connection = require('../database/db')
-const conexion = require('../database/db2')
+const conexion = require('../database/db')
 const {promisify} = require('util');
 const { error } = require('console');
 
 
-const usuariosAutorizados = ['fabianmardones94@gmail.com', 'flga.danielafredes@gmail.com'];
+const usuariosAutorizados = ['fabianmardones94@gmail.com', 'reportes@armchile.com', 'reportes@armuruguay.com', 'reportes@armmiami.com'];
 
 
 exports.register = async (req, res) => {
@@ -18,7 +17,7 @@ exports.register = async (req, res) => {
         // Verificar si el usuario está autorizado
         if (usuariosAutorizados.includes(email)) {
             // Realizar una consulta para verificar si el correo electrónico ya existe
-            connection.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
+            conexion.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
                 if (error) {
                     console.log(error);
                 } else if (results.length > 0) {
@@ -35,7 +34,7 @@ exports.register = async (req, res) => {
                 } else {
                     // El correo electrónico no existe, puedes proceder con la inserción
                     let passwordHashed = await bcryptjs.hash(pass, 8);
-                    connection.query('INSERT INTO users SET ?', { user: user, email: email, pass: passwordHashed }, async (insertError, insertResults) => {
+                    conexion.query('INSERT INTO users SET ?', { user: user, email: email, pass: passwordHashed }, async (insertError, insertResults) => {
                         if (insertError) {
                             console.log(insertError);
                         } else {
@@ -87,7 +86,7 @@ exports.login = async(req, res) => {
                     ruta: 'login'
                 });
             }else{
-                connection.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
+                conexion.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
                     if (results.length == 0 || !(await bcryptjs.compare(pass, results[0].pass))) {
                         res.render('login', {
                             alert: true,
@@ -136,7 +135,7 @@ exports.isAuth = async(req, res, next) => {
     if (req.cookies.jwt) {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            connection.query('SELECT * FROM users WHERE id = ?', [decodificada.id], (error, results)=>{
+            conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id], (error, results)=>{
                 req.user = results[0]
                 return next()
             })
@@ -163,7 +162,6 @@ exports.logout = (req, res)=>{
         timer: 2000,
         ruta: ""
     })
-    return res.redirect('/')
 }
 
 

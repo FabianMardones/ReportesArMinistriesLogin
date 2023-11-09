@@ -40,7 +40,6 @@ app.use(session({
 
 
 const connection = require('./database/db')
-const connection2 = require('./database/db2')
 
 
 app.get('/datos-encuentros', (req, res) => {
