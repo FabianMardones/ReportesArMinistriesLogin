@@ -5,7 +5,7 @@ const {promisify} = require('util');
 const { error } = require('console');
 
 
-const usuariosAutorizados = ['fabianmardones94@gmail.com', 'reportes@armchile.com', 'reportes@armuruguay.com', 'reportes@armmiami.com', , '20089565castillocarlos@gmail.com'];
+const usuariosAutorizados = ['fabianmardones94@gmail.com', 'reportes@armchile.com', 'reportes@armuruguay.com', 'reportes@armmiami.com', '20089565castillocarlos@gmail.com'];
 
 
 exports.register = async (req, res) => {

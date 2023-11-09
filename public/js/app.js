@@ -354,18 +354,6 @@ function calcularTotalAsistenciaAJ() {
 }
 
 
-/** Esta función de print canvas, está detallando el formato de impresión obtenida desde la libreria html2pdf */
-function print_canvas(){
-  const element = document.getElementById('contenido')
-  html2pdf().set({
-      margin:   [5,10,0,10],
-      filename:   `ReporteEncuentro_fecha:${objetoForm.fecha}_hora:${objetoForm.hora}.pdf`,
-      image:      { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 2 },
-      jsPdf:       { unit: 'in', format: 'letter', orientation: 'portrait' }
-  }).from(element).save().toPdf().catch(error=>console.log(error));
-}
-
 
 /**Función de registrar datos, está vinculada al formulario con un evento de tipo submit, el cual al momento de pasar la validación y enviar y generar el pdf, los datos, primeramente se generen en una tabla dinámica, esta se iprima en el html con un botón de descargar el cual está utilizando la librería de html2pdf, para descargar el pdf y en conjunto le asocia los datos capturados en el objetoForm para que se inserten dinámicamente según lo puesto en el formulario. Luego de esto está el setTimeout para añadir atributos al formulario, con el propósito importantísimo de enviar los datos a la base de datos, conectándo el formulario a la ruta de validar que se encuentra en index.js la cual utiliza express, node.js y mysql para enviar los datos a la base de datos y por último, luego de 1 segundo que sucede eso, se cambiar el texto que indica en la card2 que duce "aquí estará tu reporte" por "tu reporte está listo" de esta forma hacer intuitiva la visualización y descarga del documento. por último se muestra en bloque la card2, usando la función contenido true, y desbloqueando la card2 para pantallas más pequeñas así al momento de enviar, se muestra en primer lugar*/
 function registrarDatos(e){
@@ -382,7 +370,7 @@ function registrarDatos(e){
     <button class="btn btn-success no-print btn-descargar" onclick="print_canvas()">Descargar</button>
   </div>
 
-  <div class="card-body" id="contenido">
+  <div class="card-body" id="contenido" style="max-width: 99%";>
 
   <div class="w-100 d-flex row flex-row-reverse align-content-between" style="margin-top: 10px; text-align: right !important;">
     <h1 class="w-50" style="color: #524d4d ; font-family: monospace; text-align: end;">Reporte Encuentro</h1>
@@ -601,13 +589,26 @@ function registrarDatos(e){
       document.getElementById('mensajeInicial').textContent = 'El informe está listo';
       contenidoGenerado = true
       card2.style.display = 'block';
+      print_canvas()
       resetearFormulario()
       btnFinish.classList.remove('oculto')
     }, 2000);
   }, 1000);
-
-
 }
+
+
+/** Esta función de print canvas, está detallando el formato de impresión obtenida desde la libreria html2pdf */
+function print_canvas(){
+  const element = document.getElementById('contenido')
+  html2pdf().set({
+      margin:   [5,10,0,10],
+      filename:   `ReporteEncuentro_fecha:${objetoForm.fecha}_hora:${objetoForm.hora}.pdf`,
+      image:      { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPdf:       { unit: 'in', format: 'letter', orientation: 'portrait' }
+  }).from(element).save().toPdf().catch(error=>console.log(error));
+}
+
 
 
 /**Esta función recorre todos los componentes del formulario y hace una validación, la cual descarta los elementos del formularo que sean distintos a botón, a tipo submit y reset para darles un valor de un string vacío, y así que todos los inputs, textArea y select, queden con valor incial, osea reestablecerlos. Por último en caso de haber alertas, que no deberían, se vuelven a eliminar por si acaso, y el objeto completo del objetoForm queda con todos los valores de las keys vacíos para que al validar con la función comprobarObjetoForm, se vuelva a bloquear el botón de enviar */
