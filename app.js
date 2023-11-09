@@ -50,6 +50,9 @@ app.get('/datos-encuentros', (req, res) => {
     res.json(datos);
 });
 
+app.listen(port, function(){
+    console.log("Servidor creado http://localhost:3000");
+});
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
