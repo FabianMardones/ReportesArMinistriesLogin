@@ -151,17 +151,7 @@ exports.isAuth = async(req, res, next) => {
 
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')
-    res.render('login', {
-        alert: true,
-        alertTitle: 'Sesión Cerrada Exitosamente!',
-        alertMessage: 'Nos vemos 😊',
-        alertIcon: 'success',
-        background: "#555555",
-        color: "#fff",
-        showConfirmButton: false,
-        timer: 2000,
-        ruta: ""
-    })
+    res.redirect('/login')
 }
 
 
