@@ -294,7 +294,7 @@ button{
 
 .btn-login,
 .btn-register{
-    box-shadow: 5px 5px 10px -8px;
+    box-shadow: 3px 3px 10px -8px;
 }
 
 .oculto{
@@ -531,7 +531,7 @@ button{
 
 @media (max-width: 992px) {
     .myoffcanvas{
-        max-width: 50%;
+        max-width: 70%;
     }
 }
 
@@ -625,7 +625,7 @@ button{
         right: 2.5rem;
     }
     .ar{
-        left: 32%;
+        left: 35%;
     }
     .card-login{
         height: 50rem;
@@ -659,9 +659,14 @@ button{
         width: 60rem;
     }
     .ar{
+        left: 33%;
+    }
+}
+
+@media (max-width: 450px) {
+    .ar{
         left: 28%;
     }
-
 }
 
 .img-relleno{
