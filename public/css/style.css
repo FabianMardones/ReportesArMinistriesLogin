@@ -301,6 +301,10 @@ button{
     animation: movimiento 5s infinite alternate;
 }
 
+.barragenera{
+    background-color: var(--color-principal);
+}
+
 
 .btn-login,
 .btn-register{
