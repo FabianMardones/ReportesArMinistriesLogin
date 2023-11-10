@@ -291,6 +291,16 @@ button{
     margin-bottom: 5px;
 }
 
+.offcanvas-body,
+.offcanvas{
+    background: linear-gradient(to bottom right,#ffffff,#f3eee8d4,#eed9c091);
+
+    background-size: 200% 200%;
+
+
+    animation: movimiento 5s infinite alternate;
+}
+
 
 .btn-login,
 .btn-register{
@@ -409,7 +419,13 @@ button{
 
 .dark .offcanvas-body,
 .dark .offcanvas{
-    background: linear-gradient(to bottom right,#21252a, #363d44,#904e9543, #e9644375);
+    background: linear-gradient(to bottom right,#21252a, #363d44,#3b1c3cb6, #73322275);
+
+    background-size: 200% 200%;
+
+
+    animation: movimiento 5s infinite alternate;
+
 }
 
 .dark .card1,
