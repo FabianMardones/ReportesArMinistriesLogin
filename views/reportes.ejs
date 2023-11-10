@@ -16,16 +16,16 @@
 <body>
 
     <section class="no-print fixed-top">
-      <nav class="navbar bg-body-tertiary nav-genera nav nav-pills flex-column flex-sm-row">
+      <nav class="navbar nav-genera nav nav-pills flex-column flex-sm-row barragenera">
         <div class="container-fluid">
-          <span class="navbar-text">
-            Genera tus reportes <i class="fa-solid fa-face-smile"></i>
+          <span class="navbar-text genera">
+            Genera tus reportes <i class="fa-solid fa-face-smile genera"></i>
           </span>
         </div>
       </nav>
       <nav class="navbar navbar-expand-lg nav-edit fixed-top">
         <div class="container-fluid">
-          <h3 class="navbar-brand fs-2" href="#">ar <strong>ministries</strong></h3>
+          <img src="resources/img/arministries.png" style="height: 27px; width: 160px;" class="navbar-brand mb-2 invertir-imagen" href="#">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -53,19 +53,19 @@
 
       <nav class="navbar fixed-top navbar2">
         <div class="container-fluid">
-          <a class="navbar-brand ar fs-3 mt-5" href="#">ar <strong>ministries</strong></a>
+          <img src="resources/img/arministries.png" style="height: 27px; width: 160px;" class="navbar-brand mt-4 ar invertir-imagen" href="#">
           <button class="navbar-toggler mt-4 botonD" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="offcanvas offcanvas-end myoffcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <h5 class="offcanvas-title fs-3" id="offcanvasNavbarLabel">Menú</h5>
+              <button type="button" class="boton-cerrar fs-3" data-bs-dismiss="offcanvas" aria-label="Close" style="border: 1px solid black;">X</button>
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active Home fs-2" aria-current="page" href="/pagina-en-construccion">Dashboard</a>
+                  <a class="nav-link Home fs-2" aria-current="page" href="/pagina-en-construccion">Dashboard</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link fs-2" href="logout">Logout <i class="fa-solid fa-right-to-bracket"></i></a>
@@ -104,15 +104,15 @@
           <div class="col">
           <select class="form-select form-select-lg mb-3" aria-label="ministrs-encargados" id="ministrosEncargados" name="ministrosEncargados">
             <option selected value="">Ministros Encargados</option>
-            <option value="Darwdin & Jenny">Darwdin & Jenny</option>
+            <option value="Darwdin & Jenny">Darwin & Jenny</option>
             <option value="Kevin & Auge">Kevin & Auge</option>
-            <option value="Philip & Maria Jose">Philip & Maria Jose</option>
+            <option value="Philip & Maria Jose">Philip & María José</option>
             <option value="Coke & Karen">Coke & Karen</option>
           </select>
           </div>
           <div class="col">
             <select class="form-select form-select-lg mb-3" placeholder="Lideres de Voluntarios" id="lideresVoluntarios" name="lideresVoluntarios">
-              <option selected value="">Lideres de Voluntariado</option>
+              <option selected value="">Líderes de Voluntariado</option>
               <option value="Rodrigo & Kathy">Rodrigo & Kathy</option>
               <option value="Mario & Mirta">Mario & Mirta</option>
               <option value="Cesar y Nora">Cesar y Nora</option>
@@ -172,7 +172,7 @@
               <input type="number" class="form-control form-control-lg" placeholder="Servicio" id="servicioVoluntarios" name="servicioVoluntarios">
             </div>
             <div class="col-4">
-              <input type="number" class="form-control form-control-lg" placeholder="Tecnica" id="tecnicaVoluntarios" name="tecnicaVoluntarios">
+              <input type="number" class="form-control form-control-lg" placeholder="Técnica" id="tecnicaVoluntarios" name="tecnicaVoluntarios">
             </div>
             <div class="col-4">
               <input type="number" class="form-control form-control-lg" placeholder="Kids" id="kidsVoluntarios" name="kidsVoluntarios">
@@ -203,7 +203,7 @@
               <input type="number" class="form-control form-control-lg" placeholder="Info" id="infoVoluntarios" name="infoVoluntarios">
             </div>
             <div class="col-4">
-              <input type="number" class="form-control form-control-lg" placeholder="Oracion" id="oracionVoluntarios" name="oracionVoluntarios">
+              <input type="number" class="form-control form-control-lg" placeholder="Oración" id="oracionVoluntarios" name="oracionVoluntarios">
             </div>
             <div class="col-4">
               <input type="number" class="form-control form-control-lg" placeholder="Recursos" id="recursosVoluntarios" name="recursosVoluntarios">
@@ -224,7 +224,7 @@
             </div>
           </div>
           <hr>
-          <h3>Personas que aceptaron a Jesús</h3>
+          <h3>Acepta a Jesús</h3>
           <div class="row">
             <div class="col-4">
               <input type="number" class="form-control form-control-lg mb-3" placeholder="Presencial" aria-label="acepta-presencial" id="aceptaPresencial" name="aceptaPresencial">
@@ -235,13 +235,12 @@
             <div class="col-4">
               <input type="number" class="form-control form-control-lg mb-3" placeholder="Tweens" aria-label="acepta-tweens" id="aceptaTweens" name="aceptaTweens">
             </div>
-            <div class="row">
+            <hr>
+            <h3>Total de personas que aceptaron a Jesús</h3>
               <div class="col-12">
                 <button class="btn w-100 btn-calcular fs-3" id="calcularAJ" type="button">Calcular</button>
                 <input type="number" class="form-control form-control-lg mb-3" placeholder="Total que aceptó a Jesús" aria-label="totalAJ" id="totalAJ" name="totalAJ">
               </div>
-            </div>
-            <hr>
           </div>
           <hr>
           <div class="col">

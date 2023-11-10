@@ -284,6 +284,14 @@ button{
     font-weight: bold;
 }
 
+.boton-cerrar{
+    height: 4rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 5px;
+}
+
+
 .btn-login,
 .btn-register{
     box-shadow: 5px 5px 10px -8px;
@@ -388,11 +396,21 @@ button{
 }
 
 
-
-.dark  .ministries{
-    color: var(--color-title);
+.btn-close{
+    border: 1px solid black;
 }
 
+
+.dark .offcanvas,
+.dark .offcanvas-body ul li > a,
+.dark .btn-close{ 
+    color: var(--color-background);
+}
+
+.dark .offcanvas-body,
+.dark .offcanvas{
+    background: linear-gradient(to bottom right,#21252a, #363d44,#904e9543, #e9644375);
+}
 
 .dark .card1,
 .dark .card2,
@@ -439,6 +457,20 @@ button{
     color: var(--color-background);
 }
 
+
+.dark .invertir-imagen {
+  filter: invert(100%); /* Invierte todos los colores al 100% */
+}
+
+.dark .genera{
+    color: white;
+}
+
+.dark .barragenera{
+    background-color: #21252a;
+}
+
+
 .user-name{
    position: absolute;
    left: 43%;
@@ -456,6 +488,7 @@ button{
     .container-cards{
         margin-left: 0rem;
     }
+    
 }
 
 
@@ -552,6 +585,9 @@ button{
     .card3{
         width: 70%;
     }
+    .ar{
+        left: 38%;
+    }
 }
 
 @media (max-width: 700px) {
@@ -589,7 +625,7 @@ button{
         right: 2.5rem;
     }
     .ar{
-        left: 34%;
+        left: 32%;
     }
     .card-login{
         height: 50rem;
@@ -621,6 +657,9 @@ button{
     .card-login{
         height: 50rem;
         width: 60rem;
+    }
+    .ar{
+        left: 28%;
     }
 
 }

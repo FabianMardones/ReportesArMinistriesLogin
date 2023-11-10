@@ -141,7 +141,6 @@ exports.isAuth = async(req, res, next) => {
             })
         } catch (error) {
             console.log(error);
-            next()
         }
     }else{
         res.redirect('/login')
@@ -209,10 +208,6 @@ exports.validar = async(req, res) => {
             console.log('Datos almacenados correctamente');
         }
     });
-
-    // setTimeout(() => {
-    //     res.redirect("/")
-    // }, 5000);
 };
 
 const fs = require('fs');

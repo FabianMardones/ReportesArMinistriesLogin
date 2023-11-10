@@ -99,7 +99,7 @@ const objetoForm = {
 /**En lo persona desde que aprendí javascript, siempre consideré que una forma un poco más ordenada es colocar dentro de una función los eventos principales dentro de los cuales, tenemos la validación, el envío del formulario y el reset de este mismo*/
 function agruparEventListener(){
 
-    pastoresCampus.addEventListener('input', validacion)
+    pastoresCampus.addEventListener('blur', validacion)
     ministrosEncargados.addEventListener('blur', validacion)
     lideresVoluntarios.addEventListener('blur',validacion)
     fecha.addEventListener('blur',validacion)
