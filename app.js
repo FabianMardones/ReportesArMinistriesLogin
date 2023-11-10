@@ -1,7 +1,7 @@
 const express      = require('express')
 const app          = express()
 const hostname     = '127.0.0.1';
-const port         = 3001;
+const port         = 3003;
 const cookieParser = require('cookie-parser')
 const mysql        = require('mysql')
 const path         = require('path')
@@ -50,6 +50,9 @@ app.get('/datos-encuentros', (req, res) => {
     res.json(datos);
 });
 
+app.listen(port, function(){
+    console.log("Servidor creado http://localhost:3000");
+});
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
