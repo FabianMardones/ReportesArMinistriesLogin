@@ -589,7 +589,6 @@ function registrarDatos(e){
       document.getElementById('mensajeInicial').textContent = 'El informe está listo';
       contenidoGenerado = true
       card2.style.display = 'block';
-      print_canvas()
       resetearFormulario()
       btnFinish.classList.remove('oculto')
     }, 2000);

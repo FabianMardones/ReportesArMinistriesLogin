@@ -27,6 +27,7 @@ exports.register = async (req, res) => {
                         alertTitle: "Registro fallido",
                         alertMessage: "El correo electrónico ya está registrado",
                         alertIcon: "error",
+                        background: "#555555",
                         showConfirmButton: false,
                         timer: 2000,
                         ruta: "/register"
@@ -43,6 +44,7 @@ exports.register = async (req, res) => {
                                 alertTitle: "Registro exitoso",
                                 alertMessage: `Gracias ${user} por registrarte`,
                                 alertIcon: "success",
+                                background: "#555555",
                                 showConfirmButton: false,
                                 timer: 2000,
                                 ruta: "/login"
@@ -57,6 +59,7 @@ exports.register = async (req, res) => {
                 alertTitle: "Registro no autorizado",
                 alertMessage: "No tienes permiso para registrarte.",
                 alertIcon: "error",
+                background: "#555555",
                 showConfirmButton: false,
                 timer: 2000,
                 ruta: "noautorizado"

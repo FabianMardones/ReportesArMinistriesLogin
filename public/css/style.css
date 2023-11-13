@@ -305,6 +305,11 @@ button{
     background-color: var(--color-principal);
 }
 
+.contenido{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+}
 
 .btn-login,
 .btn-register{
