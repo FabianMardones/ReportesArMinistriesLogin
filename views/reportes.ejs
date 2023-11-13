@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" type="image/x-icon" href="/img/favico2.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fasthand&family=Karla:wght@400;700&family=Markazi+Text:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Serif:ital,wght@0,300;1,400;1,500&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/fonts/fontawesome-free-6.1.2-web/css/all.min.css">
+    <link rel="stylesheet" href="resources/css/scroll.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+        <title>Registros AR</title>
+</head>
+<body>
+
+    <section class="no-print fixed-top">
+      <nav class="navbar nav-genera nav nav-pills flex-column flex-sm-row barragenera">
+        <div class="container-fluid">
+          <span class="navbar-text genera">
+            Genera tus reportes <i class="fa-solid fa-face-smile genera"></i>
+          </span>
+        </div>
+      </nav>
+      <nav class="navbar navbar-expand-lg nav-edit fixed-top">
+        <div class="container-fluid">
+          <img src="resources/img/arministries.png" style="height: 27px; width: 160px;" class="navbar-brand mb-2 invertir-imagen" href="#">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2">
+              <li class="nav-item">
+                <a class="nav-item active fs-3 badge bg-dark mt-1" style="text-decoration: none;" aria-current="page" href="/pagina-en-construccion">Dashboard</a>
+              </li>
+              <br>
+              <li class="nav-item user-name">
+                <h2 >Bienvenido: 
+                  <% if (user) { %>
+                    <span class="badge bg-dark mt-2"><%= user.user %></span>
+                  <% } %>
+                </h2>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <a href="logout" class="btn btn-outline-danger fs-3" style="width: 10rem;" type="button">logout <i class="fa-solid fa-right-to-bracket"></i></a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+      <nav class="navbar fixed-top navbar2">
+        <div class="container-fluid">
+          <img src="resources/img/arministries.png" style="height: 27px; width: 160px;" class="navbar-brand mt-4 ar invertir-imagen" href="#">
+          <button class="navbar-toggler mt-4 botonD" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end myoffcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fs-3" id="offcanvasNavbarLabel">Menú</h5>
+              <button type="button" class="boton-cerrar fs-3" data-bs-dismiss="offcanvas" aria-label="Close" style="border: 1px solid black;">X</button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link Home fs-2" aria-current="page" href="/pagina-en-construccion">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-2" href="logout">Logout <i class="fa-solid fa-right-to-bracket"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+
+    <div class="dark-light-mode_button switch no-print fixed-top">
+      <div class="button__shadow">
+          <i class="fa fa-solid fa-moon luna"></i>
+          <i class="fa fa-solid fa-sun oculto sol"></i>
+      </div>
+    </div>
+
+    <div class="d-flex row justify-content-center container-cards">
+      <div class="col-md-4 card1 no-print">
+
+        <form id="formulario" class="formularioForm">
+          <div class="title__form">
+              <h2 class="fs-1">Registro <strong>Encuentro</strong></h2>
+          </div>
+          <div class="col">
+          <select class="form-select form-select-lg mb-3" aria-label="pastores-campus" id="pastoresCampus" name="pastoresCampus">
+            <option selected value="">Pastores de Campus</option>
+            <option value="Pablo y Naty">Pablo & Naty</option>
+            <option value="Daniel & Pao">Daniel & Pao</option>
+            <option value="Patricio & Evelyn">Patricio & Evelyn</option>
+            <option value="Rodrigo & Priscilla">Rodrigo & Priscilla</option>
+          </select>
+          </div>
+          <div class="col">
+          <select class="form-select form-select-lg mb-3" aria-label="ministrs-encargados" id="ministrosEncargados" name="ministrosEncargados">
+            <option selected value="">Ministros Encargados</option>
+            <option value="Darwdin & Jenny">Darwin & Jenny</option>
+            <option value="Kevin & Auge">Kevin & Auge</option>
+            <option value="Philip & Maria Jose">Philip & María José</option>
+            <option value="Coke & Karen">Coke & Karen</option>
+          </select>
+          </div>
+          <div class="col">
+            <select class="form-select form-select-lg mb-3" placeholder="Lideres de Voluntarios" id="lideresVoluntarios" name="lideresVoluntarios">
+              <option selected value="">Líderes de Voluntariado</option>
+              <option value="Rodrigo & Kathy">Rodrigo & Kathy</option>
+              <option value="Mario & Mirta">Mario & Mirta</option>
+              <option value="Cesar y Nora">Cesar y Nora</option>
+              <option value="Miguel & Paula">Miguel & Paula</option>
+              <option value="Cesar & Gishlaine">Cesar & Gishlaine</option>
+              <option value="Josué & Rocío">Josué & Rocío</option>
+              <option value="Javier & Anita">Javier & Anita</option>
+              <option value="Felipe & Alison">Felipe & Alison</option>
+              <option value="Romina Basil">Romina Basil</option>
+              <option value="Daniela Valladares">Daniela Valladares</option>
+            </select>
+          </div>
+          <div class="row g-3">
+            <div class="col">
+              <label for="floatingInput">Fecha</label>
+              <input type="date" class="form-control form-control-lg mb-3" placeholder="Fecha" aria-label="date" id="fecha" name="fecha">
+            </div>
+            <div class="col">
+              <label for="floatingInput">Hora</label>
+              <input type="time" class="form-control form-control-lg mb-3" placeholder="Hora" aria-label="time" id="hora" name="hora">
+            </div>
+          </div>
+          <div class="col">
+          <select class="form-select form-select-lg mb-3" aria-label="modalidad" id="modalidad" name="modalidad">
+            <option selected value="">Modalidad</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Virtual">Virtual</option>
+          </select>
+          </div>
+          <div class="col">
+          <select class="form-select form-select-lg mb-3" aria-label="campus" id="campus" name="campus">
+            <option selected value="">Campus</option>
+            <option value="Puente Alto">Puente Alto - Chile</option>
+            <option value="Santiago">Santiago- Chile</option>
+            <option value="Montevideo">Montevideo - Uruguay</option>
+            <option value="Doral">Doral - Miami</option>
+            <option value="West Perrine">West Perrine - Miami</option>
+          </select>
+          </div>
+          <hr>
+          <h3 class="mt-4">Asistencia</h3>
+          <div class="row g-3">
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Adultos" aria-label="adultos" id="adultos" name="adultos">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Kids" aria-label="kids" id="kids" name="kids">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Tweens" aria-label="tweens" id="tweens" name="tweens">
+            </div>
+          </div>
+          <hr>
+          <h3>Voluntarios</h3>
+          <div class="row g-3">
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Servicio" id="servicioVoluntarios" name="servicioVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Técnica" id="tecnicaVoluntarios" name="tecnicaVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Kids" id="kidsVoluntarios" name="kidsVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Tweens"  id="tweensVoluntarios" name="tweensVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Worship"  id="worshipVoluntarios" name="worshipVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Cocina"  id="cocinaVoluntarios" name="cocinaVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Redes Sociales" aria-label="redes-sociales-voluntarios" id="redesSocialesVoluntarios" name="redesSocialesVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Seguridad" aria-label="seguridad-voluntarios" id="seguridadVoluntarios" name="seguridadVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Sala de Bebés" id="salaBebesVoluntarios" name="salaBebesVoluntarios">
+            </div>
+          </div>
+          <hr>
+          <h3>Stand</h3>
+          <div class="row g-3">
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Info" id="infoVoluntarios" name="infoVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Oración" id="oracionVoluntarios" name="oracionVoluntarios">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg" placeholder="Recursos" id="recursosVoluntarios" name="recursosVoluntarios">
+            </div>
+            <div class="col-6">
+              <input type="number" class="form-control form-control-lg" placeholder="Amor por la casa"  id="amorPorLaCasaVoluntarios" name="amorPorLaCasaVoluntarios">
+            </div>
+            <div class="col-6">
+              <input type="number" class="form-control form-control-lg" placeholder="Proyecto Educativo" id="proyectoEducativoVoluntarios" name="proyectoEducativoVoluntarios">
+            </div>
+            <hr>
+          </div>
+          <h3>Total General</h3>
+          <div class="row">
+            <div class="col-12">
+              <button class="btn w-100 btn-calcular fs-3" id="calcular" type="button">Calcular</button>
+              <input type="number" class="form-control form-control-lg mb-3" placeholder="Total General" aria-label="totalAsistentes" id="totalAsistentes" name="totalAsistentes">
+            </div>
+          </div>
+          <hr>
+          <h3>Acepta a Jesús</h3>
+          <div class="row">
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg mb-3" placeholder="Presencial" aria-label="acepta-presencial" id="aceptaPresencial" name="aceptaPresencial">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg mb-3" placeholder="Online" aria-label="acepta-online" id="aceptaOnline" name="aceptaOnline">
+            </div>
+            <div class="col-4">
+              <input type="number" class="form-control form-control-lg mb-3" placeholder="Tweens" aria-label="acepta-tweens" id="aceptaTweens" name="aceptaTweens">
+            </div>
+            <hr>
+            <h3>Total de personas que aceptaron a Jesús</h3>
+              <div class="col-12">
+                <button class="btn w-100 btn-calcular fs-3" id="calcularAJ" type="button">Calcular</button>
+                <input type="number" class="form-control form-control-lg mb-3" placeholder="Total que aceptó a Jesús" aria-label="totalAJ" id="totalAJ" name="totalAJ">
+              </div>
+          </div>
+          <hr>
+          <div class="col">
+            <h3>Nombre predicador</h3>
+            <select class="form-select form-select-lg mb-3" aria-label="predicador" placeholder="Predicador" id="nombrePredicador" name="nombrePredicador">
+              <option selected value="">Predicadores</option>
+              <option value="Pastor Patricio Fernando Burgos">Pastor Patricio Fernando Burgos</option>
+              <option value="Pastorita Patricia Alarcón">Pastorita Patricia Alarcón</option>
+              <option value="Pastor Nico Burgos">Pastor Nico Burgos</option>
+              <option value="Pastor Patricio Andres Burgos">Pastor Patricio Andres Burgos</option>
+              <option value="Pastora Evelyn Fuentes">Pastora Evelyn Fuentes</option>
+              <option value="Pastor Rodrigo Quiroz">Pastor Rodrigo Quiroz</option>
+              <option value="Pastora Pri">Pastora Pri</option>
+              <option value="Pastor Pablo Encina">Pastor Pablo Encina</option>
+              <option value="Pastora Naty Segura">Pastora Naty Segura</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h3>Nombre del Mensaje</h3>
+              <input type="text" class="form-control form-control-lg mb-3" placeholder="Mensaje" aria-label="mensaje" id="nombreMensaje" name="nombreMensaje">
+            </div>
+          </div>
+          <hr>
+          <h3>Observaciones</h3>
+          <div class="form-floating mb-5">
+            <textarea class="form-control" placeholder="observaciones" style="height: 100px; padding: 2.5rem 1rem; font-size: 12px;" id="observaciones" name="observaciones"></textarea>
+            <label for="floatingTextarea2">Observaciones</label>
+          </div>
+
+          <div class="mb-5 d-flex w-100">
+            <button class="btn w-50 fs-4 btn-enviar btn-calcular mb-5" type="submit" id="registrar" disabled>Registrar y Generar PDF</button>
+            <button class="w-50 btn fs-4 ms-2 btn-resetear btn-calcular mb-5" id='reset' type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="col-md-4 ms-3 mb-5 card2" id="card2">
+
+        <div class="face front no-print">
+          <h3 id="mensajeInicial">Aquí estará tu <strong>reporte</strong></h3>
+        </div>
+
+
+        <div class="container" style=" max-width: 1020px !important;">
+        </div>
+
+      </div>
+    </div>
+
+      <div class="margen">
+      </div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="resources/js/darkMode.js"></script>
+    <script src="resources/js/app.js"></script>
+
+</body>
+</html>
