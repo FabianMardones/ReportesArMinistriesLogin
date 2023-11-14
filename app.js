@@ -23,6 +23,14 @@ app.use(cookieParser())
 app.use('/', require('./routes/router'))
 
 
+app.use(function(req, res, next){
+    if (!req.user) {
+        res.header('Cache-control','prviate, no-cache, no-store, must-revalidate');
+    }
+    next()
+})
+
+
 app.set('view engine', 'ejs');
 
 
