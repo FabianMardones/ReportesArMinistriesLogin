@@ -144,6 +144,7 @@ exports.isAuth = async(req, res, next) => {
             })
         } catch (error) {
             console.log(error);
+            return next()
         }
     }else{
         res.redirect('/login')
