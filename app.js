@@ -3,9 +3,7 @@ const app          = express()
 const hostname     = '127.0.0.1';
 const port         = 3002;
 const cookieParser = require('cookie-parser')
-const mysql        = require('mysql')
 const path         = require('path')
-const router       = express.Router()
 const fs           = require('fs')
 
 
