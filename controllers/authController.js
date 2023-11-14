@@ -139,6 +139,7 @@ exports.isAuth = async(req, res, next) => {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
             conexion.query('SELECT * FROM users WHERE id = ?', [decodificada.id], (error, results)=>{
+                if (!results){return next()}
                 req.user = results[0]
                 return next()
             })
