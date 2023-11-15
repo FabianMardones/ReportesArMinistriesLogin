@@ -579,12 +579,12 @@ function registrarDatos(e){
     formulario.setAttribute('method', 'POST');
     formulario.submit();
     setTimeout(() => {
+      print_canvas()
       document.getElementById('mensajeInicial').textContent = 'El informe está listo';
       contenidoGenerado = true
       card2.style.display = 'block';
       resetearFormulario()
-      btnFinish.classList.remove('oculto')
-    }, 1000);
+    }, 2000);
   }, 1000);
 }
 
