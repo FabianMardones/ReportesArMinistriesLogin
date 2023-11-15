@@ -579,19 +579,12 @@ function registrarDatos(e){
     formulario.setAttribute('method', 'POST');
     formulario.submit();
     setTimeout(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Tienes 60 segundos para descargar el reporte',
-        showConfirmButton: false,
-        timer: 5000
-      })
       document.getElementById('mensajeInicial').textContent = 'El informe está listo';
       contenidoGenerado = true
       card2.style.display = 'block';
       resetearFormulario()
       btnFinish.classList.remove('oculto')
-    }, 2000);
+    }, 1000);
   }, 1000);
 }
 
