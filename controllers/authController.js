@@ -155,7 +155,7 @@ exports.isAuth = async(req, res, next) => {
 
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')
-    res.redirect('/login')
+    return res.redirect('/')
 }
 
 

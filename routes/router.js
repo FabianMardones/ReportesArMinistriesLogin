@@ -5,7 +5,7 @@ const authController = require('../controllers/authController')
 
 
 
-router.get('/', authController.isAuth, (req, res) => {
+router.get('/', [authController.isAuth], (req, res) => {
     res.render('reportes', {user:req.user})
 })
 

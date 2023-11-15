@@ -13,6 +13,8 @@ app.use('/resources', express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
+app.set('view engine', 'ejs');
+
 
 const dotenv = require('dotenv')
 dotenv.config({path:"./env/.env"})
@@ -25,13 +27,11 @@ app.use('/', require('./routes/router'))
 
 app.use(function(req, res, next){
     if (!req.user) {
-        res.header('Cache-control','prviate, no-cache, no-store, must-revalidate');
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     }
     next()
 })
 
-
-app.set('view engine', 'ejs');
 
 
 app.get('/datos-encuentros', (req, res) => {
