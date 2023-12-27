@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
                                 alertMessage: "El correo electrónico ya está registrado",
                                 alertIcon: "error",
                                 background: "#F3EEE8",
-                                color: "#fff",
+                                color: "#000",
                                 showConfirmButton: false,
                                 timer: 2000,
                                 ruta: "/register"
@@ -50,7 +50,7 @@ exports.register = async (req, res) => {
                                         alertMessage: `Gracias ${user} por registrarte`,
                                         alertIcon: "success",
                                         background: "#F3EEE8",
-                                        color: "#fff",
+                                        color: "#000",
                                         showConfirmButton: false,
                                         timer: 2000,
                                         ruta: "/register"
@@ -66,7 +66,7 @@ exports.register = async (req, res) => {
                         alertMessage: "No tienes permiso para registrarte.",
                         alertIcon: "error",
                         background: "#F3EEE8",
-                        color: "#fff",
+                        color: "#000",
                         showConfirmButton: false,
                         timer: 2000,
                         ruta: "noautorizado"
@@ -92,7 +92,7 @@ exports.login = async(req, res) => {
                     alertMessage: 'Usuario y/o password incorrectas',
                     alertIcon: 'info',
                     background: "#F3EEE8",
-                    color: "#fff",
+                    color: "#000",
                     showConfirmButton: true,
                     timer: false,
                     ruta: 'register'
@@ -106,7 +106,7 @@ exports.login = async(req, res) => {
                             alertMessage: 'Usuario y/o password incorrecta',
                             alertIcon: "error",
                             background: "#F3EEE8",
-                            color: "#fff",
+                            color: "#000",
                             showConfirmButton: true,
                             timer: false,
                             ruta: 'register'
@@ -129,7 +129,7 @@ exports.login = async(req, res) => {
                             alertMessage: 'Login exitoso',
                             alertIcon: 'success',
                             background: "#F3EEE8",
-                            color: "#fff",
+                            color: "#000",
                             showConfirmButton: false,
                             timer: 2000,
                             ruta: "/"
