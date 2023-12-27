@@ -1,96 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <link rel="icon" type="image/x-icon" href="/img/favico2.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fasthand&family=Karla:wght@400;700&family=Markazi+Text:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Serif:ital,wght@0,300;1,400;1,500&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="resources/fonts/fontawesome-free-6.1.2-web/css/all.min.css">
-    <link rel="stylesheet" href="resources/css/scroll.css">
-    <link rel="stylesheet" href="resources/css/style.css">
-        <title>Registros AR</title>
-</head>
-<body>
-
-    <section class="no-print fixed-top">
-      <nav class="navbar nav-genera nav nav-pills flex-column flex-sm-row barragenera">
-        <div class="container-fluid">
-          <span class="navbar-text genera">
-            Genera tus reportes <i class="fa-solid fa-face-smile genera"></i>
-          </span>
-        </div>
-      </nav>
-      <nav class="navbar navbar-expand-lg nav-edit fixed-top">
-        <div class="container-fluid d-flex justify-content-between">
-          <img src="resources/img/arministries.png" style="height: 27px; width: 160px;" class="navbar-brand mb-2 invertir-imagen" href="#">
-          <a class="nav-link active fs-1" aria-current="page" href="#" style="margin-right: 5vw;"><strong>Bienvenido</strong></a>
-          <a href="login" class="btn btn-outline-primary fs-3" style="width: 10rem" type="button">login <i class="fa-solid fa-house-user"></i></a>
-        </div>
-      </nav>
-
-
-      <nav class="navbar fixed-top navbar2">
-        <div class="container-fluid">
-          <img src="resources/img/arministries.png" style="height: 27px; width: 160px;" class="navbar-brand mt-4 ar invertir-imagen" href="#">
-          <button class="navbar-toggler mt-4 botonD" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end myoffcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title fs-4" id="offcanvasNavbarLabel">¿Te han dicho lo bien que te ves hoy?</h5>
-              <button type="button" class="boton-cerrar fs-3" data-bs-dismiss="offcanvas" aria-label="Close" style="border: 1px solid black;">X</button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link fs-2" aria-current="page" href="login">Login <i class="fa-solid fa-key"></i></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link fs-2" href="https://www.arministriesglobal.com/">Arministriesglobal <i class="fa-solid fa-heart-circle-bolt"></i></i></a>
-                </li>
-              </ul>
-            </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="resources/css/tailwind.min.css">
+        <link rel="stylesheet" href="resources/fontawesome-free-6.1.2-web/css/all.min.css">
+        <link rel="stylesheet" href="resources/css/scroll.css">
+        <link rel="stylesheet" href="resources/css/style.css">
+      </head>
+      <body class="min-h-100">
+      
+      
+        <section class="navegacion fixed-top">
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <img class="arimg imgar" src="resources/img/arministries.png" alt="">
+              </div>
+            </nav>
+          </section>
+        
+        <div class="dark-light-mode_button switch no-print fixed-top switch-register">
+          <div class="button__shadow">
+              <i class="fa fa-solid fa-moon luna"></i>
+              <i class="fa fa-solid fa-sun oculto sol"></i>
           </div>
         </div>
-      </nav>
-    </section>
 
+        <div class="container-1">
+            <div class="forms-container">
+                <div class="signin-singup">
+                    <form action="/login" method="post" class="sign-in-form form">
+                        <h2 class="title">Login</h2>
+                        <div class="input-field">
+                            <i class="fa fa-user"></i>
+                            <input type="text" placeholder="Email" class="input" name="email">
+                        </div>
+                        <div class="input-field">
+                            <i class="fa fa-lock"></i>
+                            <input type="password" placeholder="Password" class="input" name="pass">
+                        </div>
+                        <input type="submit" value="login" class="boton solid">
+                        <!-- <p class="social-text">O inicia con google</p>
+                        <div class="social-media">
+                            <a href="#" class="social-icon">
+                                <i class='bx bxl-google'></i></i>
+                            </a>
+                        </div> -->
+                    </form>
 
-    <div class="dark-light-mode_button switch no-print fixed-top">
-      <div class="button__shadow">
-          <i class="fa fa-solid fa-moon luna"></i>
-          <i class="fa fa-solid fa-sun oculto sol"></i>
-      </div>
-    </div>
+                    <form action="/register" method="post" class="sign-up-form form">
+                        <h2 class="title">Registrate</h2>
+                        <div class="input-field">
+                            <i class="fa fa-user"></i>
+                            <input type="text" placeholder="Username" class="input" name="user" id="user">
+                        </div>
+                        <div class="input-field">
+                            <i class="fa fa-envelope"></i>
+                            <input type="text" placeholder="Email" class="input" name="email" id="email">
+                        </div>
+                        <div class="input-field">
+                            <i class="fa fa-lock"></i>
+                            <input type="password" placeholder="Password" class="input" name="pass" id="pass">
+                        </div>
+                        <input type="submit" value="Sign up" class="boton solid">
+                        <!-- <p class="social-text">o registrate con google</p>
+                        <div class="social-media">
+                            <a href="#" class="social-icon">
+                                <i class='bx bxl-google'></i></i>
+                            </a>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+            <div class="panels-container">
+                <div class="panel left-panel">
+                    <div class="content">
+                        <h3>Nuevo por aquí?</h3>
+                        <p>Para poder registrate y utilizar la aplicación, debes consultar con el administrador de la plataforma para verificar si calificas como usuario autorizado, o bien, si lo eres, da click en el botón registrate</p>
+                        <button class="boton transparent" id="sign-up-btn">Registrate</button>
+                    </div>
+                    <img src="resources/img/undraw_my_app_re_gxtj.svg" alt="" class="image">
+                </div>
 
-    <div class="container d-flex row justify-content-center container-cards">
-      <div class="card1 card-login card-register card-form">
-        <div class="d-flex justify-content-center">
-            <h2 class="login-text">Registrate</h2>
+                <div class="panel right-panel">
+                    <div class="content">
+                        <h3>Estás registrado?</h3>
+                        <p>Si ya te encuentras como un usuario registrado, puedes iniciar sesión y disfrutar de la experiencia de esta plataforma</p>
+                        <button class="boton transparent" id="sign-in-btn">Inicia Sesión</button>
+                    </div>
+                    <img src="resources/img/undraw_signal_searching_re_yl8n.svg" alt="" class="image">
+                </div>
+            </div>
         </div>
-        <form id="login" action="/register" method="post">
-            <div class="mb-3">
-              <label for="user" class="form-label width fs-3">Username</label>
-              <input type="text" class="form-control fs-3" name="user" id="user" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label width fs-3">Email</label>
-              <input type="email" class="form-control fs-3" name="email" id="email" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label fs-3">Password</label>
-                <input type="password" class="form-control fs-3" name="pass" id="pass">
-            </div>
-            <div class="botones mt-4">
-            <button type="submit" class="btn-calcular btn-login fs-3" style="height: 6rem;">Aceptar</button>
-            <button type="submit" class="btn-calcular btn-register fs-3" style="height: 6rem;">Cancelar</button>
-          </div>
-        <form>
-      </div>
-    </div>
+
 
     <div class="margen">
     </div>
@@ -99,25 +106,26 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/darkMode.js"></script>
-    <script src="resources/js/app.js"></script>
+    <script src="/resources/js/validaciones.js"></script>
+    <script src="/resources/js/app.js"></script>
+    <script src="/resources/js/darkMode.js"></script>
 
     <% if(typeof alert != "undefined"){ %>
-      <script>
-        Swal.fire({
-          title: '<%= alertTitle %>',
-          text: '<%= alertMessage %>',
-          icon: '<%= alertIcon %>',
-          background: '<%= background %>',
-          showConfirmButton: <%= showConfirmButton %>,
-          timer: <%= timer %>
-        }).then(() => {
-          <% if (ruta !== "noautorizado") { %>
-            window.location = '<%= ruta %>';
-          <% } %>
-        })
-      </script>
-    <% } %>
-
+        <script>
+          Swal.fire({
+            title: '<%= alertTitle %>',
+            text: '<%= alertMessage %>',
+            icon: '<%= alertIcon %>',
+            background: '<%= background %>',
+            color: '<%= color %>',
+            showConfirmButton: <%= showConfirmButton %>,
+            timer: <%= timer %>
+          }).then(() => {
+            <% if (ruta !== "noautorizado") { %>
+              window.location = '<%= ruta %>';
+            <% } %>
+          })
+        </script>
+      <% } %>
 </body>
 </html>

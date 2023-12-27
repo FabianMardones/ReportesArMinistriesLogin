@@ -1,29 +1,27 @@
-const express      = require('express')
-const app          = express()
-const hostname     = '127.0.0.1';
-const port         = 3002;
+const express = require('express');
+const cors = require('cors')
+const hostname = '127.0.0.1'
+const port = 3002
+const app = express();
 const cookieParser = require('cookie-parser')
-const path         = require('path')
-const fs           = require('fs')
 
 
-app.use('/resources', express.static(('public')))
+app.use(cors())
+
+app.use('/resources', express.static('public'));
 app.use('/resources', express.static(__dirname + '/public'))
 
 app.use(express.urlencoded({extended:true}))
-app.use(express.json())
+app.use(express(express.json))
 
 app.set('view engine', 'ejs');
 
-
 const dotenv = require('dotenv')
-dotenv.config({path:"./env/.env"})
-
+dotenv.config({path:'./env/.env'})
 
 app.use(cookieParser())
 
-app.use('/', require('./routes/router'))
-
+app.use('/', require('./routes/router'));
 
 app.use(function(req, res, next){
     if (!req.user) {
@@ -31,14 +29,6 @@ app.use(function(req, res, next){
     }
     next()
 })
-
-
-
-app.get('/datos-encuentros', (req, res) => {
-    const jsonFilePath = path.join(__dirname, 'database', 'encuentros.json');
-    const datos = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
-    res.json(datos);
-});
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
