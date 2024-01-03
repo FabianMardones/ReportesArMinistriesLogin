@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const hostname = '127.0.0.1'
-const port = 3002
+const port = 3001
 const app = express();
 const cookieParser = require('cookie-parser')
 
