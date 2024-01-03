@@ -14,6 +14,12 @@ body {
     margin-left: 0;
 }
 
+/* Estilo para todos los campos de entrada con autocomplete activado */
+input[autocomplete] {
+    border-radius: 50px; /* Ajusta el valor según tus preferencias para redondear los bordes */
+    padding: 8px; /* Ajusta el valor según tus preferencias para el espacio interno del campo de entrada */
+  }
+  
 
 /* body {
     background-image: url('../img/fondo.png');
@@ -47,10 +53,35 @@ nav{
 
 .arimg{
     width: 150px;
+    margin-bottom: 5px;
 }
 
 .navbar-toggler {
     order: -1; /* Coloca el botón de la barra de navegación al final del contenedor */
+}
+
+.home,
+.dashboard,
+#reportesDrop{
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.home:hover,
+.dashboard:hover,
+#reportesDrop:hover{
+    background-color: black;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 10px;
+}
+
+.dark .home:hover,
+.dark .dashboard:hover,
+.dark #reportesDrop:hover{
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
 }
 
 @media (max-width: 993px) {
@@ -318,6 +349,15 @@ select{
     font-weight:200;
 }
 
+input:-webkit-autofill {
+    border-radius: 30%; 
+    background-color: #fff;
+  }
+  
+  
+  input:-moz-autofill {
+    border-radius: 5px;
+  }
 
 textarea{
     resize: none;
@@ -448,7 +488,7 @@ h3{
 }
 
 .switch-register{
-    top: 4.1rem;
+    top: 4.48rem;
     background-color: #4D84E2;
 }
 
@@ -569,6 +609,7 @@ h3{
 
 .dark .arimg {
     filter: invert(100%); /* Invierte todos los colores al 100% */
+    margin-bottom: 7px;
   }
 
   .dark .home,
@@ -700,7 +741,7 @@ h3{
 }
 
 .dark .switch-register{
-    background-color: #4D84E2;
+    background: linear-gradient(to bottom right,#21252a, #363d44,#904e9543, #e9644375); 
 }
 
 .dark .switch-register.fa-sun{
@@ -866,6 +907,15 @@ h3{
 }
 
 .boton:hover{
+    background-color: #4d84e2;
+    color: #FFF;
+}
+
+.dark .boton{
+    background: #363d44; 
+}
+
+.dark .boton:hover{
     background-color: #4d84e2;
     color: #FFF;
 }
