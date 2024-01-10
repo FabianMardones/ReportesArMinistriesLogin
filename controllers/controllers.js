@@ -224,3 +224,112 @@ exports.registroEncuentro = async(req, res) => {
         }
     });
 };
+
+
+exports.totalAceptaAJesus = (req, res) => {
+    conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
+        if (error) {
+            console.log(error);
+            throw error;
+        } else {
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus || 0;
+            res.render('contador', { results: totalAceptaAJesus });
+        }
+    });
+}
+
+
+exports.obtenerNombres = (req, res) => {
+    conexion.query('SELECT * FROM pastores_y_predicadores', (error, predicadores) => {
+        if (error) {
+            throw error;
+        } else {
+            conexion.query('SELECT * FROM campus', (error, campus) => {
+                if (error) {
+                    throw error;
+                } else {
+                    conexion.query('SELECT * FROM pastores_campus', (error, pastoresCampus) => {
+                        if (error) {
+                            throw error
+                        } else {
+                            conexion.query('SELECT * FROM ministros_encargados', (error, ministrosEncargados) => {
+                                if (error) {
+                                    throw error
+                                } else {                                   
+                                    conexion.query('SELECT * FROM lideres_voluntarios', (error, lideresVoluntarios) => {
+                                        if (error) {
+                                            throw error
+                                        } else {
+                                            res.render('reportes', { predicadores: predicadores, campus: campus, pastoresCampus: pastoresCampus, ministrosEncargados: ministrosEncargados, lideresVoluntarios: lideresVoluntarios, user:req.user});
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    })
+                }
+            });
+        }
+    });
+}
+
+
+exports.obtenerEncuentro = (req, res) => {
+    const idEncuentro = req.params.id;
+
+    conexion.query('SELECT * FROM registro_encuentros WHERE id = ?', [idEncuentro], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+                res.render('datos-encuentro', { encuentro: results[0], user:req.user });
+        }
+    });
+}
+
+
+exports.resumenEncuentros = (req, res) => {
+    conexion.query('SELECT * FROM registro_encuentros ORDER BY fecha DESC', (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.render('vistasReportes', { results: results, user: req.user });
+        }
+    });
+}
+
+
+exports.filtrarEncuentros = (req, res) => {
+    const filtroCampus = req.body.filtroCampus;
+    const filtroFecha = req.body.filtroFecha;
+  
+    let query = 'SELECT * FROM registro_encuentros';
+  
+    // Agregar condiciones al WHERE según los filtros seleccionados
+    if (filtroCampus || filtroFecha) {
+      query += ' WHERE';
+    }
+  
+    if (filtroCampus) {
+      query += ` campus = '${filtroCampus}'`;
+    }
+  
+    if (filtroCampus && filtroFecha) {
+      query += ' AND';
+    }
+  
+    if (filtroFecha) {
+      query += ` fecha = '${filtroFecha}'`;
+    }
+  
+  
+    conexion.query(query, (error, results) => {
+      if (error) {
+        throw error;
+      } else {
+        // Pasar la variable noResults incluso si no hay resultados
+        res.render('vistasReportes', { results: results, user: req.user });
+      }
+    });
+}
+
+
