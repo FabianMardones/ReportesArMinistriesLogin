@@ -12,7 +12,7 @@ app.use('/resources', express.static('public'));
 app.use('/resources', express.static(__dirname + '/public'))
 
 app.use(express.urlencoded({extended:true}))
-app.use(express(express.json))
+app.use(express(express.json()))
 
 app.set('view engine', 'ejs');
 

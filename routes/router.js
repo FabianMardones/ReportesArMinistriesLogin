@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/controllers')
+const conexion = require('../database/db')
 
 
-router.get('/contador', (req,res) => {
-    res.render('contador')
+router.get('/vista', (req,res) => {
+    conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
+        if (error) {
+            console.log(error);
+            throw error;
+        } else {
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus || 0;
+            res.render('contador', { results: totalAceptaAJesus });
+        }
+    });
 })
 
 

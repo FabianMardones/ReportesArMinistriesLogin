@@ -227,6 +227,8 @@ exports.registroEncuentro = async(req, res) => {
 
 
 
+
+
 exports.obtenerNombres = (req, res) => {
     conexion.query('SELECT * FROM pastores_y_predicadores', (error, predicadores) => {
         if (error) {
