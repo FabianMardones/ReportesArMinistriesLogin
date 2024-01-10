@@ -99,17 +99,17 @@ exports.login = async(req, res) => {
                 });
             }else{
                 conexion.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
-                    if (results.length == 0 || !(await bcryptjs.compare(pass, results[0].pass))) {
+                    if (results.length === 0 || !results[0] || !(await bcryptjs.compare(pass, results[0]?.pass))) {
                         res.render('register', {
                             alert: true,
                             alertTitle: 'error',
                             alertMessage: 'Usuario y/o password incorrecta',
-                            alertIcon: "error",
-                            background: "#F3EEE8",
-                            color: "#000",
+                            alertIcon: 'error',
+                            background: '#F3EEE8',
+                            color: '#000',
                             showConfirmButton: true,
                             timer: false,
-                            ruta: 'register'
+                            ruta: 'register',
                         });
                     }else{
                         const id = results[0].id
