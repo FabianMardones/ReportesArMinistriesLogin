@@ -11,7 +11,6 @@ router.get('/vistasReportes', authController.isAuth, authController.resumenEncue
 router.post('/vistasReportes', authController.isAuth, authController.filtrarEncuentros)
 router.get('/logout', authController.logout)
 router.post('/registroEncuentro', authController.isAuth, authController.registroEncuentro)
-router.get('/contadorDeAlmas', authController.isAuth, authController.totalAceptaAJesus)
 router.post('/login', authController.login)
 
 

@@ -35,8 +35,8 @@ app.get('/register', (req, res) => {
 })
 
 
-app.get('/vistasAlmas', (req, res) => {
-    res.render('vistasAlmas')
+app.get('/contador', (req, res) => {
+    res.render('contador')
 })
 
 
