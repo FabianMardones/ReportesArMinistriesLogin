@@ -99,17 +99,17 @@ exports.login = async(req, res) => {
                 });
             }else{
                 conexion.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
-                    if (results.length === 0 || !results[0] || !(await bcryptjs.compare(pass, results[0]?.pass))) {
+                    if (results.length == 0 || !(await bcryptjs.compare(pass, results[0].pass))) {
                         res.render('register', {
                             alert: true,
                             alertTitle: 'error',
                             alertMessage: 'Usuario y/o password incorrecta',
-                            alertIcon: 'error',
-                            background: '#F3EEE8',
-                            color: '#000',
+                            alertIcon: "error",
+                            background: "#F3EEE8",
+                            color: "#000",
                             showConfirmButton: true,
                             timer: false,
-                            ruta: 'register',
+                            ruta: 'register'
                         });
                     }else{
                         const id = results[0].id
@@ -225,6 +225,18 @@ exports.registroEncuentro = async(req, res) => {
     });
 };
 
+
+exports.totalAceptaAJesus = (req, res) => {
+    conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
+        if (error) {
+            console.log(error);
+            throw error;
+        } else {
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus || 0;
+            res.render('contador', { results: totalAceptaAJesus, user: req.user });
+        }
+    });
+}
 
 
 exports.obtenerNombres = (req, res) => {
