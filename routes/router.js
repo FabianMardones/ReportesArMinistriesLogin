@@ -3,6 +3,10 @@ const router = express.Router();
 const authController = require('../controllers/controllers')
 
 
+router.get('/contador', (req,res) => {
+    res.render('contador')
+})
+
 
 router.get('/encuentro/:id', authController.isAuth, authController.obtenerEncuentro)
 router.get('/', authController.isAuth, authController.obtenerNombres)
