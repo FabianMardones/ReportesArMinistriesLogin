@@ -35,6 +35,11 @@ app.get('/register', (req, res) => {
 })
 
 
+app.get('/vistasAlmas', (req, res) => {
+    res.render('vistasAlmas')
+})
+
+
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
