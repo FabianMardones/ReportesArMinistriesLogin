@@ -10,8 +10,8 @@ router.post('/register', authController.register)
 router.get('/vistasReportes', authController.isAuth, authController.resumenEncuentros)
 router.post('/vistasReportes', authController.isAuth, authController.filtrarEncuentros)
 router.get('/logout', authController.logout)
-router.post('/registroEncuentro', authController.registroEncuentro)
-router.get('/contadorDeAlmas', authController.totalAceptaAJesus)
+router.post('/registroEncuentro', authController.isAuth, authController.registroEncuentro)
+router.get('/contadorDeAlmas', authController.isAuth, authController.totalAceptaAJesus)
 router.post('/login', authController.login)
 
 
