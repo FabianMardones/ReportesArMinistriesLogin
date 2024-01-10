@@ -11,8 +11,8 @@ router.get('/vistasReportes', authController.isAuth, authController.resumenEncue
 router.post('/vistasReportes', authController.isAuth, authController.filtrarEncuentros)
 router.get('/logout', authController.logout)
 router.post('/registroEncuentro', authController.registroEncuentro)
+router.get('/contadorDeAlmas', authController.totalAceptaAJesus)
 router.post('/login', authController.login)
-// router.get('/contador', authController.isAuth, authController.totalAceptaAJesus)
 
 
 module.exports = router;
