@@ -13,6 +13,9 @@ router.get('/logout', authController.logout)
 router.post('/registroEncuentro', authController.registroEncuentro)
 router.post('/login', authController.login)
 // router.get('/contador', authController.isAuth, authController.totalAceptaAJesus)
+app.get('/contador', (req, res) => {
+    res.render('/contador')
+})
 
 
 module.exports = router;
