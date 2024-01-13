@@ -319,15 +319,19 @@ exports.filtrarEncuentros = (req, res) => {
     });
 }
 
-exports.testPage = async(req, res) => {
+exports.testPage = (req, res) => {
     conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
         if (error) {
             console.log(error);
             throw error;
         } else {
-            const totalAceptaAJesus = results[0].total_acepta_a_jesus || 0;
-            res.render('test', { results: totalAceptaAJesus, user: req.user });
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus + 7000 || 0;
+            res.json({ results: totalAceptaAJesus, user: req.user });
         }
     });
 }
 
+
+exports.contador = (req, res) => {
+    res.render('test')
+}
