@@ -319,4 +319,7 @@ exports.filtrarEncuentros = (req, res) => {
     });
 }
 
+exports.testPage = (req, res) => {
+    res.render('test');
+}
 

@@ -13,4 +13,7 @@ router.post('/registroEncuentro', authController.isAuth, authController.registro
 router.post('/login', authController.login)
 
 
+router.get('/test', authController.isAuth, authController.testPage)
+
+
 module.exports = router;
