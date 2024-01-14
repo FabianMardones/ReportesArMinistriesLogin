@@ -1300,12 +1300,12 @@ h3{
 
 @media (max-width: 460px) {
     .circle{
-        width: 300px;
-        height: 300px;
+        width: 380px;
+        height: 380px;
     }
 
     .text span{
-        transform-origin: 0 150px;
+        transform-origin: 0 190px;
     }
 
     .circle h1{
