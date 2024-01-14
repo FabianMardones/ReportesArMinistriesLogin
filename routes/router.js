@@ -15,6 +15,6 @@ router.post('/login', authController.login)
 
 router.get('/contadorDeAlmas', authController.testPage)
 
-router.get('/test', authController.contador)
+router.get('/test', authController.isAuth, authController.contador);
 
 module.exports = router;

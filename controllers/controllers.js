@@ -333,5 +333,15 @@ exports.testPage = (req, res) => {
 
 
 exports.contador = (req, res) => {
-    res.render('test')
+    conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
+        if (error) {
+            console.log(error);
+            throw error;
+        } else {
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus + 7000 || 0;
+            // Renderiza la vista y pasa los resultados como un objeto
+            res.render('test', { results: totalAceptaAJesus });
+        }
+    });
 }
+
