@@ -62,6 +62,7 @@ nav{
 
 .home,
 .dashboard,
+.test-menu,
 #reportesDrop{
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
@@ -69,6 +70,7 @@ nav{
 
 .home:hover,
 .dashboard:hover,
+.test-menu:hover,
 #reportesDrop:hover{
     background-color: black;
     color: #fff;
@@ -78,10 +80,15 @@ nav{
 
 .dark .home:hover,
 .dark .dashboard:hover,
+.test-menu:hover,
 .dark #reportesDrop:hover{
     background-color: #fff;
     color: #000;
     border-radius: 10px;
+}
+
+.dark a #test-menu{
+    color: #fff;
 }
 
 @media (max-width: 993px) {
@@ -488,7 +495,7 @@ h3{
 }
 
 .switch-register{
-    top: 4.48rem;
+    top: 5.5rem;
     background-color: #4D84E2;
 }
 
@@ -530,7 +537,7 @@ h3{
         flex-direction: row-reverse; /* Invierte la dirección de la fila */
         border-radius: 3rem 0 0 3rem; /* Ajusta el border-radius según sea necesario */
         left: 90%;
-        top: 2.7Rem;
+        top: 2.7rem;
     }
     .dark-light-mode_button:hover {
         cursor: pointer;
@@ -542,7 +549,7 @@ h3{
     }
 
     .switch-register{
-        top: 1.1px;
+        top: .7rem;
     }
 }
 
@@ -1208,8 +1215,8 @@ h3{
 
 .circle {
     position: relative;
-    width: 600px; /* Ajusta el tamaño del círculo según tus necesidades */
-    height: 600px; /* Ajusta el tamaño del círculo según tus necesidades */
+    width: 630px; /* Ajusta el tamaño del círculo según tus necesidades */
+    height: 630px; /* Ajusta el tamaño del círculo según tus necesidades */
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1237,7 +1244,7 @@ h3{
     left: 50%;
     font-size: 2em; /* Ajusta el tamaño de la fuente según tus necesidades */
     font-weight: 800;
-    transform-origin: 0 300px; /* Ajusta la distancia del eje de rotación según tus necesidades */
+    transform-origin: 0 315px; /* Ajusta la distancia del eje de rotación según tus necesidades */
 }
 
 .circle h1{
@@ -1249,27 +1256,60 @@ h3{
 }
 
 
-
-
-/* .dark .counter-main h1{
-    color: #000;
-}
-
-@media (max-width:1536px) {
-    .counter-main h1{
-        margin: 10rem 0;
+@media (min-width:1550px) {
+    .counter-main {
+        margin-top: 3%;
     }
 }
 
-@media (max-width:530px) {
-    .counter-main h1{
-        font-size: 14rem;
-    }
-}
 
-@media (max-width:400px) {
-    .counter-main h1{
+@media (max-width: 660px) {
+    .circle{
+        width: 500px;
+        height: 500px;
+    }
+
+    .text span{
+        transform-origin: 0 250px;
+    }
+
+    .counter-main {
+        margin-top: 6%;
+    }
+
+    .circle h1{
         font-size: 10rem;
     }
-} */
+}
+
+@media (max-width: 560px) {
+    .circle{
+        width: 400px;
+        height: 400px;
+    }
+
+    .text span{
+        transform-origin: 0 200px;
+    }
+
+    .circle h1{
+        font-size: 7rem;
+    }
+}
+
+
+@media (max-width: 460px) {
+    .circle{
+        width: 300px;
+        height: 300px;
+    }
+
+    .text span{
+        transform-origin: 0 150px;
+    }
+
+    .circle h1{
+        font-size: 5rem;
+    }
+}
 

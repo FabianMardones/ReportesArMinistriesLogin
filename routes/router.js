@@ -16,14 +16,14 @@ router.post('/login', authController.login)
 
 router.get('/contadorDeAlmas', authController.testPage)
 
-router.get('/test', authController.isAuth, (req, res) => {
+router.get('/test', (req, res) => {
     conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
         if (error) {
             console.log(error);
             throw error;
         } else {
             const totalAceptaAJesus = results[0].total_acepta_a_jesus + 7000 || 0;
-            res.render('test', { results: totalAceptaAJesus, user: req.user });
+            res.render('test', { results: totalAceptaAJesus });
         }
     });
 })
