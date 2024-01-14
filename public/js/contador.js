@@ -1,22 +1,33 @@
 const contador = document.querySelector('#contador')
 
+const url = 'http://127.0.0.1:3001/contadorDeAlmas'
+
+const mostrarConteo = async() => {
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        return data
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  mostrarContero()
+  mostrarConteoDom()
 })
 
-function mostrarContero(){
-  const url = 'http://127.0.0.1:3001/contadorDeAlmas'
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
 
-        const numero = document.createElement('h1')
-        numero.textContent = data.results
+async function mostrarConteoDom(){
+    const datos = await mostrarConteo()
 
-        console.log(numero);
+    console.log(datos);
 
-        contador.appendChild(numero)
-    })
+    const { results } = datos 
+
+    const numero = document.createElement('h1')
+    numero.textContent = results
+
+    contador.appendChild(numero)
 }
