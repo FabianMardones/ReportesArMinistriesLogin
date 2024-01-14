@@ -64,8 +64,12 @@
     </div>
   </div>
 
-  <main class="container counter-main">
-    <% if (results !== undefined) { %>
+  <!-- <main class="container counter-main">
+        <div id="contador"></div>
+  </main> -->
+
+  <main class="counter-main">
+    <% if (results) { %>
         <div>
             <h1><%= results %></h1>
         </div>
@@ -73,8 +77,8 @@
 </main>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="resources/js/darkMode.js"></script>
+  <script src="resources/js/contador.js"></script>
 </body>
 </html>

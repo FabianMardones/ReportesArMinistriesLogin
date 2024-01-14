@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcryptjs = require('bcryptjs')
 const conexion = require('../database/db')
 const {promisify} = require('util');
+const util = require('util');
 
 
 exports.register = async (req, res) => {
@@ -332,16 +333,17 @@ exports.testPage = (req, res) => {
 }
 
 
-exports.contador = (req, res) => {
-    conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
-        if (error) {
-            console.log(error);
-            throw error;
-        } else {
-            const totalAceptaAJesus = results[0].total_acepta_a_jesus + 7000 || 0;
-            // Renderiza la vista y pasa los resultados como un objeto
-            res.render('test', { results: totalAceptaAJesus });
-        }
-    });
-}
+const queryAsync = util.promisify(conexion.query).bind(conexion);
 
+exports.contador = async (req, res) => {
+    try {
+        // Utilizar async/await con queryAsync
+        const results = await queryAsync('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros');
+
+        const totalAceptaAJesus = results[0].total_acepta_a_jesus + 7000 || 0;
+        res.render('test', { results: totalAceptaAJesus, user: req.user });
+    } catch (error) {
+        console.error('Error en la consulta a la base de datos:', error);
+        res.status(500).send('Error en la consulta a la base de datos');
+    }
+};
