@@ -1199,19 +1199,59 @@ h3{
 }
 
 
-.counter-main{
+.counter-main {
+    display: grid;
+    place-items: center;
+    min-height: 70vh;
+    margin: auto;
+}
+
+.circle {
+    position: relative;
+    width: 600px; /* Ajusta el tamaño del círculo según tus necesidades */
+    height: 600px; /* Ajusta el tamaño del círculo según tus necesidades */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.counter-main h1{
-    margin: 14rem 0;
-    z-index: 3;
-    font-size: 20rem;
+.text {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: anim 30s linear infinite;
 }
 
-.dark .counter-main h1{
+@keyframes anim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.text span {
+    position: absolute;
+    left: 50%;
+    font-size: 2em; /* Ajusta el tamaño de la fuente según tus necesidades */
+    font-weight: 800;
+    transform-origin: 0 300px; /* Ajusta la distancia del eje de rotación según tus necesidades */
+}
+
+.circle h1{
+    font-size: 14rem;
+}
+
+.dark .circle h1{
+    color: #000;
+}
+
+
+
+
+/* .dark .counter-main h1{
     color: #000;
 }
 
@@ -1231,5 +1271,5 @@ h3{
     .counter-main h1{
         font-size: 10rem;
     }
-}
+} */
 
