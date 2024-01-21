@@ -311,6 +311,12 @@ nav{
     }
 }
 
+@media (max-width: 500px){
+    .card{
+        width: 99%;
+    }
+}
+
 .botones{
     display: flex;
     flex-direction: row;
@@ -1587,6 +1593,15 @@ h3{
 }
 
 .dark .calcular_red{
+    color: #fff;
+}
+
+.btn-outline-danger{
+    border: 3px solid #DC3545;
+    font-weight: 600;
+}
+
+.dark .btn-outline-danger{
     color: #fff;
 }
 
