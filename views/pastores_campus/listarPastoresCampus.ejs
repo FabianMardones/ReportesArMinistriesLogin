@@ -22,9 +22,7 @@
   <section class="navegacion fixed-top vista">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a href="/dashboard">
           <img class="arimg" src="/resources/img/arministries.png" alt="">
-        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +36,7 @@
                 <li><a class="dropdown-item" href="/pastores/listadoPC">Pastores</a></li>
                 <li><a class="dropdown-item" href="/pastores_campus/listar">Pastores Encargados</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -47,7 +45,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/campus/listadoCampus">Campus</a></li>
-                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -56,7 +55,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/ministros/listadoMinistros">Ministros</a></li>
-                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
               </ul>
           </li>
           <li class="nav-item dropdown">
@@ -65,7 +65,8 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/predicadores/listarPredicadores">predicadores</a></li>
-              <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -74,7 +75,8 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/lideres/listadoLideresVoluntarios">Lideres Voluntarios</a></li>
-            <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
           </ul>
       </li>
         <li class="nav-item dropdown">
@@ -83,7 +85,8 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/modalidad/modalidad">Modalidad</a></li>
-            <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
           </ul>
       </li>
         </ul>
@@ -136,7 +139,7 @@
                     <p class="text-sm leading-5 font-medium text-lg font-bold campus"><%= pastores.nombrePastora %> <%= pastores.apellidoPastora %></p>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
-                    <a href="/editPastoresEncargados/<%= pastores.id_pastores_campus %>" class="btn btn-outline-warning font-black">Editar
+                    <a href="/editPastoresEncargados/<%= pastores.id_pastores_campus %>" class="btn btn-outline-warning font-black editar">Editar
                     </a>
                     <button class="btn btn-outline-danger font-black" onclick="confirmarEliminarPE('<%= pastores.id_pastores_campus %>')">Eliminar</button>
                   </td>

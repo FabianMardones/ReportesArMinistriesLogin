@@ -1474,10 +1474,15 @@ h3{
 
 @media (max-width: 600px) {
     .contenedor_informativo{
-        height: 25rem;
+        height: 35rem;
         margin-bottom: 5rem;
     }
 }
+
+.editar{
+    border: 3px solid #FFC107;
+}
+
 
 .contenedor_navegacion{
     height: 30rem;
