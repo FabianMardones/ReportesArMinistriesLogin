@@ -37,7 +37,7 @@ const totalAJ = document.querySelector('#totalAJ')
 /**Muy importante llevar el registro de las personas que aceptaron a Jesús*/
 const aceptaPresencial = document.querySelector('#aceptaPresencial')
 const aceptaOnline = document.querySelector('#aceptaOnline')
-const aceptaTweens = document.querySelector('#aceptaTweens')
+// const aceptaTweens = document.querySelector('#aceptaTweens')
 
 /**Nombre del predicador y el mensaje */
 const predicador = document.querySelector('#nombrePredicador')
@@ -56,7 +56,11 @@ const btnReset = document.querySelector('button[type="reset"]')
 /**Container doc, es un contenedor el cual recibirá el reporte dinámicamente mediante javascript al presionar generar reporte*/
 const containerDoc = document.querySelector('.container')
 
+const botonCalcularOnline = document.querySelector('#calcularOnlineBtn')
+const totalAsistentesOnline = document.querySelector('#totalAsistentesOnline')
+const asistenciaYoutube = document.querySelector('#asistenciaYoutube')
 
+const salaBebe = document.querySelector('#salaBebe')
 
 /**Objeto form, para capturar los datos, verificar si estos tienen datos, poder desbloquear el botón de enviar, y proveer de los valores capturados en el formulario a la tabla que se inserta dinámicamente en pdf para su posterior descarga*/
 const objetoForm = {
@@ -70,6 +74,7 @@ const objetoForm = {
   adultos: '',
   kids: '',
   tweens: '',
+  salaBebe: '',
   servicioVoluntarios: '',
   tecnicaVoluntarios: '',
   kidsVoluntarios: '',
@@ -84,11 +89,12 @@ const objetoForm = {
   recursosVoluntarios: '',
   amorPorLaCasaVoluntarios: '',
   proyectoEducativoVoluntarios: '',
-  totalAsistentes: "",
-  totalAJ: "",
+  totalAsistentes: '',
+  asistenciaYoutube: '',
+  totalAsistentesOnline: '',
+  totalAJ: '',
   aceptaPresencial: '',
   aceptaOnline: '',
-  aceptaTweens: '',
   nombrePredicador: '',
   nombreMensaje: '',
   observaciones: ''
@@ -100,8 +106,8 @@ const elementos = [
     asistenciaServicio, asistenciaTecnica, asistenciaKidsVoluntarios, asistenciaTweensVoluntarios,
     asistenciaWorshipVoluntarios, asistenciaCocinaVoluntarios, asistenciaRedesSocialesVoluntarios,
     asistenciaSeguridadVoluntarios, asistenciaSalaDeBebesVoluntarios,
-    infoStand, oracionStand, standRecursos, standAmorPorLaCasa, standProyectoEducativo,
-    aceptaPresencial, aceptaOnline, aceptaTweens,
+    infoStand, oracionStand, standRecursos, standAmorPorLaCasa, standProyectoEducativo, asistenciaYoutube,
+    aceptaPresencial, aceptaOnline, salaBebe,
     predicador, nombreMensaje,
     observaciones
   ];
@@ -128,6 +134,12 @@ function agruparEventListener(){
       calcularTotalAsistenciaAJ();
       validacionTotalAJ(e);
     });
+
+    botonCalcularOnline.addEventListener('click', (e) => {
+      e.preventDefault()
+      calcularTotalOnline()
+      validacionTotalAsistentesOnline(e)
+    })
 
     btnReset.addEventListener('click', (e) =>{
         e.preventDefault()
@@ -212,6 +224,23 @@ function validacionTotalAsistentes(e) {
   }
 }
 
+function validacionTotalAsistentesOnline(e){
+  const totalAsistencia = parseFloat(totalAsistentesOnline.value);
+  const inputElement = e.target;
+  
+  if (isNaN(totalAsistencia) || totalAsistencia < 0) {
+    mensajeAlerta('El campo Total Asistentes debe ser un número válido', totalAsistentesOnline.parentElement);
+    objetoForm.totalAsistentesOnline = '';
+    comprobarObjetoForm();
+    inputElement.classList.add('input-invalid');
+  } else {
+    eliminarMensajeAlerta(totalAsistentesOnline.parentElement);
+    objetoForm.totalAsistentesOnline = totalAsistencia;
+    comprobarObjetoForm();
+  }
+}
+
+
 function validacionTotalAJ(e) {
   const totalAsistencia = Number(totalAJ.value); // Convierte el valor a número
   const inputElement = e.target;
@@ -273,10 +302,20 @@ function calcularTotalAsistencia() {
 }
 
 
+
+function calcularTotalOnline(){
+  const inputs = [ asistenciaYoutube ];
+
+  const totalAsistencia = inputs.reduce((total, input) => total + parseInt(input.value) || 0, 0);
+
+  document.querySelector('#totalAsistentesOnline').value = totalAsistencia // Puedes ajustar la cantidad de decimales según tus necesidades
+}
+
+
+
 function calcularTotalAsistenciaAJ() {
 
-
-    const inputs = [ aceptaPresencial, aceptaOnline, aceptaTweens ];
+    const inputs = [ aceptaPresencial, aceptaOnline ];
 
     const totalAceptaAJesus = inputs.reduce((total, input) => total + parseInt(input.value) || 0, 0)
 

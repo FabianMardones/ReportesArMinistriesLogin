@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/resources/css/tailwind.min.css">
+  <link rel="stylesheet" href="/resources/fontawesome-free-6.1.2-web/css/all.min.css">
+  <link rel="stylesheet" href="/resources/css/scroll.css">
+  <link rel="stylesheet" href="/resources/css/style.css">
+</head>
+<body class="min-h-100">
+
+    <div class="icono">
+        <p >Genera tus reportes <i class="fa-regular fa-face-smile"></i></p>
+      </div>
+    
+      <section class="navegacion">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <img class="arimg" src="/resources/img/arministries.png" alt="">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link home" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Reportes
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/">Reporte Encuentro</a></li>
+                    <li><a class="dropdown-item" href="/reporteOracion">Reporte Oración</a></li>
+                    <li><a class="dropdown-item" href="/vistasReportes">Resumen Encuentros</a></li>
+                    <li><a class="dropdown-item" href="/vistasOracion">Resumen Encuentro Oración</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <% if (user) { %>
+                  <a class="nav-link font-black usuario text-white" aria-disabled="true">Bienvenido: <%= user.user %></a>
+                  <% } %>
+                </li>
+              </ul>
+              <form class="d-flex" role="search">
+                <a class="btn btn-outline-danger" href="logout">Cerrar Sesión</a>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </section>
+
+  <div class="dark-light-mode_button switch no-print fixed-top">
+    <div class="button__shadow">
+        <i class="fa fa-solid fa-moon luna"></i>
+        <i class="fa fa-solid fa-sun oculto sol"></i>
+    </div>
+  </div>
+
+  <% if (results) { %>
+
+  <main class="container">
+      <div class="fondo"></div>
+      <div class="fondo fondo2"></div>
+      <div class="fondo fondo3"></div>
+
+
+      <div class="d-flex row justify-content-center container-cards">
+        <div class="col-md-5 card no-print">
+
+            <form id="formulario2" class="formularioForm" action="/updateEncuentro" method="post">
+                <input id="id" name="id" value="<%= results.id %>" hidden>
+                <div class="title__form">
+                    <h2 class="fs-1 text-center mb-4">Editar <strong>Encuentro</strong></h2>
+                </div>
+
+
+                <div class="col">
+                  <select class="form-select form-select-lg fs-6" aria-label="predicador" placeholder="Predicador" id="nombrePredicador" name="nombrePredicador">
+                    <option value="<%= results.nombre_predicador %>"><%= results.nombre_predicador %></option>
+                    <% predicadores.forEach((predicador) => { %>
+                      <option value="<%= predicador.rol %> <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %>"><%= predicador.rol %> <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %></option>
+                    <% }) %>
+                  </select>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-12 mt-3">
+                    <h3></h3>
+                    <input type="text" class="form-control form-control-lg fs-6" placeholder="Nombre del Mensaje" aria-label="mensaje" id="nombreMensaje" name="nombreMensaje" value="<%= results.nombre_mensaje %>">
+                  </div>
+                </div>
+    
+                <div class="col">
+                  <select class="form-select form-select-lg mt-3 fs-6" aria-label="modalidad" id="modalidad" name="modalidad">
+                    <option value="<%= results.modalidad %>"><%= results.modalidad %></option>
+                    <% modalidad.forEach((modalidades) => { %>
+                      <option value="<%= modalidades.modalidad %>"><%= modalidades.modalidad %></option>
+                    <% }) %>
+                  </select>
+                  </div>
+                  <div class="col">
+                    <select class="form-select form-select-lg mt-3 fs-6" aria-label="campus" id="campus" name="campus">
+                        <option value="<%= results.campus %>"><%= results.campus %></option>
+                        <% campus.forEach((campus) => { %>
+                          <option value="<%= campus.nombre_campus %>"><%= campus.nombre_campus %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="row g-3">
+                    <div class="col">
+                        <label for="floatingInput">Fecha</label>
+                        <input type="date" class="form-control form-control-lg fs-6" placeholder="Fecha" aria-label="date" id="fecha" name="fecha" value="<%= results.fecha %>">
+                    </div>
+                    <div class="col" style="margin-top: 1.8rem;">
+                        <select class="form-select form-select-lg mt-3 fs-6" aria-label="hora" id="hora" name="hora">
+                            <option value="<%= results.hora %>"><%= results.hora %></option>
+                        </select>
+                    </div>
+                </div>
+    
+                
+                <div class="col">
+                <select class="form-select form-select-lg mt-3 fs-6" aria-label="pastores-campus" id="pastoresCampus" name="pastoresCampus">
+                  <option value="<%= results.pastores_campus %>"><%= results.pastores_campus %></option>
+                  <% pastoresCampus.forEach((pastoreCampus) => { %>
+                    <option value="<%= pastoreCampus.nombrePastor %> <%= pastoreCampus.apellidoPastor %> & <%= pastoreCampus.nombrePastora %> <%= pastoreCampus.apellidoPastora %>"><%= pastoreCampus.nombrePastor %> <%= pastoreCampus.apellidoPastor %> & <%= pastoreCampus.nombrePastora %> <%= pastoreCampus.apellidoPastora %></option>
+                  <% }) %>
+                </select>
+                </div>
+    
+    
+                <div class="col">
+                <select class="form-select form-select-lg mt-3 fs-6" aria-label="ministrs-encargados" id="ministrosEncargados" name="ministrosEncargados">
+                  <option value="<%= results.ministros_encargados %>"><%= results.ministros_encargados %></option>
+                  <% ministrosEncargados.forEach((ministros) => { %>
+                    <option value="<%= ministros.nombre_ministro %> & <%= ministros.nombre_ministra %>"><%= ministros.nombre_ministro %> & <%= ministros.nombre_ministra %></option>
+                  <% }) %>
+
+                </select>
+                </div>
+    
+    
+                <div class="col">
+                  <select class="form-select form-select-lg mt-3 fs-6" placeholder="Lideres de Voluntarios" id="lideresVoluntarios" name="lideresVoluntarios">
+                    <option value="<%= results.lideres_voluntariado %>"><%= results.lideres_voluntariado %></option>
+                    <% lideresVoluntarios.forEach((lideres) => { %>
+                      <% if (lideres.nombre_lider_1.length > 0 && lideres.nombre_lider_2 === '') { %>
+                      <option value="<%= lideres.nombre_lider_1 %>"><%= lideres.nombre_lider_1 %></option>
+                      <% } else { %>
+                        <option value="<%= lideres.nombre_lider_1 %> & <%= lideres.nombre_lider_2 %>"><%= lideres.nombre_lider_1 %> & <%= lideres.nombre_lider_2 %></option>
+                      <% } %>
+                    <% }) %>
+                  </select>
+                </div>
+    
+                    
+
+                <h3 class="mt-4">Asistencia</h3>
+                <div class="row g-3">
+                  <div class="col-3">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Adultos" aria-label="adultos" id="adultos" name="adultos" value="<%= results.asistencia_adultos %>">
+                  </div>
+                  <div class="col-3">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Kids" aria-label="kids" id="kids" name="kids" value="<%= results.asistencia_kids %>">
+                  </div>
+                  <div class="col-3">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Tweens" aria-label="tweens" id="tweens" name="tweens" value="<%= results.asistencia_tweens %>">
+                  </div>
+                  <div class="col-3">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Sala Bebé" aria-label="salaBebe" id="salaBebe" name="salaBebe" value="<%= results.asistencia_sala_bebes %>">
+                  </div>
+                </div>
+    
+                <h3>Voluntarios</h3>
+                <div class="row g-3">
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Servicio" id="servicioVoluntarios" name="servicioVoluntarios" value="<%= results.asistencia_voluntarios_servicio %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Técnica" id="tecnicaVoluntarios" name="tecnicaVoluntarios" value="<%= results.asistencia_voluntarios_tecnica %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Kids" id="kidsVoluntarios" name="kidsVoluntarios" value="<%= results.asistencia_voluntarios_kids %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Tweens"  id="tweensVoluntarios" name="tweensVoluntarios" value="<%= results.asistencia_voluntarios_tweens %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Worship"  id="worshipVoluntarios" name="worshipVoluntarios" value="<%= results.asistencia_voluntarios_worship %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Cocina"  id="cocinaVoluntarios" name="cocinaVoluntarios" value="<%= results.asistencia_voluntarios_cocina %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Redes Sociales" aria-label="redes-sociales-voluntarios" id="redesSocialesVoluntarios" name="redesSocialesVoluntarios" value="<%= results.asistencia_voluntarios_redes_sociales %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Seguridad" aria-label="seguridad-voluntarios" id="seguridadVoluntarios" name="seguridadVoluntarios" value="<%= results.asistencia_voluntarios_seguridad %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Sala de Bebés" id="salaBebesVoluntarios" name="salaBebesVoluntarios" value="<%= results.asistencia_voluntarios_sala_bebes %>">
+                  </div>
+                </div>
+    
+    
+                <h3>Stand</h3>
+                <div class="row g-3">
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Info" id="infoVoluntarios" name="infoVoluntarios" value="<%= results.stand_info %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Oración" id="oracionVoluntarios" name="oracionVoluntarios" value="<%= results.stand_oracion %>">
+                  </div>
+                  <div class="col-4">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Merch" id="recursosVoluntarios" name="recursosVoluntarios" value="<%= results.stand_recursos %>">
+                  </div>
+                  <div class="col-6">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Amor por la casa"  id="amorPorLaCasaVoluntarios" name="amorPorLaCasaVoluntarios" value="<%= results.stand_amor_por_la_casa %>">
+                  </div>
+                  <div class="col-6">
+                    <input type="number" class="form-control form-control-lg fs-6" placeholder="Proyecto Educativo" id="proyectoEducativoVoluntarios" name="proyectoEducativoVoluntarios" value="<%= results.stand_proyecto_educativo %>">
+                  </div>
+                </div>
+    
+    
+    
+                <h3 class="mt-4 fs-4" style="text-align: center;">Total General</h3>
+                <div class="row mt-4">
+                  <div class="col-6">
+                    <button class="btn btn-outline-primary w-100 calcular" id="calcular" type="button">Calcular</button>
+                  </div>
+                  <div class="col-6">
+                    <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total General" aria-label="totalAsistentes" id="totalAsistentes" name="totalAsistentes" value="<%= results.total_asistencia %>">
+                  </div>
+                </div>
+    
+    
+    
+                <h3 class="mt-4 fs-4" style="text-align: center;">Asistencia Online</h3>
+                <div class="row">
+                  <div>
+                    <input type="number" class="form-control form-control-lg fs-6 mt-4" placeholder="Asistentes Youtube" id="asistenciaYoutube" name="asistenciaYoutube" value="<%= results.asistencia_youtube %>">
+                  </div>
+                  <div class="col-6">
+                    <button class="btn btn-outline-primary w-100 calcular" id="calcularOnlineBtn" type="button">Calcular</button>
+                  </div>
+                  <div class="col-6">
+                    <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total General" aria-label="totalAsistentesOnline" id="totalAsistentesOnline" name="totalAsistentesOnline" value="<%= results.total_asistentes_online %>">
+                  </div>
+                </div>
+    
+                
+                <h3 class="mt-4 fs-4" style="text-align: center;">Acepta a Jesús</h3>
+                <div class="row mt-4">
+                  <div class="col-6">
+                    <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Presencial" aria-label="acepta-presencial" id="aceptaPresencial" name="aceptaPresencial" value="<%= results.acepta_a_jesus_presencial %>">
+                  </div>
+                  <div class="col-6">
+                    <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Online" aria-label="acepta-online" id="aceptaOnline" name="aceptaOnline" value="<%= results.acepta_a_jesus_online %>">
+                  </div class="row">
+                    <div class="col-6">
+                      <button class="btn btn-outline-primary w-100 calcular" id="calcularAJ" type="button">Calcular</button>
+                    </div>
+                    <div class="col-6">
+                      <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total que aceptó a Jesús" aria-label="totalAJ" id="totalAJ" name="totalAJ" value="<%= results.total_acepta_a_jesus %>">
+                    </div>
+                </div>
+                
+                <h3>Observaciones</h3>
+                <div class="form-floating mb-5">
+                  <textarea class="form-control fs-6" placeholder="observaciones" style="height: 100px; padding: 2.5rem 1rem; font-size: 12px;" id="observaciones" name="observaciones"><%= results.observaciones %></textarea>
+                  <label for="floatingTextarea2" class="fs-6">Observaciones</label>
+                </div>
+      
+                <div class="d-flex w-100">
+                  <button class="btn w-100 btn-outline-primary mb-5 calcular" type="submit" id="registrar">Guardar Cambios</button>
+                </div>
+              </form>
+
+        </div>
+      </div>
+  </main>
+  <% } %>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/resources/js/ValidacionEditarE.js" type="module"></script>
+  <script src="/resources/js/darkMode.js"></script>
+  <script>
+    document.getElementById('campus').addEventListener('change', updateHoras);
+    document.getElementById('fecha').addEventListener('change', updateHoras);
+
+    function updateHoras() {
+        console.log("Update Horas Function Called");
+        const selectedCampus = document.getElementById('campus').value;
+        const fechaValue = document.getElementById('fecha').value;
+        console.log("Fecha String:", fechaValue + 'T00:00:00');
+
+        // Ajuste en la creación del objeto Date
+        const selectedFecha = new Date(fechaValue + 'T00:00:00');
+
+        let horaSelect = document.getElementById('hora');
+
+        horaSelect.innerHTML = '<option selected value="">Hora</option>';
+
+        // Verificar si el campus seleccionado es Santiago y agregar las horas correspondientes
+        if (selectedCampus === 'Santiago' && selectedFecha.getDay() === 0) {
+            console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="09:00">09:00</option>';
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+            horaSelect.innerHTML += '<option value="13:00">13:00</option>';
+            horaSelect.innerHTML += '<option value="15:30">15:30</option>';
+            horaSelect.innerHTML += '<option value="17:30">17:00</option>';
+            horaSelect.innerHTML += '<option value="19:30">19:00</option>';
+            // Puedes agregar más opciones según sea necesario
+        }else if(selectedCampus === 'Santiago' && selectedFecha.getDay() === 3){
+          console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="12:00">20:00</option>';
+        }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 4){
+          console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
+        }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 0){
+          console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+            horaSelect.innerHTML += '<option value="19:00">19:00</option>';
+        }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 4){
+            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
+        }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 0){
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+            horaSelect.innerHTML += '<option value="18:00">18:00</option>';
+        }else if(selectedCampus === 'Punta Arenas' && selectedFecha.getDay() === 4){
+            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
+        }else if(selectedCampus === 'Punta Arenas' && selectedFecha.getDay() === 0){
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+        }else if(selectedCampus === 'West Perrine' && selectedFecha.getDay() === 0){
+            horaSelect.innerHTML += '<option value="17:00">17:00</option>';
+        }else if(selectedCampus === 'Santiago' && selectedFecha.getDay() === 5){
+            horaSelect.innerHTML += '<option value="17:00">17:00</option>';
+        }
+    }
+</script>
+</body>
+</html>

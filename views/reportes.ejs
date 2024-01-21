@@ -32,15 +32,17 @@
               <a class="nav-link home" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link dashboard" href="#">Dashboard</a>
+              <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Reportes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/">Generar Reporte</a></li>
-                <li><a class="dropdown-item" href="/vistasReportes">Listado de Reportes</a></li>
+                <li><a class="dropdown-item" href="/">Reporte Encuentro</a></li>
+                <li><a class="dropdown-item" href="/reporteOracion">Reporte Oración</a></li>
+                <li><a class="dropdown-item" href="/vistasReportes">Resumen Encuentros</a></li>
+                <li><a class="dropdown-item" href="/vistasOracion">Resumen Encuentro Oración</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
               </ul>
@@ -84,21 +86,69 @@
                 <h2 class="fs-1 text-center mb-4">Registro <strong>Encuentro</strong></h2>
             </div>
             <div class="col">
+              <select class="form-select form-select-lg fs-6" aria-label="predicador" placeholder="Predicador" id="nombrePredicador" name="nombrePredicador">
+                <option selected value="">Predicador</option>
+                <% predicadores.forEach((predicador)=> { %>
+                <option value="<%= predicador.rol %> - <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %>"><%= predicador.rol %> <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col-12 mt-3">
+                <h3></h3>
+                <input type="text" class="form-control form-control-lg fs-6" placeholder="Nombre del Mensaje" aria-label="mensaje" id="nombreMensaje" name="nombreMensaje">
+              </div>
+            </div>
+
+            <div class="col">
+              <select class="form-select form-select-lg mt-3 fs-6" aria-label="modalidad" id="modalidad" name="modalidad">
+                <option selected value="">Modalidad</option>
+                <% modalidad.forEach((modalidad)=> { %>
+                <option value="<%= modalidad.modalidad %>"><%= modalidad.modalidad %></option>
+                <% }) %>
+              </select>
+              </div>
+              <div class="col">
+                <select class="form-select form-select-lg mt-3 fs-6" aria-label="campus" id="campus" name="campus">
+                    <option selected value=""> Campus</option>
+                    <% campus.forEach((campus)=> { %>
+                    <option value="<%= campus.nombre_campus %>"><%= campus.nombre_campus %>, <%= campus.pais_campus %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="row g-3">
+                <div class="col">
+                    <label for="floatingInput">Fecha</label>
+                    <input type="date" class="form-control form-control-lg fs-6" placeholder="Fecha" aria-label="date" id="fecha" name="fecha">
+                </div>
+                <div class="col" style="margin-top: 1.8rem;">
+                    <select class="form-select form-select-lg mt-3 fs-6" aria-label="hora" id="hora" name="hora">
+                        <option selected value="">Hora</option>
+                    </select>
+                </div>
+            </div>
+
+            
+            <div class="col">
             <select class="form-select form-select-lg mt-3 fs-6" aria-label="pastores-campus" id="pastoresCampus" name="pastoresCampus">
-              <option selected value="">Pastores de Campus</option>
-              <% pastoresCampus.forEach((pastor)=> { %>
-              <option value="<%= pastor.nombre_pastor %> & <%= pastor.nombre_pastora %>"><%= pastor.nombre_pastor %> & <%= pastor.nombre_pastora %></option>
+              <option selected value="">Pastores Encargados</option>
+              <% pastoresCampus.forEach((pastores)=> { %>
+              <option value="<%= pastores.nombrePastor %> <%= pastores.apellidoPastor %> & <%= pastores.nombrePastora %> <%= pastores.apellidoPastora %>"><%= pastores.nombrePastor %> <%= pastores.apellidoPastor %> & <%= pastores.nombrePastora %> <%= pastores.apellidoPastora %></option>
               <% }) %>
             </select>
             </div>
+
+
             <div class="col">
             <select class="form-select form-select-lg mt-3 fs-6" aria-label="ministrs-encargados" id="ministrosEncargados" name="ministrosEncargados">
-              <option selected value="">Ministros Encargados</option>
+              <option selected value="">Administración de Campus</option>
               <% ministrosEncargados.forEach((ministro)=> { %>
               <option value="<%= ministro.nombre_ministro %> & <%= ministro.nombre_ministra %>"><%= ministro.nombre_ministro %> & <%= ministro.nombre_ministra %></option>
               <% }) %>
             </select>
             </div>
+
+
             <div class="col">
               <select class="form-select form-select-lg mt-3 fs-6" placeholder="Lideres de Voluntarios" id="lideresVoluntarios" name="lideresVoluntarios">
                 <option selected value="">Líderes de Voluntariado</option>
@@ -110,48 +160,24 @@
                   <% } %>
                 <% }) %>
               </select>
-              
             </div>
-            <div class="row g-3">
-              <div class="col">
-                <label for="floatingInput">Fecha</label>
-                <input type="date" class="form-control form-control-lg fs-6" placeholder="Fecha" aria-label="date" id="fecha" name="fecha">
-              </div>
-              <div class="col">
-                <label for="floatingInput">Hora</label>
-                <input type="time" class="form-control form-control-lg fs-6" placeholder="Hora" aria-label="time" id="hora" name="hora">
-              </div>
-            </div>
-            <div class="col">
-            <select class="form-select form-select-lg mt-3 fs-6" aria-label="modalidad" id="modalidad" name="modalidad">
-              <option selected value="">Modalidad</option>
-              <option value="Presencial">Presencial</option>
-              <option value="Virtual">Virtual</option>
-              <option value="Presencial-Virtual">Presencial-Virtual</option>
-            </select>
-            </div>
-            <div class="col">
-            <select class="form-select form-select-lg mt-3 fs-6" aria-label="campus" id="campus" name="campus">
-              <option selected value=""> Campus</option>
-              <% campus.forEach((campus)=> { %>
-              <option value="<%= campus.nombre_campus %>"><%= campus.nombre_campus %>, <%= campus.pais_campus %></option>
-              <% }) %>
-            </select>
-            </div>
-            <hr>
+
             <h3 class="mt-4">Asistencia</h3>
             <div class="row g-3">
-              <div class="col-4">
+              <div class="col-3">
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Adultos" aria-label="adultos" id="adultos" name="adultos">
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Kids" aria-label="kids" id="kids" name="kids">
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Tweens" aria-label="tweens" id="tweens" name="tweens">
               </div>
+              <div class="col-3">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Sala Bebé" aria-label="salaBebe" id="salaBebe" name="salaBebe">
+              </div>
             </div>
-            <hr>
+
             <h3>Voluntarios</h3>
             <div class="row g-3">
               <div class="col-4">
@@ -182,7 +208,8 @@
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Sala de Bebés" id="salaBebesVoluntarios" name="salaBebesVoluntarios">
               </div>
             </div>
-            <hr>
+
+
             <h3>Stand</h3>
             <div class="row g-3">
               <div class="col-4">
@@ -192,7 +219,7 @@
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Oración" id="oracionVoluntarios" name="oracionVoluntarios">
               </div>
               <div class="col-4">
-                <input type="number" class="form-control form-control-lg fs-6" placeholder="Recursos" id="recursosVoluntarios" name="recursosVoluntarios">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Merch" id="recursosVoluntarios" name="recursosVoluntarios">
               </div>
               <div class="col-6">
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Amor por la casa"  id="amorPorLaCasaVoluntarios" name="amorPorLaCasaVoluntarios">
@@ -200,51 +227,54 @@
               <div class="col-6">
                 <input type="number" class="form-control form-control-lg fs-6" placeholder="Proyecto Educativo" id="proyectoEducativoVoluntarios" name="proyectoEducativoVoluntarios">
               </div>
-              <hr>
             </div>
-            <h3>Total General</h3>
-            <div class="row">
-              <div class="col-12">
-                <button class="btn w-100 btn-calcular fs-4" id="calcular" type="button">Calcular</button>
+
+
+
+            <h3 class="mt-4 fs-4" style="text-align: center;">Total General</h3>
+            <div class="row mt-2">
+              <div class="col-6">
+                <button class="btn btn-outline-primary w-100 calcular" id="calcular" type="button">Calcular</button>
+              </div>
+              <div class="col-6">
                 <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total General" aria-label="totalAsistentes" id="totalAsistentes" name="totalAsistentes">
               </div>
             </div>
-            <hr>
-            <h3>Acepta a Jesús</h3>
+
+
+
+            <h3 class="mt-3 fs-4" style="text-align: center;">Asistencia Online</h3>
             <div class="row">
-              <div class="col-4">
-                <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Presencial" aria-label="acepta-presencial" id="aceptaPresencial" name="aceptaPresencial">
+              <div>
+                <input type="number" class="form-control form-control-lg fs-6 mt-1" placeholder="Asistentes Youtube" id="asistenciaYoutube" name="asistenciaYoutube">
               </div>
-              <div class="col-4">
-                <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Online" aria-label="acepta-online" id="aceptaOnline" name="aceptaOnline">
+              <div class="col-6 mt-2">
+                <button class="btn btn-outline-primary w-100 calcular" id="calcularOnlineBtn" type="button">Calcular</button>
               </div>
-              <div class="col-4">
-                <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Tweens" aria-label="acepta-tweens" id="aceptaTweens" name="aceptaTweens">
+              <div class="col-6 mt-2">
+                <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total General" aria-label="totalAsistentesOnline" id="totalAsistentesOnline" name="totalAsistentesOnline">
               </div>
-              <hr>
-              <h3>Total de personas que aceptaron a Jesús</h3>
-                <div class="col-12">
-                  <button class="btn w-100 btn-calcular fs-4" id="calcularAJ" type="button">Calcular</button>
+            </div>
+
+
+
+            
+            <h3 class="mt-3 fs-4" style="text-align: center;">Acepta a Jesús</h3>
+            <div class="row mt-2">
+              <div class="col-6">
+                <input type="number" class="form-control form-control-lg mb-2 fs-6" placeholder="Presencial" aria-label="acepta-presencial" id="aceptaPresencial" name="aceptaPresencial">
+              </div>
+              <div class="col-6">
+                <input type="number" class="form-control form-control-lg mb-2 fs-6" placeholder="Online" aria-label="acepta-online" id="aceptaOnline" name="aceptaOnline">
+              </div class="row">
+                <div class="col-6">
+                  <button class="btn btn-outline-primary w-100 calcular" id="calcularAJ" type="button">Calcular</button>
+                </div>
+                <div class="col-6">
                   <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total que aceptó a Jesús" aria-label="totalAJ" id="totalAJ" name="totalAJ">
                 </div>
             </div>
-            <hr>
-            <div class="col">
-              <h3>Nombre predicador</h3>
-              <select class="form-select form-select-lg fs-6" aria-label="predicador" placeholder="Predicador" id="nombrePredicador" name="nombrePredicador">
-                <option selected value="">Predicadores</option>
-                <% predicadores.forEach((predicador)=> { %>
-                <option value="<%= predicador.rol %> - <%= predicador.nombre_predicador %> - <%= predicador.apellido_predicador %>"><%= predicador.rol %> <%= predicador.nombre_predicador %> <%= predicador.apellido_predicador %></option>
-                <% }) %>
-              </select>
-            </div>
-            <div class="row">
-              <div class="col-12 mt-3">
-                <h3>Nombre del Mensaje</h3>
-                <input type="text" class="form-control form-control-lg fs-6" placeholder="Mensaje" aria-label="mensaje" id="nombreMensaje" name="nombreMensaje">
-              </div>
-            </div>
-            <hr>
+            
             <h3>Observaciones</h3>
             <div class="form-floating mb-5">
               <textarea class="form-control fs-6" placeholder="observaciones" style="height: 100px; padding: 2.5rem 1rem; font-size: 12px;" id="observaciones" name="observaciones"></textarea>
@@ -252,8 +282,8 @@
             </div>
   
             <div class="mb-5 d-flex w-100">
-              <button class="btn w-50 btn-enviar mb-5" type="submit" id="registrar" disabled>Registrar y Generar PDF</button>
-              <button class="w-50 btn ms-2 btn-resetear mb-5" id='reset' type="reset">Reset</button>
+              <button class="btn w-50 btn-outline-primary mb-5 calcular" type="submit" id="registrar" disabled>Registrar y Generar PDF</button>
+              <button class="w-50 btn ms-2 btn-outline-primary  mb-5 calcular" id='reset' type="reset">Reset</button>
             </div>
           </form>
         </div>
@@ -266,8 +296,60 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="resources/js/modal.js"></script>
   <script src="resources/js/validaciones.js"></script>
   <script src="resources/js/darkMode.js"></script>
+  <script>
+    document.getElementById('campus').addEventListener('change', updateHoras);
+    document.getElementById('fecha').addEventListener('change', updateHoras);
+
+    function updateHoras() {
+        console.log("Update Horas Function Called");
+        const selectedCampus = document.getElementById('campus').value;
+        const fechaValue = document.getElementById('fecha').value;
+        console.log("Fecha String:", fechaValue + 'T00:00:00');
+
+        // Ajuste en la creación del objeto Date
+        const selectedFecha = new Date(fechaValue + 'T00:00:00');
+
+        let horaSelect = document.getElementById('hora');
+
+        horaSelect.innerHTML = '<option selected value="">Hora</option>';
+
+        // Verificar si el campus seleccionado es Santiago y agregar las horas correspondientes
+        if (selectedCampus === 'Santiago' && selectedFecha.getDay() === 0) {
+            console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="09:00">09:00</option>';
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+            horaSelect.innerHTML += '<option value="13:00">13:00</option>';
+            horaSelect.innerHTML += '<option value="15:30">15:30</option>';
+            horaSelect.innerHTML += '<option value="17:30">17:00</option>';
+            horaSelect.innerHTML += '<option value="19:30">19:00</option>';
+            // Puedes agregar más opciones según sea necesario
+        }else if(selectedCampus === 'Santiago' && selectedFecha.getDay() === 3){
+          console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="12:00">20:00</option>';
+        }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 4){
+          console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
+        }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 0){
+          console.log("Adding Horarios");
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+            horaSelect.innerHTML += '<option value="19:00">19:00</option>';
+        }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 4){
+            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
+        }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 0){
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+            horaSelect.innerHTML += '<option value="18:00">18:00</option>';
+        }else if(selectedCampus === 'Punta Arenas' && selectedFecha.getDay() === 4){
+            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
+        }else if(selectedCampus === 'Punta Arenas' && selectedFecha.getDay() === 0){
+            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
+        }else if(selectedCampus === 'West Perrine' && selectedFecha.getDay() === 0){
+            horaSelect.innerHTML += '<option value="17:00">17:00</option>';
+        }else if(selectedCampus === 'Santiago' && selectedFecha.getDay() === 5){
+            horaSelect.innerHTML += '<option value="17:00">17:00</option>';
+        }
+    }
+</script>
 </body>
 </html>

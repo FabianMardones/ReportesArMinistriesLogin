@@ -11,8 +11,9 @@ app.use(cors())
 app.use('/resources', express.static('public'));
 app.use('/resources', express.static(__dirname + '/public'))
 
-app.use(express.urlencoded({extended:true}))
-app.use(express(express.json()))
+
+app.use(express.urlencoded({extended:false}))
+app.use(express(express.json))
 
 app.set('view engine', 'ejs');
 
@@ -27,7 +28,7 @@ app.use(function(req, res, next){
     if (!req.user) {
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     }
-    next()
+    return next()
 })
 
 app.get('/register', (req, res) => {

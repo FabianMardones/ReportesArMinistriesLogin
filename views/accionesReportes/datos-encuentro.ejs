@@ -37,12 +37,14 @@
               <a class="nav-link dashboard" href="#">Dashboard</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" d="reportesDrop"href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Reportes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/">Generar Reporte</a></li>
-                <li><a class="dropdown-item" href="/vistasReportes">Listado de reportes</a></li>
+                <li><a class="dropdown-item" href="/">Reporte Encuentro</a></li>
+                <li><a class="dropdown-item" href="/reporteOracion">Reporte Oración</a></li>
+                <li><a class="dropdown-item" href="/vistasReportes">Resumen Encuentros</a></li>
+                <li><a class="dropdown-item" href="/vistasOracion">Resumen Encuentro Oración</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
               </ul>
@@ -120,6 +122,20 @@
                 <span class="pastores text-capitalize"><%= encuentro.ministros_encargados %></span>
               </div>
             </div>
+
+            <table class="table table-bordered table-striped table-bordered-all mt-5">
+              <thead>
+                <th class="w-50">Nombre predicador</th>
+                <th class="w-50">Nombre Mensaje</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-capitalize"><%= encuentro.nombre_predicador %></td>
+                  <td class="text-capitalize"><%= encuentro.nombre_mensaje %></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
           
           <h4 class="encabezado"; margin-top: 20px;">Asistencia</h4>
               
@@ -197,11 +213,37 @@
           
               <table class="table table-bordered table-striped table-bordered-all">
                 <thead>
-                  <th>Total de asistentes</th>
+                  <th>Total de asistentes Presencial</th>
                 </thead>
                 <tbody>
                   <tr>
                     <td><%= encuentro.total_asistencia %></td>
+                  </tr>
+                </tbody>
+              </table>
+          
+              <br>
+
+              <h4 class="encabezado">Asistencia Online</h4>
+
+              <table class="table table-bordered table-striped table-bordered-all">
+                <thead>
+                  <th>Youtube</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= encuentro.asistencia_youtube %></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table table-bordered table-striped table-bordered-all">
+                <thead>
+                  <th>Total de asistentes Online</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= encuentro.total_asistentes_online %></td>
                   </tr>
                 </tbody>
               </table>
@@ -213,20 +255,21 @@
               <table class="table table-bordered table-striped table-bordered-all">
                 <thead>
                   <th>Presencial</th>
-                  <th>YouTube</th>
-                  <th>Tweens</th>
+                  <th>Online</th>
                 </thead>
                 <tbody>
                   <tr>
                     <td><%= encuentro.acepta_a_jesus_presencial %></td>
                     <td><%= encuentro.acepta_a_jesus_online %></td>
-                    <td><%= encuentro.acepta_a_jesus_tweens %></td>
                   </tr>
                 </tbody>
               </table>
               <br>
+
+              <div id="salto-de-pagina" class="mt-10"></div>
+
           
-              <table class="table table-bordered table-striped table-bordered-all">
+              <table class="table table-bordered table-striped table-bordered-all mt-10">
               <thead>
                 <th>Total de personas que aceptaron a Jesús</th>
               </thead>
@@ -237,19 +280,7 @@
               </tbody>
             </table>
             <br>
-          
-                <div>
-                  <div >
-                    <span><b>Nombre Predicador</b></span>
-                    <br>
-                    <span class="text-capitalize"><%= encuentro.nombre_predicador %></span>
-                  </div>
-                  <div class="mb-3">
-                    <span><b>Nombre Mensaje</b></span>
-                    <br>
-                    <span class="text-capitalize"><%= encuentro.nombre_mensaje %></span>
-                  </div>
-                </div>
+            
           
                 <h4 class="encabezado">Observaciones</h4>
                 <table class="table table-bordered table-striped table-bordered-all">
@@ -299,7 +330,23 @@ function print_canvas() {
         html2canvas: { scale: 2 },
         jsPdf: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     }).from(element).save().toPdf().catch(error => console.log(error));
+
+
+    const div = document.createElement('div')
+    div.innerHTML = `<div class="w-100 d-flex row flex-row-reverse align-content-between" style="margin-top: 10px; text-align: right !important; font-size:12px;">
+              <h1 class="w-50 rep">Reporte Encuentro</h1>
+              <img class="arimg" src="/resources/img/arministries.png" style="position: absolute; left:0 ; margin-top: 5px; width: 15rem; ">
+            </div>`
+
+    const saltoDePagina = document.querySelector('#salto-de-pagina')
+    saltoDePagina.appendChild(div)
+
+
+    setTimeout(() => {
+      div.remove()
+    }, 3000);
 }
   </script>
+  
 </body>
 </html>

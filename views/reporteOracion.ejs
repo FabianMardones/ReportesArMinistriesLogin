@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="resources/css/tailwind.min.css">
+  <link rel="stylesheet" href="resources/fontawesome-free-6.1.2-web/css/all.min.css">
+  <link rel="stylesheet" href="resources/css/scroll.css">
+  <link rel="stylesheet" href="resources/css/style.css">
+</head>
+<body class="min-h-100">
+
+  <div class="icono">
+    <p>Genera tus reportes <i class="fa-regular fa-face-smile"></i></p>
+  </div>
+
+  <section class="navegacion">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <img class="arimg" src="resources/img/arministries.png" alt="">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link home" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Reportes
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/">Reporte Encuentro</a></li>
+                  <li><a class="dropdown-item" href="/reporteOracion">Reporte Oración</a></li>
+                  <li><a class="dropdown-item" href="/vistasReportes">Resumen Encuentros</a></li>
+                  <li><a class="dropdown-item" href="/vistasOracion">Resumen Encuentro Oración</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+            <li class="nav-item">
+              <% if (user) { %>
+              <a class="nav-link font-black usuario text-white" aria-disabled="true">Bienvenido: <%= user.user %></a>
+              <% } %>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <a class="btn btn-outline-danger" href="logout">Cerrar Sesión</a>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <div class="dark-light-mode_button switch no-print fixed-top">
+    <div class="button__shadow">
+        <i class="fa fa-solid fa-moon luna"></i>
+        <i class="fa fa-solid fa-sun oculto sol"></i>
+    </div>
+  </div>
+
+  <main class="container">
+      <!-- <div class="circulo xxlarge sombra1"></div>
+      <div class="circulo xlarge sombra2"></div>
+      <div class="circulo large sombra3"></div>
+      <div class="circulo medium sombra4"></div>
+      <div class="circulo small sombra5"></div> -->
+      <div class="fondo"></div>
+      <div class="fondo fondo2"></div>
+      <div class="fondo fondo3"></div>
+
+
+
+
+      <div class="d-flex row justify-content-center container-cards">
+        <div class="col-md-5 card no-print">
+  
+
+
+
+          <form id="formulario" class="formularioForm" action="/saveEncuentroOracion" method="post">
+            <div class="title__form">
+                <h2 class="fs-1 text-center mb-4">Registro <strong>Encuentro de Oracion</strong></h2>
+            </div>
+
+
+
+            <div class="col">
+              <select class="form-select form-select-lg mt-3 fs-6" aria-label="modalidad" id="modalidad" name="modalidad">
+                <option selected value="">Modalidad</option>
+                <% modalidad.forEach((modalidad)=> { %>
+                <option value="<%= modalidad.modalidad %>"><%= modalidad.modalidad %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div class="col">
+              <select class="form-select form-select-lg mt-3 fs-6" aria-label="campus" id="campus" name="campus">
+                  <option selected value=""> Campus</option>
+                  <% campus.forEach((campus)=> { %>
+                  <option value="<%= campus.nombre_campus %>"><%= campus.nombre_campus %>, <%= campus.pais_campus %></option>
+                  <% }) %>
+              </select>
+            </div>
+
+
+
+            <div class="row g-3">
+                <div class="col">
+                    <label for="floatingInput">Fecha</label>
+                    <input type="date" class="form-control form-control-lg fs-6" placeholder="Fecha" aria-label="date" id="fecha" name="fecha">
+                </div>
+                <div class="col" style="margin-top: 1.8rem;">
+                    <select class="form-select form-select-lg mt-3 fs-6" aria-label="hora" id="hora" name="hora">
+                        <option selected value="">Hora</option>
+                        <option value="06:00">06:00</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+
+
+
+            <div class="col">
+              <select class="form-select form-select-lg mt-3 fs-6" aria-label="ministrs-encargados" id="ministrosEncargados" name="ministrosEncargados">
+                <option selected value="">Ministros Encargados</option>
+                <% ministrosEncargados.forEach((ministro)=> { %>
+                <option value="<%= ministro.nombre_ministro %> & <%= ministro.nombre_ministra %>"><%= ministro.nombre_ministro %> & <%= ministro.nombre_ministra %></option>
+                <% }) %>
+              </select>
+            </div>
+
+
+            <div class="col">
+              <select class="form-select form-select-lg mt-3 fs-6" placeholder="Lideres de Voluntarios" id="lideresVoluntarios" name="lideresVoluntarios">
+                <option selected value="">Líderes de Voluntariado</option>
+                <% lideresVoluntarios.forEach((lider) => { %>
+                  <% if (lider.nombre_lider_1.length > 0 && lider.nombre_lider_2 === '') { %>
+                    <option value="<%= lider.nombre_lider_1 %>"><%= lider.nombre_lider_1 %></option>
+                  <% } else { %>
+                    <option value="<%= lider.nombre_lider_1 %> & <%= lider.nombre_lider_2 %>"><%= lider.nombre_lider_1 %> & <%= lider.nombre_lider_2 %></option>
+                  <% } %>
+                <% }) %>
+              </select>
+            </div>
+
+
+            <h3 class="mt-4">Asistencia</h3>
+            <div class="row g-3">
+              <div class="col-12">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Adultos" aria-label="adultos" id="adultos" name="adultos">
+              </div>
+            </div>
+            <hr>
+            <h3>Voluntarios</h3>
+            <div class="row g-3">
+              <div class="col-4">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Servicio" id="servicioVoluntarios" name="servicioVoluntarios">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Técnica" id="tecnicaVoluntarios" name="tecnicaVoluntarios">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Worship"  id="worshipVoluntarios" name="worshipVoluntarios">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Cocina"  id="cocinaVoluntarios" name="cocinaVoluntarios">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Redes Sociales" aria-label="redes-sociales-voluntarios" id="redesSocialesVoluntarios" name="redesSocialesVoluntarios">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control form-control-lg fs-6" placeholder="Seguridad" aria-label="seguridad-voluntarios" id="seguridadVoluntarios" name="seguridadVoluntarios">
+              </div>
+              <div class="row g-2 mt-4 w-100">
+                <div class="col-6">
+                  <button class="btn btn-outline-primary w-100 calcular" id="caclularPresencial" type="button">Calcular</button>
+                </div>
+                <div class="col-6">
+                  <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total General" aria-label="totalAsistentes" id="totalAsistentes" name="totalAsistentes">
+                </div>
+              </div>        
+            </div>
+
+            <h3 class="mt-4 fs-4" style="text-align: center;">Asistencia Online</h3>
+            <div class="mt-2">
+              <input type="number" class="form-control form-control-lg fs-6" placeholder="Asistencia Online" aria-label="asistenciaOnline" id="asistenciaOnline" name="asistenciaOnline">
+            </div>
+            <div class="row g-2 mt-2">
+              <div class="col-6">
+                <button class="btn btn-outline-primary w-100 calcular" id="calcularOnline" type="button">Calcular</button>
+              </div>
+              <div class="col-6">
+                <input type="number" class="form-control form-control-lg mb-3 fs-6" placeholder="Total Asistentes Online" aria-label="totalAsistentesOnline" id="totalAsistentesOnline" name="totalAsistentesOnline">
+              </div>
+            </div>
+            <br>
+            <hr>
+  
+            <div class="mb-5 d-flex w-100 mt-12">
+              <button class="btn w-50 btn-outline-primary mb-5 calcular" type="submit" id="registrar" disabled>Registrar y Generar PDF</button>
+              <button class="w-50 btn ms-2 btn-outline-primary  mb-5 calcular" id='reset' type="reset">Reset</button>
+            </div>
+          </form>
+        </div>
+  
+  
+      </div>
+
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/js/validacionesEO.js"></script>
+  <script src="resources/js/darkMode.js"></script>
+  
+</body>
+</html>
