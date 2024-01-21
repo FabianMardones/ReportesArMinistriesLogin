@@ -222,6 +222,31 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="resources/js/validacionesEO.js"></script>
   <script src="resources/js/darkMode.js"></script>
+
+  <script>
+    document.getElementById('campus').addEventListener('change', updateHoras);
+    document.getElementById('fecha').addEventListener('change', updateHoras);
+
+    function updateHoras() {
+
+        const selectedCampus = document.getElementById('campus').value;
+        const fechaValue = document.getElementById('fecha').value;
+
+
+        // Ajuste en la creación del objeto Date
+        const selectedFecha = new Date(fechaValue + 'T00:00:00');
+
+        let horaSelect = document.getElementById('hora');
+
+        horaSelect.innerHTML = '<option selected value="">Hora</option>';
+
+        // Verificar si el campus seleccionado es Santiago y agregar las horas correspondientes
+        if (selectedCampus === 'Santiago' && selectedFecha.getDay() === 3) {
+
+            horaSelect.innerHTML += '<option value="06:00">06:00</option>';
+        }
+    }
+</script>
   
 </body>
 </html>

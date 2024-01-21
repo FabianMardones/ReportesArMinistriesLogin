@@ -303,10 +303,10 @@
     document.getElementById('fecha').addEventListener('change', updateHoras);
 
     function updateHoras() {
-        console.log("Update Horas Function Called");
+
         const selectedCampus = document.getElementById('campus').value;
         const fechaValue = document.getElementById('fecha').value;
-        console.log("Fecha String:", fechaValue + 'T00:00:00');
+
 
         // Ajuste en la creación del objeto Date
         const selectedFecha = new Date(fechaValue + 'T00:00:00');
@@ -317,7 +317,7 @@
 
         // Verificar si el campus seleccionado es Santiago y agregar las horas correspondientes
         if (selectedCampus === 'Santiago' && selectedFecha.getDay() === 0) {
-            console.log("Adding Horarios");
+
             horaSelect.innerHTML += '<option value="09:00">09:00</option>';
             horaSelect.innerHTML += '<option value="11:00">11:00</option>';
             horaSelect.innerHTML += '<option value="13:00">13:00</option>';
@@ -326,13 +326,10 @@
             horaSelect.innerHTML += '<option value="19:30">19:00</option>';
             // Puedes agregar más opciones según sea necesario
         }else if(selectedCampus === 'Santiago' && selectedFecha.getDay() === 3){
-          console.log("Adding Horarios");
             horaSelect.innerHTML += '<option value="12:00">20:00</option>';
         }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 4){
-          console.log("Adding Horarios");
             horaSelect.innerHTML += '<option value="20:00">20:00</option>';
         }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 0){
-          console.log("Adding Horarios");
             horaSelect.innerHTML += '<option value="11:00">11:00</option>';
             horaSelect.innerHTML += '<option value="19:00">19:00</option>';
         }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 4){
