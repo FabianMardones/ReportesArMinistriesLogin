@@ -351,10 +351,10 @@ select{
     font-weight:200;
 }
 
-input:-webkit-autofill {
+.inputLogin:-webkit-autofill {
     border-radius: 30%; 
     background-color: #fff;
-  }
+}
   
   
   input:-moz-autofill {
