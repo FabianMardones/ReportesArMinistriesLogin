@@ -74,59 +74,46 @@
       <div class="fondo fondo3"></div>
 
       <section class="w-100 contenedor_hero_admin">
-        <div class="w-50 hero_admin_contenedor1">
-          <h1>Bienvenido al <strong>panel de administración</strong></h1>
+        <div class=" hero_admin_contenedor1 hero_admin_contenedor_home">
+          <h1>Bienvenido a <strong>ar estadisticas</strong></h1>
+          <p>una aplicación de <strong>ar ministres</strong><i class="fa fa-smile"></i></p>
           <button class="btn btn-outline-primary boton_admin" onclick="scrollToSection('acciones_disponibles')">Comenzar</button>
         </div>
         <div class="w-50 hero_admin_contenedor2">
-          <img src="resources/img/undraw_web_devices_re_m8sc.svg" alt="">
+          <img class="img_home" src="resources/img/undraw_pie_graph_re_imagenHome.svg" alt="">
         </div>
       </section>
 
-      <section class="contenedor_informativo">
+      <section class="contenedor_informativo animate-on-scroll">
         <div class="informativo_detalles">
-          <div class="detalles_titulo">
-            <h2>¿Qué puedo hacer en <strong>esta sección?</strong></h2>
-          </div>
-          <div class="detalles_parrafo">
-            <p>En esta sección, hallarás todos los recursos indispensables para visualizar y gestionar información crucial acerca de los encuentros de AR Ministries, permitiéndote ejercer un control completo sobre los mismos.</p>
-          </div>
+            <div class="detalles_titulo">
+                <h2>¿Qué puedo hacer en <strong>la app?</strong></h2>
+            </div>
+            <div class="detalles_parrafo">
+                <p>En la nueva app de ar estadísticas, hallarás el lugar perfecto para visualizar detalles espcíficos cuantitativos de cada encuentro y además generar los nuevos reportes de asistencias tanto en los encuentros como los encuentros de oración. Pudiendo de esta manera visualizar y gestionar dicha información crucial acerca de cada campus.</p>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <section id="acciones_disponibles" class="contenedor_navegacion">
-        <div class="navegacion_titulo">
-          <h2>Acciones <strong>disponibles</strong></h2>
-        </div>
+    <section id="acciones_disponibles" class="contenedor_navegacion animate-on-scroll">
         <div class="articles">
-          <article class="article">
-            <div class="article-preview">
-              <a href="/pastores/listadoPC"><h2>administrar pastores </h2></a>
-            </div>
-          </article>
-          <article class="article">
-            <div class="article-preview">
-              <a href="/ministros/listadoMinistros"><h2>administrar Ministros</h2></a>
-            </div>
-          </article>
-          <article class="article">
-            <div class="article-preview">
-              <a href="/lideres/listadoLideresVoluntarios"><h2>administrar Voluntarios</h2></a>
-            </div>
-          </article>
-          <article class="article">
-            <div class="article-preview">
-              <a href="/campus/listadoCampus"><h2>administrar Campus</h2></a>
-            </div>
-          </article>
-          <article class="article">
-            <div class="article-preview">
-              <a href="/modalidad/modalidad"><h2>administrar Modalidad</h2></a>
-            </div>
-          </article>
+            <article class="article">
+                <div class="article-preview">
+                    <a href="/"><h2>Generar Reporte Encuentros</h2></a>
+                </div>
+            </article>
+            <article class="article">
+                <div class="article-preview">
+                    <a href="/reporteOracion"><h2>Generar Reporte Encuentro de Oración</h2></a>
+                </div>
+            </article>
+            <article class="article">
+                <div class="article-preview">
+                    <a href="/dashboard"><h2>Dashboard</h2></a>
+                </div>
+            </article>
         </div>
-          
-      </section>
+    </section>
   </main>
   
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -134,7 +121,7 @@
   <script src="resources/js/darkMode.js"></script>
   <script>
     function scrollToSection(sectionId) {
-        var section = document.getElementById(sectionId);
+        let section = document.getElementById(sectionId);
 
         if (section) {
             section.scrollIntoView({
@@ -142,6 +129,30 @@
             });
         }
     }
+</script>
+<script>
+    // Asegúrate de que este script esté después del elemento que deseas animar
+document.addEventListener("DOMContentLoaded", function () {
+    let animatedElements = document.querySelectorAll(".animate-on-scroll");
+
+    function checkVisibility() {
+        animatedElements.forEach(function (element) {
+            let rect = element.getBoundingClientRect();
+            let windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            if (rect.top <= windowHeight * 0.75) {
+                element.classList.add("show");
+            }
+        });
+    }
+
+    // Llama a la función inicialmente
+    checkVisibility();
+
+    // Escucha el evento de scroll y verifica la visibilidad de los elementos
+    window.addEventListener("scroll", checkVisibility);
+});
+
 </script>
 </body>
 </html>

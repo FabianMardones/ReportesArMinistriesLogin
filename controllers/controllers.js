@@ -6,6 +6,9 @@ const { error } = require('console');
 const e = require('express');
 
 
+exports.home = (req, res) => {
+    res.render('home', {user:req.user})
+}
 
 exports.register = async (req, res) => {
     try {
@@ -134,7 +137,7 @@ exports.login = async(req, res) => {
                             color: "#000",
                             showConfirmButton: false,
                             timer: 2000,
-                            ruta: "/"
+                            ruta: "/home"
                         })
                     }
                 })
@@ -165,6 +168,11 @@ exports.isAuth = async(req, res, next) => {
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')
     return res.redirect('/')
+}
+
+
+exports.registerPage = (req, res) => {
+    res.render('register')
 }
 
 

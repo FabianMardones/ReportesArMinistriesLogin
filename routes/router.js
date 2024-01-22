@@ -6,7 +6,7 @@ const conexion = require('../database/db')
 
 router.get('/', authController.isAuth, authController.obtenerNombres)
 
-
+router.get('/home', authController.isAuth, authController.home)
 
 
 //Autenticacion, Login y Logout
@@ -14,7 +14,7 @@ router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
 
-
+router.get('/register', authController.registerPage)
 
 /*****************CRUD ENCUENTROS*****************/
 //listar

@@ -19,80 +19,82 @@
     <p>Panel de Administración <i class="fa-regular fa-face-smile"></i></p>
   </div>
 
-  <section class="navegacion fixed-top vista">
+  <section class="navegacion fixed-top vista vistaMinus">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-          <img class="arimg" src="/resources/img/arministries.png" alt="">
+          <a href="/dashboard" class="cont-logo">
+            <img class="arimg imganear" src="/resources/img/arministries.png" alt="/dashboard">
+          </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Pastores
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/pastores/listadoPC">Pastores</a></li>
-                    <li><a class="dropdown-item" href="/pastores_campus/listar">Pastores Encargados</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Campus
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/campus/listadoCampus">Campus</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ministros
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/ministros/listadoMinistros">Ministros</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Predicadores
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/predicadores/listarPredicadores">predicadores</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
-                </ul>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pastores
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/pastores/listadoPC">Pastores</a></li>
+                <li><a class="dropdown-item" href="/pastores_campus/listar">Pastores Encargados</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
+              </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Lideres V.
+                Campus
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/lideres/listadoLideresVoluntarios">Lideres Voluntarios</a></li>
+                <li><a class="dropdown-item" href="/campus/listadoCampus">Campus</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ministros
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/ministros/listadoMinistros">Ministros</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
               </ul>
           </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Modalidad
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/modalidad/modalidad">Modalidad</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
-                </ul>
-            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Predicadores
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/predicadores/listarPredicadores">predicadores</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
             </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Lideres V.
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/lideres/listadoLideresVoluntarios">Lideres Voluntarios</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
+          </ul>
+      </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Modalidad
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/modalidad/modalidad">Modalidad</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/dashboard">Salir</a></li>
+          </ul>
+      </li>
+        </ul>
           <form class="d-flex" role="search">
-            <a class="btn btn-outline-danger" href="/logout">Cerrar Sesión</a>
+            <a class="btn btn-outline-danger btn-logout" href="/logout">Cerrar Sesión</a>
           </form>
         </div>
       </div>

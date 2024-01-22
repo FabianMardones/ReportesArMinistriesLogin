@@ -19,10 +19,12 @@
     <p>Panel de Administración <i class="fa-regular fa-face-smile"></i></p>
   </div>
 
-  <section class="navegacion fixed-top vista">
+  <section class="navegacion fixed-top vista vistaMinus">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-          <img class="arimg" src="/resources/img/arministries.png" alt="">
+          <a href="/dashboard" class="cont-logo">
+            <img class="arimg imganear" src="/resources/img/arministries.png" alt="/dashboard">
+          </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -92,7 +94,7 @@
       </li>
         </ul>
           <form class="d-flex" role="search">
-            <a class="btn btn-outline-danger" href="/logout">Cerrar Sesión</a>
+            <a class="btn btn-outline-danger btn-logout" href="/logout">Cerrar Sesión</a>
           </form>
         </div>
       </div>

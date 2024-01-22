@@ -1404,6 +1404,8 @@ h3{
 }
 
 
+
+
 .contenedor_informativo{
     height: 11rem;
     display: flex;
@@ -1430,6 +1432,7 @@ h3{
 
 .detalles_parrafo{
     width: 50%;
+    margin-bottom: 1rem;
 }
 
 
@@ -1476,6 +1479,12 @@ h3{
     .contenedor_informativo{
         height: 35rem;
         margin-bottom: 5rem;
+    }
+}
+
+@media (max-width: 956px) {
+    .img_home{
+        margin-left: 15%;
     }
 }
 
@@ -1623,10 +1632,73 @@ h3{
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1005px){
     .admin{
-        width: 90%;
+        margin-top: 8.5rem;
     }
+    .switch_admin{
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 993px){
+    .admin{
+        margin-top: 8.5rem;
+    }
+    .switch_admin{
+        margin-top: 0.5rem;
+    }
+    .imganear{
+        top: -0.5rem;
+    }
+}
+
+@media (max-width: 992px){
+    .admin{
+        margin-top: 8.5rem;
+    }
+    .switch_admin{
+        margin-top: 1.5rem;
+    }
+    .imganear{
+        top: -0.1rem;
+        left: 0;
+    }
+}
+
+@media (max-width: 991.9px) {
+    .admin{
+        width: 95%;
+        margin-top: 7.5rem;
+    }
+    .cont-logo{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .imganear{
+        position: absolute;
+        top: -1.8rem;
+        left: 0;
+    }
+    .vistaMinus{
+        height: 4rem;
+    }
+    .switch_admin{
+        margin-top: 0rem;
+    }
+}
+
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.animate-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
