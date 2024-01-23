@@ -89,7 +89,7 @@
               <select class="form-select form-select-lg fs-6" aria-label="predicador" placeholder="Predicador" id="nombrePredicador" name="nombrePredicador">
                 <option selected value="">Predicador</option>
                 <% predicadores.forEach((predicador)=> { %>
-                <option value="<%= predicador.rol %> - <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %>"><%= predicador.rol %> <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %></option>
+                <option value="<%= predicador.rol %> <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %>"><%= predicador.rol %> <%= predicador.nombre_pastor %> <%= predicador.apellido_pastor %></option>
                 <% }) %>
               </select>
             </div>

@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link home" aria-current="page" href="/">Home</a>
+              <a class="nav-link home" aria-current="page" href="/home">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
@@ -92,7 +92,6 @@
                   <option value="Puente Alto">Puente Alto</option>
                   <option value="Santiago">Santiago</option>
                   <option value="Montevideo">Montevideo</option>
-                  <option value="Doral">Doral</option>
                   <option value="West Perrine">West Perrine</option>
               </select>
         
@@ -123,6 +122,12 @@
                                 Hora
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                                Acepta a Jesús
+                        </th>
+                        <th class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+                                Predicador
+                        </th>
+                        <th class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
                                 Acciones
                         </th>
                     </tr>
@@ -140,6 +145,12 @@
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200  leading-5 text-gray-700">    
                     <p class="text-gray-600"><%= encuentro.hora %></p>
+                  </td>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200  leading-5 text-gray-700 text-center">    
+                    <p class="text-gray-600"><%= encuentro.total_acepta_a_jesus %></p>
+                  </td>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200  leading-5 text-gray-700">    
+                    <p class="text-gray-600"><%= encuentro.nombre_predicador %></p>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
                     <a href="/encuentro/<%= encuentro.id %>" class="btn btn-outline-primary font-black" style="border: 3px solid #0D6EFD;">
