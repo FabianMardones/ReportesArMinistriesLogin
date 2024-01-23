@@ -365,7 +365,7 @@ exports.filtrarEncuentros = (req, res) => {
         throw error;
       } else {
         // Pasar la variable noResults incluso si no hay resultados
-        res.render('vistasReportes', { results: results, user: req.user });
+        res.render('accionesReportes/vistasReportes', { results: results, user: req.user });
       }
     });
 }
