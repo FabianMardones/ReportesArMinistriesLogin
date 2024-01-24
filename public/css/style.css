@@ -1712,6 +1712,19 @@ h3{
     margin-top: 10rem;
   }
 
+@media (max-width:780px) {
+    .counter-main h1{
+        font-size: 10rem;
+    }
+}
+
+@media (max-width:600px) {
+    .counter-main h1{
+        font-size: 7rem;
+        margin-bottom: 50%;
+    }
+}
+
 
 
 
