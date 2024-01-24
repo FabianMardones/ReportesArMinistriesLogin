@@ -331,13 +331,7 @@ exports.resumenEncuentros = (req, res) => {
         if (error) {
             throw error;
         } else {
-            conexion.query('SELECT * FROM campus', (error, campus) => {
-                if (error) {
-                    throw error
-                }else{
-                    res.render('accionesReportes/vistasReportes', { results: results, campus:campus, user: req.user });
-                }
-            })
+            res.render('accionesReportes/vistasReportes', { results: results, user: req.user });
         }
     });
 }
@@ -1081,14 +1075,7 @@ exports.obtenerEncuentroOracion = (req, res) => {
         if (error){
             throw error
         }else{
-            conexion.query('SELECT * FROM campus', (error, campus) =>{
-                if (error){
-                    throw error
-                }else{
-                    res.render('accionesReportesOracion/vistasOracion', {results:results, campus:campus, user:req.user})
-                }
-            })
-            
+            res.render('accionesReportesOracion/vistasOracion', {results:results, user:req.user})
         }
     })
 }

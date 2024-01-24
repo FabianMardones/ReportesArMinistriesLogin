@@ -92,9 +92,11 @@
               <label for="filtroCampus" class="filtrar-por-campus">Filtrar por campus:</label>
               <select name="filtroCampus" id="filtroCampus" class="mx-2 filtrar-por-campus">
                   <option value="">Todos los campus</option>
-                  <% campus.forEach((campus) => { %>
-                    <option value="<%= campus.nombre_campus %>"><%= campus.nombre_campus %></option>
-                  <% }) %>
+                  <option value="Puente Alto">Puente Alto</option>
+                  <option value="Santiago Centro">Santiago Centro</option>
+                  <option value="Montevideo">Montevideo</option>
+                  <option value="West Perrine">West Perrine</option>
+                  <option value="Virtual">Virtual</option>
               </select>
         
               <label for="filtroFecha" class="filtrar-por-campus">Filtrar por fecha:</label>
@@ -132,7 +134,7 @@
                   <p class="text-red-700 fs-5">No se encontraron resultados.</p>
                 <% } else { %>
                 <% results.forEach((encuentro)=> { %>
-                <tbody id="listado-encuentros" class="cuerpo-listado">
+                <tbody id="listado-encuentros" class="cuerpo-listado animate-on-scroll">
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <p class="text-sm leading-5 font-medium text-lg font-bold campus"><%= encuentro.campus %></p>
                   </td>
@@ -177,6 +179,30 @@
       elemento.textContent = fechaFormateada;
     });
   });
+</script>
+<script>
+  // Asegúrate de que este script esté después del elemento que deseas animar
+document.addEventListener("DOMContentLoaded", function () {
+  let animatedElements = document.querySelectorAll(".animate-on-scroll");
+
+  function checkVisibility() {
+      animatedElements.forEach(function (element) {
+          let rect = element.getBoundingClientRect();
+          let windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+          if (rect.top <= windowHeight * 0.75) {
+              element.classList.add("show");
+          }
+      });
+  }
+
+  // Llama a la función inicialmente
+  checkVisibility();
+
+  // Escucha el evento de scroll y verifica la visibilidad de los elementos
+  window.addEventListener("scroll", checkVisibility);
+});
+
 </script>
 </body>
 </html>
