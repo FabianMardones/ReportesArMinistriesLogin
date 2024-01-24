@@ -16,9 +16,11 @@
 </head>
 <body class="min-h-100 bg-counter">
 
+  <div class="icono fixed-top vista">
+    <p >Genera tus reportes <i class="fa-regular fa-face-smile"></i></p>
+  </div>
 
-
-  <section class="navegacion">
+  <section class="navegacion fixed-top vista">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <img class="arimg" src="resources/img/arministries.png" alt="">
@@ -28,15 +30,42 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link home" aria-current="page" href="/register">Login</a>
+              <a class="nav-link home" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dashboard" href="/contador">Contador</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Reportes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/">Reporte Encuentro</a></li>
+                <li><a class="dropdown-item" href="/reporteOracion">Reporte Oración</a></li>
+                <li><a class="dropdown-item" href="/vistasReportes">Resumen Encuentros</a></li>
+                <li><a class="dropdown-item" href="/vistasOracion">Resumen Encuentro Oración</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+              </ul>
+            </li>
+            <li class="nav-item">
+              <% if (user) { %>
+              <a class="nav-link font-black usuario text-white" aria-disabled="true">Bienvenido: <%= user.user %></a>
+              <% } %>
             </li>
           </ul>
+          <form class="d-flex" role="search">
+            <a class="btn btn-outline-danger" href="/logout">Cerrar Sesión</a>
+          </form>
         </div>
       </div>
     </nav>
   </section>
 
-  <div class="dark-light-mode_button switch no-print fixed-top switch-register">
+  <div class="dark-light-mode_button switch no-print fixed-top">
     <div class="button__shadow">
         <i class="fa fa-solid fa-moon luna"></i>
         <i class="fa fa-solid fa-sun oculto sol"></i>
@@ -44,11 +73,11 @@
   </div>
 
 
-  <main class="counter-main counter-second">
-    <div class="circle">
+  <main class="counter-main">
+    <div>
       <% if (results) { %>
         <h1><%= results %></h1>
-        <% } %>
+    <% } %>
     </div>
 
 </main>

@@ -31,20 +31,19 @@ router.post('/updateEncuentro', authController.isAuth, authController.updateEncu
 
 
 
-
-router.get('/contadorDeAlmas', authController.testPage)
-
 router.get('/counter', (req, res) => {
     conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
         if (error) {
             console.log(error);
             throw error;
         } else {
-            const totalAceptaAJesus = results[0].total_acepta_a_jesus + 7155 || 0;
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus || 0;
             res.render('test', { results: totalAceptaAJesus });
         }
     });
 })
+
+router.get('/contador',authController.isAuth, authController.contador)
 
 
 router.get('/dashboard', authController.isAuth, authController.dashboardtab)

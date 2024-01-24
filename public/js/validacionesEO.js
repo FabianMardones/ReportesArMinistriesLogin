@@ -7,6 +7,7 @@ const lideresVoluntarios = document.querySelector('#lideresVoluntarios')
 const adultos = document.querySelector('#adultos')
 const servicioVoluntarios = document.querySelector('#servicioVoluntarios')
 const tecnicaVoluntarios = document.querySelector('#tecnicaVoluntarios')
+const infoVoluntarios = document.querySelector('#infoVoluntarios')
 const worshipVoluntarios = document.querySelector('#worshipVoluntarios')
 const cocinaVoluntarios = document.querySelector('#cocinaVoluntarios')
 const redesSocialesVoluntarios = document.querySelector('#redesSocialesVoluntarios')
@@ -30,6 +31,7 @@ const obj = {
     adultos: '',
     servicioVoluntarios: '',
     tecnicaVoluntarios: '',
+    infoVoluntario: '',
     worshipVoluntarios: '',
     cocinaVoluntarios: '',
     redesSocialesVoluntarios: '',
@@ -42,7 +44,7 @@ const obj = {
 
 const elementos = [
     modalidad, campus, fecha, hora, ministrosEncargados, lideresVoluntarios,
-    adultos, servicioVoluntarios, tecnicaVoluntarios, worshipVoluntarios,
+    adultos, servicioVoluntarios, tecnicaVoluntarios, infoVoluntarios, worshipVoluntarios,
     cocinaVoluntarios, redesSocialesVoluntarios, seguridadVoluntarios,
     asistenciaOnline
 ]

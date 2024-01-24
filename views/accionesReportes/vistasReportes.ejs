@@ -36,6 +36,9 @@
             <li class="nav-item">
               <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link dashboard" href="/contador">Contador</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Reportes
@@ -43,15 +46,15 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/">Reporte Encuentro</a></li>
                 <li><a class="dropdown-item" href="/reporteOracion">Reporte Oración</a></li>
-                <li><a class="dropdown-item" href="/vistasReportes">Listado de Reportes Encuentros</a></li>
-                <li><a class="dropdown-item" href="/vistasOracion">Listado de Reportes Oración</a></li>
+                <li><a class="dropdown-item" href="/vistasReportes">Resumen Encuentros</a></li>
+                <li><a class="dropdown-item" href="/vistasOracion">Resumen Encuentro Oración</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
               </ul>
             </li>
             <li class="nav-item">
               <% if (user) { %>
-              <a class="nav-link font-black usuario text-white" aria-disabled="true">Contectado: <%= user.user %></a>
+              <a class="nav-link font-black usuario text-white" aria-disabled="true">Bienvenido: <%= user.user %></a>
               <% } %>
             </li>
           </ul>
@@ -89,10 +92,9 @@
               <label for="filtroCampus" class="filtrar-por-campus">Filtrar por campus:</label>
               <select name="filtroCampus" id="filtroCampus" class="mx-2 filtrar-por-campus">
                   <option value="">Todos los campus</option>
-                  <option value="Puente Alto">Puente Alto</option>
-                  <option value="Santiago">Santiago</option>
-                  <option value="Montevideo">Montevideo</option>
-                  <option value="West Perrine">West Perrine</option>
+                  <% campus.forEach((campus) => { %>
+                    <option value="<%= campus.nombre_campus %>"><%= campus.nombre_campus %></option>
+                  <% }) %>
               </select>
         
               <label for="filtroFecha" class="filtrar-por-campus">Filtrar por fecha:</label>

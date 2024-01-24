@@ -21,7 +21,7 @@
     <p >Genera tus reportes <i class="fa-regular fa-face-smile"></i></p>
   </div>
 
-  <section class="navegacion">
+  <section class="navegacion fixed-top vista">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <img class="arimg" src="/resources/img/arministries.png" alt="">
@@ -35,6 +35,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link dashboard" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dashboard" href="/contador">Contador</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="reportesDrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,7 +54,7 @@
             </li>
             <li class="nav-item">
               <% if (user) { %>
-              <a class="nav-link font-black usuario text-white" aria-disabled="true">Conectado: <%= user.user %></a>
+              <a class="nav-link font-black usuario text-white" aria-disabled="true">Bienvenido: <%= user.user %></a>
               <% } %>
             </li>
           </ul>
@@ -71,7 +74,7 @@
   </div>
   
   <% if (encuentro) { %>
-  <main class="mt-10">
+  <main class="mt-10" style="margin-top: 9rem;">
       <div class="fondo"></div>
       <div class="fondo fondo2"></div>
       <div class="fondo fondo3"></div>

@@ -331,7 +331,13 @@ exports.resumenEncuentros = (req, res) => {
         if (error) {
             throw error;
         } else {
-            res.render('accionesReportes/vistasReportes', { results: results, user: req.user });
+            conexion.query('SELECT * FROM campus', (error, campus) => {
+                if (error) {
+                    throw error
+                }else{
+                    res.render('accionesReportes/vistasReportes', { results: results, campus:campus, user: req.user });
+                }
+            })
         }
     });
 }
@@ -1075,7 +1081,14 @@ exports.obtenerEncuentroOracion = (req, res) => {
         if (error){
             throw error
         }else{
-            res.render('accionesReportesOracion/vistasOracion', {results:results, user:req.user})
+            conexion.query('SELECT * FROM campus', (error, campus) =>{
+                if (error){
+                    throw error
+                }else{
+                    res.render('accionesReportesOracion/vistasOracion', {results:results, campus:campus, user:req.user})
+                }
+            })
+            
         }
     })
 }
@@ -1101,6 +1114,7 @@ exports.saveEncuentroOracion = (req, res) => {
     const adultos = req.body.adultos;
     const servicioVoluntarios = req.body.servicioVoluntarios;
     const tecnicaVoluntarios = req.body.tecnicaVoluntarios;
+    const infoVoluntarios = req.body.infoVoluntarios;
     const worshipVoluntarios = req.body.worshipVoluntarios;
     const cocinaVoluntarios = req.body.cocinaVoluntarios;
     const redesSocialesVoluntarios = req.body.redesSocialesVoluntarios;
@@ -1109,7 +1123,7 @@ exports.saveEncuentroOracion = (req, res) => {
     const asistenciaOnline = req.body.asistenciaOnline;
     const totalAsistentesOnline = req.body.totalAsistentesOnline;
 
-    conexion.query('INSERT INTO registro_oracion SET ?', {modalidad:modalidad, campus:campus, fecha:fecha, hora:hora, ministros_encargados:ministrosEncargados, lideres_voluntarios:lideresVoluntarios, adultos:adultos, servicio_voluntarios:servicioVoluntarios, tecnica_voluntarios:tecnicaVoluntarios, worship_voluntarios:worshipVoluntarios, cocina_voluntarios:cocinaVoluntarios, redes_sociales_Voluntarios:redesSocialesVoluntarios, seguridad_voluntarios:seguridadVoluntarios, total_asistentes:totalAsistentes, asistencia_online:asistenciaOnline, total_asistentes_online:totalAsistentesOnline}, (error, results) =>{
+    conexion.query('INSERT INTO registro_oracion SET ?', {modalidad:modalidad, campus:campus, fecha:fecha, hora:hora, ministros_encargados:ministrosEncargados, lideres_voluntarios:lideresVoluntarios, adultos:adultos, servicio_voluntarios:servicioVoluntarios, tecnica_voluntarios:tecnicaVoluntarios, info_voluntarios:infoVoluntarios, worship_voluntarios:worshipVoluntarios, cocina_voluntarios:cocinaVoluntarios, redes_sociales_Voluntarios:redesSocialesVoluntarios, seguridad_voluntarios:seguridadVoluntarios, total_asistentes:totalAsistentes, asistencia_online:asistenciaOnline, total_asistentes_online:totalAsistentesOnline}, (error, results) =>{
         if (error) {
             console.log(error);
             throw error
@@ -1236,5 +1250,18 @@ exports.filtrarEncuentroOracion = (req, res) => {
         // Pasar la variable noResults incluso si no hay resultados
         res.render('accionesReportesOracion/vistasOracion', { results: results, user: req.user });
       }
+    });
+}
+
+
+exports.contador = (req, res) => {
+    conexion.query('SELECT SUM(total_acepta_a_jesus) AS total_acepta_a_jesus FROM registro_encuentros', (error, results) => {
+        if (error) {
+            console.log(error);
+            throw error;
+        } else {
+            const totalAceptaAJesus = results[0].total_acepta_a_jesus || 0;
+            res.render('test2', { results: totalAceptaAJesus, user:req.user });
+        }
     });
 }
