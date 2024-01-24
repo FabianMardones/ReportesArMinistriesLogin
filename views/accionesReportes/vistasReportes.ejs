@@ -110,6 +110,10 @@
       </div>
     </div>
 
+    <div id="spinner" class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
+
     <div class="flex flex-col mt-10">
         <div class="py-2 overflow-x-auto">
           <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -129,9 +133,6 @@
                                 Acepta a Jesús
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                                Predicador
-                        </th>
-                        <th class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
                                 Acciones
                         </th>
                     </tr>
@@ -140,7 +141,7 @@
                   <p class="text-red-700 fs-5">No se encontraron resultados.</p>
                 <% } else { %>
                 <% results.forEach((encuentro)=> { %>
-                <tbody id="listado-encuentros" class="cuerpo-listado animate-on-scroll">
+                <tbody id="listado-encuentros" class="cuerpo-listado">
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <p class="text-sm leading-5 font-medium text-lg font-bold campus"><%= encuentro.campus %></p>
                   </td>
@@ -152,9 +153,6 @@
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200  leading-5 text-gray-700 text-center">    
                     <p class="text-gray-600"><%= encuentro.total_acepta_a_jesus %></p>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200  leading-5 text-gray-700">    
-                    <p class="text-gray-600"><%= encuentro.nombre_predicador %></p>
                   </td>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
                     <a href="/encuentro/<%= encuentro.id %>" class="btn btn-outline-primary font-black" style="border: 3px solid #0D6EFD;">
@@ -192,29 +190,29 @@
   });
 </script>
 <script>
-  // Asegúrate de que este script esté después del elemento que deseas animar
-document.addEventListener("DOMContentLoaded", function () {
-  let animatedElements = document.querySelectorAll(".animate-on-scroll");
-
-  function checkVisibility() {
-      animatedElements.forEach(function (element) {
-          let rect = element.getBoundingClientRect();
-          let windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-          if (rect.top <= windowHeight * 0.75) {
-              element.classList.add("show");
-          }
-      });
+  // Muestra el spinner
+  function mostrarSpinner() {
+    document.getElementById('spinner').style.display = 'block';
   }
 
-  // Llama a la función inicialmente
-  checkVisibility();
+  // Oculta el spinner
+  function ocultarSpinner() {
+    document.getElementById('spinner').style.display = 'none';
+  }
 
-  // Escucha el evento de scroll y verifica la visibilidad de los elementos
-  window.addEventListener("scroll", checkVisibility);
-});
+  // Simula una carga de 10 segundos y luego oculta el spinner
+  function simularCarga() {
+    mostrarSpinner();
 
+    setTimeout(function() {
+      ocultarSpinner();
+    }, 10000); // 10000 milisegundos = 10 segundos
+  }
+
+  // Llama a la función para iniciar la simulación de carga
+  simularCarga();
 </script>
+
 
 </body>
 </html>

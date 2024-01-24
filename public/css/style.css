@@ -1672,7 +1672,45 @@ h3{
     transform: translateY(0);
 }
 
+.spinner-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+  }
 
+
+  .dark .spinner-overlay {
+    background-color: rgba(0, 0, 0, 0.815); /* Fondo semitransparente */
+  }
+  
+  /* Estilo para el spinner */
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #3498db; /* Color del spinner */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px; /* La mitad de la altura del spinner */
+    margin-left: -20px; /* La mitad del ancho del spinner */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .counter-thirth{
+    margin-top: 10rem;
+  }
 
 
 
