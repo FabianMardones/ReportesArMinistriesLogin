@@ -121,14 +121,19 @@
             </div>
             <div class="row g-3">
                 <div class="col">
-                    <label for="floatingInput">Fecha</label>
-                    <input type="date" class="form-control form-control-lg fs-6" placeholder="Fecha" aria-label="date" id="fecha" name="fecha">
+                  <label for="fecha">Fecha</label>
+                  <input type="date" class="form-control form-control-lg fs-6" id="fecha" name="fecha" aria-label="date" placeholder="Fecha">
                 </div>
-                <div class="col" style="margin-top: 1.8rem;">
+                <div class="cs-form">
+                  <label for="fecha">Horas</label>
+                  <input type="time" id="hora" name="hora" class="form-control" value="10:05 AM" />
+                </div>
+                
+                <!-- <div class="col" style="margin-top: 1.8rem;">
                     <select class="form-select form-select-lg mt-3 fs-6" aria-label="hora" id="hora" name="hora">
                         <option selected value="">Hora</option>
                     </select>
-                </div>
+                </div> -->
             </div>
 
             
@@ -285,7 +290,7 @@
             </div>
   
             <div class="mb-5 d-flex w-100">
-              <button class="btn w-50 btn-outline-primary mb-5 calcular" type="submit" id="registrar" disabled>Registrar y Generar PDF</button>
+              <button class="btn w-50 btn-outline-primary mb-5 calcular" type="submit" id="registrar" >Registrar y Generar PDF</button>
               <button class="w-50 btn ms-2 btn-outline-primary  mb-5 calcular" id='reset' type="reset">Reset</button>
             </div>
           </form>
@@ -294,7 +299,7 @@
   
       </div>
 
-
+      
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -302,52 +307,7 @@
   <script src="resources/js/validaciones.js"></script>
   <script src="resources/js/darkMode.js"></script>
   <script>
-    document.getElementById('campus').addEventListener('change', updateHoras);
-    document.getElementById('fecha').addEventListener('change', updateHoras);
-
-    function updateHoras() {
-
-        const selectedCampus = document.getElementById('campus').value;
-        const fechaValue = document.getElementById('fecha').value;
-
-
-        // Ajuste en la creación del objeto Date
-        const selectedFecha = new Date(fechaValue + 'T00:00:00');
-
-        let horaSelect = document.getElementById('hora');
-
-        horaSelect.innerHTML = '<option selected value="">Hora</option>';
-
-        // Verificar si el campus seleccionado es Santiago y agregar las horas correspondientes
-        if (selectedCampus === 'Santiago' && selectedFecha.getDay() === 0) {
-
-            horaSelect.innerHTML += '<option value="09:00">09:00</option>';
-            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
-            horaSelect.innerHTML += '<option value="13:00">13:00</option>';
-            horaSelect.innerHTML += '<option value="15:30">15:30</option>';
-            horaSelect.innerHTML += '<option value="17:30">17:00</option>';
-            horaSelect.innerHTML += '<option value="19:30">19:00</option>';
-            // Puedes agregar más opciones según sea necesario
-        }else if(selectedCampus === 'Santiago' && selectedFecha.getDay() === 3){
-            horaSelect.innerHTML += '<option value="12:00">20:00</option>';
-        }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 4){
-            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
-        }else if(selectedCampus === 'Puente Alto' && selectedFecha.getDay() === 0){
-            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
-            horaSelect.innerHTML += '<option value="19:00">19:00</option>';
-        }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 4){
-            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
-        }else if(selectedCampus === 'Montevideo' && selectedFecha.getDay() === 0){
-            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
-            horaSelect.innerHTML += '<option value="18:00">18:00</option>';
-        }else if(selectedCampus === 'Punta Arenas' && selectedFecha.getDay() === 4){
-            horaSelect.innerHTML += '<option value="20:00">20:00</option>';
-        }else if(selectedCampus === 'Punta Arenas' && selectedFecha.getDay() === 0){
-            horaSelect.innerHTML += '<option value="11:00">11:00</option>';
-        }else if(selectedCampus === 'West Perrine' && selectedFecha.getDay() === 0){
-            horaSelect.innerHTML += '<option value="17:00">17:00</option>';
-        }
-    }
+   
 </script>
 </body>
 </html>

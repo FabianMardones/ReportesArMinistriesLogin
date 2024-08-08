@@ -53,6 +53,7 @@ router.get('/dashboard', authController.isAuth, authController.dashboardtab)
 router.get('/pastores/listadoPC', authController.isAuth, authController.listarPastores)
 router.get('/pastores/crearPC', authController.isAuth, authController.mostrarForm)
 
+
 //guardar
 router.post('/savePastores', authController.isAuth, authController.savePastores)
 

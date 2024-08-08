@@ -16,13 +16,51 @@ exports.register = async (req, res) => {
         const email = req.body.email;
         const pass = req.body.pass;
 
-        // Realizar una consulta para obtener la lista de correos electrónicos autorizados
+        // conexion.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
+        //     if (error) {
+        //         console.log(error);
+        //     } else if (results.length > 0) {
+        //         // El correo electrónico ya existe, mostrar un mensaje de error
+        //         res.render('register', {
+        //             alert: true,
+        //             alertTitle: "Registro fallido",
+        //             alertMessage: "El correo electrónico ya está registrado",
+        //             alertIcon: "error",
+        //             background: "#F3EEE8",
+        //             color: "#000",
+        //             showConfirmButton: false,
+        //             timer: 2000,
+        //             ruta: "/register"
+        //         });
+        //     } else {
+        //         // El correo electrónico no existe, puedes proceder con la inserción
+        //         let passwordHashed = await bcryptjs.hash(pass, 8);
+        //         conexion.query('INSERT INTO users SET ?', { user: user, email: email, pass: passwordHashed }, async (insertError, insertResults) => {
+        //             if (insertError) {
+        //                 console.log(insertError);
+        //             } else {
+        //                 res.render('register', {
+        //                     alert: true,
+        //                     alertTitle: "Registro exitoso",
+        //                     alertMessage: `Gracias ${user} por registrarte`,
+        //                     alertIcon: "success",
+        //                     background: "#F3EEE8",
+        //                     color: "#000",
+        //                     showConfirmButton: false,
+        //                     timer: 2000,
+        //                     ruta: "/register"
+        //                 });
+        //             }
+        //         });
+        //     }
+        // });
+        //Realizar una consulta para obtener la lista de correos electrónicos autorizados
         conexion.query('SELECT email FROM emails_autorizados', async (autorizadosError, autorizadosResults) => {
             if (autorizadosError) {
                 console.log(autorizadosError);
             } else {
                 // Obtener un array de correos electrónicos autorizados
-                const correosAutorizados = autorizadosResults.map((row) => row.email);
+                const correosAutorizados = ['reportes@armchile.com', 'reportes2@armchile.com']; //autorizadosResults.map((row) => row.email);
 
                 // Verificar si el correo electrónico está autorizado
                 if (correosAutorizados.includes(email)) {
@@ -257,7 +295,6 @@ exports.dashboardtab = (req, res) => {
 /******************CRU REPORTE ENCUENTROS*********************/
 exports.registroEncuentro = async(req, res) => {
     const datos = req.body;
-
     console.log(datos);
 
     let pastoresCampus = datos.pastoresCampus;
@@ -499,7 +536,10 @@ exports.mostrarForm = (req, res) => {
     res.render('pastores/crearPastores')
 }
 
+
+
 exports.savePastores = (req, res) => {
+    try{ 
     const rol = req.body.rol;
     const nombre_pastor = req.body.nombre_pastor;
     const apellido_pastor = req.body.apellido_pastor;
@@ -513,21 +553,27 @@ exports.savePastores = (req, res) => {
             console.log(error);
             throw error
         }else{
+            console.log(results)
             res.redirect('/pastores/listadoPC')
         }
     })
+    }catch(err){
+        console.error(err)
+    }
+    
 }
 
 exports.editPastores = (req, res) => {
     const idPastor = req.params.id
-    conexion.query('SELECT * FROM pastores WHERE id_pastores = ?',[idPastor], (error, results) => {
+    conexion.query('SELECT * FROM pastores WHERE id_pastores = ?', [idPastor], (error, results) => {
         if (error) {
             console.log(error);
-            throw error
-        }else{
-            res.render('pastores/editarPastores', {user:results[0]})
+            throw error;
+        } else {
+            // Renderizar la vista de edición con los datos del pastor encontrados
+            res.render('pastores/editarPastores', { user: results[0] });
         }
-    })
+    });
 }
 
 exports.updatePastores = (req, res) => {

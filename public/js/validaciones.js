@@ -190,13 +190,13 @@ console.log(fechaFormateada);
     return
   }
 
-  if (nameInput === 'fecha' && valorInput != fechaFormateada) {
-    mensajeAlerta(`La fecha no puede ser de ayer ni de mañana`, referencia)
-    objetoForm[e.target.id] = ''
-    comprobarObjetoForm()
-    inputElement.classList.add('input-invalid')
-    return
-  }
+  // if (nameInput === 'fecha' && valorInput != fechaFormateada) {
+  //   mensajeAlerta(`La fecha no puede ser de ayer ni de mañana`, referencia)
+  //   objetoForm[e.target.id] = ''
+  //   comprobarObjetoForm()
+  //   inputElement.classList.add('input-invalid')
+  //   return
+  // }
 
   inputElement.classList.remove('input-invalid')
 
@@ -292,8 +292,9 @@ function calcularTotalAsistencia() {
         asistenciaCocinaVoluntarios, asistenciaRedesSocialesVoluntarios,
         asistenciaSeguridadVoluntarios, asistenciaSalaDeBebesVoluntarios,
         infoStand, oracionStand, standRecursos, standAmorPorLaCasa,
-        standProyectoEducativo
+        standProyectoEducativo,salaBebe
       ];
+
 
       const totalAsistencia = inputs.reduce((total, input) => total
        + parseInt(input.value) || 0, 0)
